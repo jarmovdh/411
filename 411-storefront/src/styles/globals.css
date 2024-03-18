@@ -2,6 +2,20 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+[data-theme="dark"] {
+  @apply dark;
+  background-color: #18191a;
+  color: #ededed;
+  --logo-fill-color: #ededed; /* Light color for dark theme */
+}
+
+[data-theme="light"] {
+  @apply dark;
+  background-color: #ededed;
+  color: #18191a;
+  --logo-fill-color: #18191a; /* Dark color for light theme */
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

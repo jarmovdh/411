@@ -1,3 +1,4 @@
+const { config } = require("process")
 const { withStoreConfig } = require("./store-config")
 const store = require("./store.config.json")
 

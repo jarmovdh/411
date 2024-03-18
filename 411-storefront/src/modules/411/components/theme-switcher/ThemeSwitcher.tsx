@@ -1,6 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
+import LightIcon from "../../../../../public/assets/icons/LightIcon"
+import DarkIcon from "../../../../../public/assets/icons/DarkIcon"
 
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false)
@@ -14,8 +16,15 @@ const ThemeSwitcher = () => {
 
   return (
     <div>
-      <button onClick={() => setTheme("light")}>Light</button>
-      <button onClick={() => setTheme("dark")}>Dark</button>
+      {theme === "dark" ? (
+        <button onClick={() => setTheme("light")}>
+          <LightIcon height={24} />
+        </button>
+      ) : (
+        <button onClick={() => setTheme("dark")}>
+          <DarkIcon height={24} />
+        </button>
+      )}
     </div>
   )
 }

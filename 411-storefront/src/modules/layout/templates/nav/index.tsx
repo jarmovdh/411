@@ -15,19 +15,16 @@ export default async function Nav() {
       <header className="relative h-16 mx-auto border-b duration-200border-ui-border-base">
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center">
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
-            >
-              <LogoIcon height={50} color="" />
+            <LocalizedClientLink href="/">
+              <LogoIcon height={50} />
             </LocalizedClientLink>
-            <div className="h-full ">
-              <SideMenu regions={regions} />
-            </div>
           </div>
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <ThemeSwitcher />
+            <div className="h-full ">
+              <SideMenu regions={regions} />
+            </div>
             <div className="hidden small:flex items-center gap-x-6 h-full">
               {process.env.FEATURE_SEARCH_ENABLED && (
                 <LocalizedClientLink
