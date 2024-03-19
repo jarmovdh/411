@@ -1,7 +1,6 @@
 import { Metadata } from "next"
 import "styles/globals.css"
 import Providers from "./providers"
-import ThemeSwitcher from "@modules/411/components/theme-switcher/ThemeSwitcher"
 import Nav from "@modules/layout/templates/nav"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://localhost:8000"

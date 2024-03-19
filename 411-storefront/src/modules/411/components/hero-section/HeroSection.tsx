@@ -1,7 +1,8 @@
 import { HeroSlider } from "../hero-slider/HeroSlider"
-import { ProductSlider } from "../product-slider/product-slider"
+import { ProductSlider } from "../product-slider/ProductSlider"
+;("../product-slider/ProductSlider")
 
-export const HeroSection = () => {
+export const HeroSection = ({ collections }) => {
   return (
     <div className="content-container rounded-full grid grid-cols-1 gap-1 md:grid-cols-2 ">
       <div className="flex w-full rounded-full md:w-full">
@@ -9,7 +10,7 @@ export const HeroSection = () => {
       </div>
       <div className="md:grid md:grid-cols-2 gap-1">
         <div className="h-full">
-          <ProductSlider />
+          <ProductSlider collections={collections} />
         </div>
         <div className="grid  grid-rows-2 h-full gap-1 ">
           <div className="bg-blue-200 flex items-center justify-center rounded">

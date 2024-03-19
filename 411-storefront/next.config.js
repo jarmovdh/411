@@ -9,6 +9,7 @@ const nextConfig = withStoreConfig({
   features: store.features,
   reactStrictMode: true,
   images: {
+    domains: ["cdn.sanity.io"],
     remotePatterns: [
       {
         protocol: "http",

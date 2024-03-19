@@ -66,7 +66,7 @@ export const HeroSlider = () => {
               borderRadius: "25px",
               objectFit: "cover",
             }}
-            priority
+            priority="true"
           />
         </SwiperSlide>
       </Swiper>

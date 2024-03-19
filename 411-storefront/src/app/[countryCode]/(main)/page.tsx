@@ -6,6 +6,7 @@ import FeaturedProducts from "@modules/home/components/featured-products"
 import { ProductCollectionWithPreviews } from "types/global"
 import { cache } from "react"
 import { HeroSection } from "@modules/411/components/hero-section/HeroSection"
+import { LatestShows } from "@modules/411/components/latest-shows/LatestShows"
 
 export const metadata: Metadata = {
   title: "411 Radio",
@@ -69,7 +70,7 @@ export default async function Home({
   return (
     <>
       <div className="py-12">
-        <HeroSection />
+        <HeroSection collections={collections} />
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
         </ul>
