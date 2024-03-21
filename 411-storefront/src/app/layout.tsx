@@ -15,7 +15,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <body>
         <Providers>
           <Nav />
-          <main className="relative">{props.children}</main>
+          <main className="relative bg-[var(--theme-background)]">
+            {props.children}
+          </main>
         </Providers>
       </body>
     </html>
