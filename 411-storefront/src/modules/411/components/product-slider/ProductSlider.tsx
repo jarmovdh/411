@@ -18,7 +18,9 @@ export const ProductSlider = ({ collections, region }) => {
   console.log(collections[0].products[0])
   return (
     <Swiper
-      pagination={{ clickable: true }}
+      pagination={{
+        dynamicBullets: true,
+      }}
       modules={[Pagination]}
       spaceBetween={5}
       loop={true}

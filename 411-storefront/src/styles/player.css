@@ -1,0 +1,84 @@
+.range-input {
+  height: 4px;
+  width: 100%;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: var(--track-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.range-input::-webkit-slider-runnable-track {
+  background-color: var(--track-fill-color);
+  height: var(--thumb-size);
+  border-radius: var(--thumb-size);
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--thumb-color);
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Firefox */
+.range-input::-moz-range-track {
+  background-color: var(--track-fill-color);
+  height: var(--thumb-size);
+  border-radius: var(--thumb-size);
+}
+
+.range-input::-moz-range-thumb {
+  background-color: var(--thumb-color);
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-slider {
+  cursor: pointer;
+  height: 4px;
+  width: 100px;
+  border-radius: 50px;
+  background-color: var(--track-color); /* Use your theme's color */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+.volume-slider::-webkit-slider-runnable-track {
+  background-color: var(--track-fill-color); /* Use your theme's color */
+  height: var(--thumb-size);
+  border-radius: var(--thumb-size);
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--thumb-color); /* Use your theme's color */
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* For Firefox */
+.volume-slider::-moz-range-track {
+  background-color: var(--track-fill-color);
+  height: var(--thumb-size);
+  border-radius: var(--thumb-size);
+}
+
+.volume-slider::-moz-range-thumb {
+  background: var(--thumb-color);
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  cursor: pointer;
+}

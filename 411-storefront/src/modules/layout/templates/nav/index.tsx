@@ -6,6 +6,7 @@ import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import ThemeSwitcher from "@modules/411/components/theme-switcher/ThemeSwitcher"
 import LogoIcon from "../../../../../public/assets/icons/LogoIcon"
+import Link from "next/link"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
@@ -15,9 +16,9 @@ export default async function Nav() {
       <header className="relative h-16 mx-auto border-b duration-200 border-ui-border-base bg-[var(--theme-background)]">
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center">
-            <LocalizedClientLink href="/">
+            <Link href="/">
               <LogoIcon height={50} />
-            </LocalizedClientLink>
+            </Link>
           </div>
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">

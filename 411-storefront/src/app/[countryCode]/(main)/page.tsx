@@ -72,6 +72,7 @@ export default async function Home({
     <>
       <div className="py-12">
         <HeroSection collections={collections} />
+        <LatestShows />
         <LatestNews />
       </div>
     </>

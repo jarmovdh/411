@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
-// import PlayIconSVG from "../../public/assets/icons/play.svg" // Update the import path according to your project structure
-// import PauseIconSVG from "../../public/assets/icons/pause.svg" // Update the import path according to your project structure
-// import { usePlayerContext } from "../contexts/PlayerContext" // Adjust the import path as needed
+import { usePlayerContext } from "@lib/context/player-context"
+import PauseIcon from "../../../../../public/assets/icons/PauseIcon"
+import PlayIcon from "../../../../../public/assets/icons/PlayIcon"
 
 export interface ShowProps {
   artist?: string
@@ -36,77 +36,81 @@ export const Show = ({
 }: ShowProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const router = useRouter()
-  //   const { activePlayer, setActivePlayer } = usePlayerContext()
+  const { activePlayer, setActivePlayer } = usePlayerContext()
   const [isHovered, setIsHovered] = useState(false)
 
   const handleClick = () => {
     router.push(`/listen/${slug}`)
   }
 
-  //   const togglePlayer = () => {
-  //     setIsVisible(!isVisible)
-  //     setActivePlayer((prevPlayer) => {
-  //       if (prevPlayer && prevPlayer.id === id) {
-  //         return null
-  //       }
-  //       return {
-  //         id,
-  //         artist: artist || "",
-  //         date,
-  //         excerpt: excerpt || "",
-  //         title,
-  //         slug: slug || "",
-  //         tags,
-  //         imageUrl,
-  //         cloudUrl: cloudUrl || "",
-  //         tracklist: [],
-  //         isFeatured,
-  //       }
-  //     })
-  //   }
+  const togglePlayer = () => {
+    setIsVisible((prev) => !prev)
+    setActivePlayer((prevPlayer) => {
+      if (prevPlayer && prevPlayer.id === id) {
+        return null
+      }
+      return {
+        id,
+        artist: artist || "",
+        date,
+        excerpt: excerpt || "",
+        title,
+        slug: slug || "",
+        tags,
+        imageUrl,
+        cloudUrl: cloudUrl || "",
+        tracklist: [],
+        isFeatured,
+      }
+    })
+  }
 
-  //   useEffect(() => {
-  //     const handlePopState = () => {
-  //       setIsVisible(false)
-  //     //   setActivePlayer(null)
-  //     }
+  useEffect(() => {
+    const handlePopState = () => {
+      setIsVisible(false)
+      //   setActivePlayer(null)
+    }
 
-  //     window.addEventListener("popstate", handlePopState)
+    window.addEventListener("popstate", handlePopState)
 
-  //     return () => {
-  //       window.removeEventListener("popstate", handlePopState)
-  //     }
-  //   }, [setActivePlayer])
+    return () => {
+      window.removeEventListener("popstate", handlePopState)
+    }
+  }, [setActivePlayer])
 
   return (
     <div
       className={`relative flex flex-col ${
         large ? "h-[555px]" : "h-[400px]"
-      } w-full bg-black text-white rounded-3xl transition-transform duration-300 ease-in-out hover:scale-105`}
+      } w-full bg-black text-white rounded-3xl `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
         className="relative w-full h-full cursor-pointer"
-        // onClick={togglePlayer}
+        onClick={togglePlayer}
       >
         <Image
           alt={title}
           src={imageUrl}
-          layout="fill"
-          className="rounded-3xl object-cover"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="w-full h-full object-cover rounded-xl"
           priority
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
         />
-        {/* {activePlayer && activePlayer.id === id ? (
-          <PauseIconSVG className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-current text-white z-10" />
-        ) : (
-          <PlayIconSVG className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-current text-white z-10" />
-        )} */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          {activePlayer && activePlayer.id === id ? (
+            <PauseIcon height={50} />
+          ) : (
+            <PlayIcon height={50} />
+          )}
+        </div>
       </div>
       <div
-        className={`absolute bottom-0 right-0 left-0 bg-black bg-opacity-90 p-2 flex flex-col justify-evenly rounded-b-3xl ${
+        className={`absolute bottom-0 right-0 left-0 bg-black bg-opacity-40 p-2 flex flex-col justify-evenly rounded-b-xl ${
           large ? "p-5" : "p-2"
         }`}
         style={{
@@ -114,13 +118,11 @@ export const Show = ({
           transition: "height 0.5s",
         }}
       >
-        <p
-          className={`${large ? "text-base" : "text-xs"} text-white opacity-90`}
-        >
+        <p className={`${large ? "text-sm" : "text-xs"} text-white opacity-90`}>
           {new Date(date)
             .toLocaleDateString("en-GB", {
               day: "2-digit",
-              month: "short",
+              month: "2-digit",
               year: "numeric",
             })
             .replace(/\//g, ".")}
@@ -136,15 +138,19 @@ export const Show = ({
         <p
           className={`transition-opacity duration-500 ${
             isHovered ? "opacity-100" : "opacity-0"
-          } ${large ? "text-base" : "text-xs"}`}
+          } ${large ? "text-base" : "text-xs"} line-clamp-2`}
         >
           {excerpt}
         </p>
-        <div className="flex gap-2 mt-2">
+        <div
+          className={`transition-opacity duration-500 flex gap-1 mt-2 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
+        >
           {tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs bg-gray-200 text-black rounded-full px-2 py-1"
+              className="text-xs bg-black text-white rounded-full px-1 bg-opacity-70 border border-white"
             >
               {tag}
             </span>

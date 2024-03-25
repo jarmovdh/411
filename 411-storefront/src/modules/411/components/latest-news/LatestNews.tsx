@@ -32,7 +32,7 @@ export const LatestNews = () => {
 
   return (
     <>
-      <div className="-z-1 content-container mt-1">
+      <div className="content-container mt-1">
         <div className="overflow-hidden">
           <Swiper
             slidesPerView={3}
