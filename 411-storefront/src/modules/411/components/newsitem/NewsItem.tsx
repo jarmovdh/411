@@ -20,24 +20,21 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
 
   return (
     <>
-      <div className="relative flex flex-col items-stretch h-full rounded-2xl transition-transform duration-300 ease-in-out">
+      <div className="relative flex flex-col items-stretch h-full rounded-base transition-transform duration-300 ease-in-out">
         <div className="relative grid grid-cols-auto gap-1.5">
-          <div
-            className="relative w-full h-[400px] rounded-lg cursor-pointer overflow-hidden"
-            onClick={handleClick}
-          >
+          <div className="relative w-full h-[400px] rounded-base cursor-pointer overflow-hidden">
             <Image
               src={imageUrl}
               width={0}
               height={0}
               sizes="100vw"
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-cover rounded-base"
               alt={title}
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
             />
           </div>
-          <div className="absolute rounded-b-xl bottom-0 flex flex-1 flex-col justify-between w-full p-2.5 bg-black/50">
+          <div className="absolute rounded-b-base bottom-0 flex flex-1 flex-col justify-between w-full p-2.5 bg-black/50">
             <p className="text-xs mb-0 mt-0 text-primary-700/70">
               {new Date(date)
                 .toLocaleDateString("en-GB", {

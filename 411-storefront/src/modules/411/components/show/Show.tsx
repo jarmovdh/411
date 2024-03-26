@@ -82,7 +82,7 @@ export const Show = ({
     <div
       className={`relative flex flex-col ${
         large ? "h-[555px]" : "h-[400px]"
-      } w-full bg-black text-white rounded-3xl `}
+      } w-full bg-black text-white rounded-base `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -96,7 +96,7 @@ export const Show = ({
           width={0}
           height={0}
           sizes="100vw"
-          className="w-full h-full object-cover rounded-xl"
+          className="w-full h-full object-cover rounded-base"
           priority
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
@@ -110,7 +110,7 @@ export const Show = ({
         </div>
       </div>
       <div
-        className={`absolute bottom-0 right-0 left-0 bg-black bg-opacity-40 p-2 flex flex-col justify-evenly rounded-b-xl ${
+        className={`absolute bottom-0 right-0 left-0 bg-black bg-opacity-40 p-2 flex flex-col justify-evenly rounded-b-base ${
           large ? "p-5" : "p-2"
         }`}
         style={{

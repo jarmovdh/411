@@ -1,8 +1,7 @@
-const LogoIcon = ({ height }: { height: number }) => (
+const LogoIcon = ({ className }: { className: any }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={height}
-    className="currentColor"
+    className={`fill-current ${className}`}
     style={{ fill: "var(--logo-fill-color)" }}
     viewBox="0 0 50 50"
   >

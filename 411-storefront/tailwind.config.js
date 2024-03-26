@@ -43,7 +43,7 @@ module.exports = {
       borderRadius: {
         none: "0px",
         soft: "2px",
-        base: "35px",
+        base: "20px",
         rounded: "35px",
         large: "16px",
         circle: "9999px",

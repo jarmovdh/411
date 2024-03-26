@@ -43,7 +43,7 @@ export const LatestNews = () => {
                 spaceBetween: 5,
               },
               640: {
-                slidesPerView: 2,
+                slidesPerView: 1.5,
                 spaceBetween: 5,
               },
               1024: {

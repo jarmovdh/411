@@ -19,6 +19,7 @@ import PlayIcon from "../../../../../public/assets/icons/PlayIcon"
 import MenuHamburger from "../../../../../public/assets/icons/MenuHamburger"
 import CloseIcon from "../../../../../public/assets/icons/CloseIcon"
 import { motion } from "framer-motion"
+import SoundCloudIcon from "../../../../../public/assets/icons/SoundCloudIcon"
 
 interface PlayerProps {
   show: {
@@ -59,7 +60,6 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
   const [height, setHeight] = useState(initialHeight)
 
   const reactPlayerRef = useRef(null)
-
   const progressBarRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
@@ -72,7 +72,6 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
     setHeight(isExpanded ? initialHeight : 300)
   }
 
-  // Get the duration from react-player's onDuration event
   const handleDuration = (dur: number) => {
     setDuration(dur)
     if (progressBarRef.current) {
@@ -117,12 +116,12 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
 
   const volumeIcon = useMemo(() => {
     if (muteVolume || volume < 1) {
-      return <VolumeMuteIcon height={25} />
+      return <VolumeMuteIcon height={20} />
     }
     if (volume < 40) {
-      return <VolumeDownIcon height={25} />
+      return <VolumeDownIcon height={20} />
     }
-    return <VolumeUpIcon height={25} />
+    return <VolumeUpIcon height={20} />
   }, [muteVolume, volume])
 
   return (
@@ -131,19 +130,22 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
       animate={isVisible ? "visible" : "hidden"}
       variants={playerVariants}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed bottom-[90px] left-0 z-50 rounded-t-[25px] shadow-lg"
+      className="z-50 rounded-[20px] mb-1 border border-ui-border-base bg-[var(--theme-background)] shadow-lg w-full lg:w-1/2 mx-auto"
       style={{
-        backgroundColor: "black",
-        height: `${height}px`,
-        width: "50vw",
+        backgroundColor: "var(--theme-background)",
+        height: `${isExpanded ? 300 : initialHeight}px`,
+        position: "fixed",
+        bottom: `${isExpanded ? "300px" : "90px"}`,
+        left: 0,
+        right: 0,
+        transition: "bottom 0.5s ease-in-out, height 0.5s ease-in-out",
+        boxShadow:
+          "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
       }}
     >
-      <div
-        className="flex flex-row border border-transparent"
-        style={{ borderColor: `var(--text-color)70` }}
-      >
+      <div className="flex flex-row border border-transparent">
         <div
-          className="cursor-pointer h-[90px] object-cover p-[5px] w-[150px] sm:w-[120px]"
+          className="cursor-pointer h-[85px] object-cover p-[5px] w-[150px] sm:w-[150px]"
           onClick={handleClick}
         >
           <Image
@@ -152,7 +154,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
             width={0}
             height={0}
             sizes="100vw"
-            className="w-full h-full object-cover rounded-xl"
+            className="w-full h-full object-cover rounded-[15px]"
           />
         </div>
         <div className="flex flex-col pt-1 justify-evenly w-full">
@@ -161,14 +163,14 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               className="border-none cursor-pointer p-0 bg-transparent"
               onClick={togglePlayer}
             >
-              {isPlaying ? <PauseIcon height={30} /> : <PlayIcon height={30} />}
+              {isPlaying ? <PauseIcon height={25} /> : <PlayIcon height={25} />}
             </button>
 
             <>
               {!isPlaying ? (
                 <div className="flex flex-col justify-center w-full">
                   <h3
-                    className="cursor-pointer font-normal m-0 uppercase text-[var(--textColor)]"
+                    className="cursor-pointer font-normal text-sm m-0 uppercase text-[var(--textColor)]"
                     onClick={handleClick}
                   >
                     {show.title}
@@ -187,12 +189,12 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
                   </h4>
                 </div>
               ) : (
-                <div className="flex items-center justify-between gap-1.25 w-full">
+                <div className="flex items-center justify-between gap-2 w-full">
                   <span className="text-[11px] font-nums text-[var(--textColor)]">
                     {formatTime(timeProgress)}
                   </span>
                   <input
-                    className="range-input w-full h-1 cursor-pointer bg-gray-100 rounded-full  border-none"
+                    className="range-input"
                     type="range"
                     ref={progressBarRef}
                     max={duration.toString()}
@@ -205,18 +207,21 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
                 </div>
               )}
             </>
+            <button className="border-none cursor-pointer p-0 bg-transparent">
+              <SoundCloudIcon className="h-6 md:h-6" />
+            </button>
             <button
               className="border-none cursor-pointer p-0 bg-transparent"
               onClick={toggleExpansion}
             >
-              <MenuHamburger height={30} />
+              <MenuHamburger height={20} />
             </button>
             <button
               className="border-none cursor-pointer p-0 bg-transparent"
               type="button"
               onClick={onClose}
             >
-              <CloseIcon height={30} />
+              <CloseIcon height={20} />
             </button>
             <ReactPlayer
               ref={reactPlayerRef}
@@ -231,29 +236,27 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
             />
-            <div className="hidden lg:flex items-center">
-              {" "}
-              <button
-                className="bg-transparent border-none cursor-pointer w-9"
-                aria-label="control volume"
-                onClick={() =>
-                  setMuteVolume((prevMuteVolume) => !prevMuteVolume)
-                }
-              >
-                {volumeIcon}
-              </button>
-              <input
-                type="range"
-                className="volume-slider w-full h-1 cursor-pointer appearance-none rounded-full bg-transparent border-none"
-                min={0}
-                max={100}
-                value={volume}
-                onChange={(e) => setVolume(parseInt(e.target.value, 10))}
-              />
-            </div>
+          </div>
+          <div className="hidden lg:flex items-center">
+            {" "}
+            <button
+              className="bg-transparent border-none cursor-pointer w-9"
+              aria-label="control volume"
+              onClick={() => setMuteVolume((prevMuteVolume) => !prevMuteVolume)}
+            >
+              {volumeIcon}
+            </button>
+            <input
+              type="range"
+              className="volume-slider"
+              min={0}
+              max={100}
+              value={volume}
+              onChange={(e) => setVolume(parseInt(e.target.value, 10))}
+            />
           </div>
         </div>
-        TODO add tracklists
+        {/* TODO add tracklists */}
         {/* <Tracklist tracklist={show.tracklist} /> */}
       </div>
     </motion.div>

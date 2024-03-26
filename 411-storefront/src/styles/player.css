@@ -3,14 +3,18 @@
   width: 100%;
   border-radius: 50px;
   cursor: pointer;
-  background-color: var(--track-color);
+  background-color: gray;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  --thumb-color: gray;
+  --track-fill-color: blue;
+  --thumb-size: 6px;
+  --track-fill-color: lightblue;
 }
 
 .range-input::-webkit-slider-runnable-track {
-  background-color: var(--track-fill-color);
+  background-color: blue;
   height: var(--thumb-size);
   border-radius: var(--thumb-size);
 }
@@ -18,22 +22,22 @@
 .range-input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  background-color: var(--thumb-color);
-  height: var(--thumb-size);
-  width: var(--thumb-size);
+  background-color: gray;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
   cursor: pointer;
 }
 
 /* Firefox */
 .range-input::-moz-range-track {
-  background-color: var(--track-fill-color);
+  background-color: gray;
   height: var(--thumb-size);
   border-radius: var(--thumb-size);
 }
 
 .range-input::-moz-range-thumb {
-  background-color: var(--thumb-color);
+  background-color: gray;
   height: var(--thumb-size);
   width: var(--thumb-size);
   border-radius: 50%;
@@ -45,40 +49,43 @@
   height: 4px;
   width: 100px;
   border-radius: 50px;
-  background-color: var(--track-color); /* Use your theme's color */
+  background-color: gray;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
 }
 
-.volume-slider::-webkit-slider-runnable-track {
-  background-color: var(--track-fill-color); /* Use your theme's color */
+.volume-slider::-webkit-slider-runnable-track,
+.volume-slider::-moz-range-track {
+  background-color: gray;
   height: var(--thumb-size);
   border-radius: var(--thumb-size);
 }
 
-.volume-slider::-webkit-slider-thumb {
+.volume-slider::-webkit-slider-thumb,
+.volume-slider::-moz-range-thumb {
   -webkit-appearance: none;
   appearance: none;
-  background-color: var(--thumb-color); /* Use your theme's color */
+  background-color: gray;
   height: var(--thumb-size);
   width: var(--thumb-size);
   border-radius: 50%;
   cursor: pointer;
 }
 
-/* For Firefox */
-.volume-slider::-moz-range-track {
-  background-color: var(--track-fill-color);
-  height: var(--thumb-size);
-  border-radius: var(--thumb-size);
-}
-
-.volume-slider::-moz-range-thumb {
-  background: var(--thumb-color);
+/* For IE */
+.volume-slider::-ms-thumb {
+  background-color: gray;
   height: var(--thumb-size);
   width: var(--thumb-size);
   border-radius: 50%;
   cursor: pointer;
+}
+
+.volume-slider::-ms-track {
+  background-color: transparent;
+  border-color: transparent;
+  color: transparent;
+  height: var(--thumb-size);
 }

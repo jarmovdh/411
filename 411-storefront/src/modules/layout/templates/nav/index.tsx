@@ -17,7 +17,7 @@ export default async function Nav() {
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center">
             <Link href="/">
-              <LogoIcon height={50} />
+              <LogoIcon className="h-10 md:h-12" />
             </Link>
           </div>
 
@@ -36,6 +36,12 @@ export default async function Nav() {
                   Search
                 </LocalizedClientLink>
               )}
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
+                href="/about"
+              >
+                About
+              </LocalizedClientLink>
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/account"

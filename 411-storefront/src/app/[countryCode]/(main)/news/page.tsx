@@ -23,16 +23,18 @@ const News = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:m-0 2xl:grid-cols-2">
-        {newsItems.map((news) => (
-          <NewsItem
-            key={news._id}
-            date={news.date}
-            title={news.title}
-            slug={news.slug.current}
-            imageUrl={news.imageUrl}
-          />
-        ))}
+      <div className="content-container mt-1">
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:m-0 2xl:grid-cols-2">
+          {newsItems.map((news) => (
+            <NewsItem
+              key={news._id}
+              date={news.date}
+              title={news.title}
+              slug={news.slug.current}
+              imageUrl={news.imageUrl}
+            />
+          ))}
+        </div>
       </div>
     </>
   )

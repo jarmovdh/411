@@ -8,6 +8,8 @@ import { cache } from "react"
 import { HeroSection } from "@modules/411/components/hero-section/HeroSection"
 import { LatestShows } from "@modules/411/components/latest-shows/LatestShows"
 import { LatestNews } from "@modules/411/components/latest-news/LatestNews"
+import Loader from "@modules/411/components/loader/Loader"
+import { Slogan } from "@modules/411/components/slogan/Slogan"
 
 export const metadata: Metadata = {
   title: "411 Radio",
@@ -70,7 +72,8 @@ export default async function Home({
 
   return (
     <>
-      <div className="py-12">
+      <div className="pt-12 pb-24">
+        <Slogan />
         <HeroSection collections={collections} />
         <LatestShows />
         <LatestNews />
