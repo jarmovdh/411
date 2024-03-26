@@ -1,3 +1,4 @@
+const { config } = require("process")
 const { withStoreConfig } = require("./store-config")
 const store = require("./store.config.json")
 
@@ -8,6 +9,7 @@ const nextConfig = withStoreConfig({
   features: store.features,
   reactStrictMode: true,
   images: {
+    domains: ["cdn.sanity.io"],
     remotePatterns: [
       {
         protocol: "http",

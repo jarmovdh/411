@@ -1,0 +1,91 @@
+.range-input {
+  height: 4px;
+  width: 100%;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: gray;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  --thumb-color: gray;
+  --track-fill-color: blue;
+  --thumb-size: 6px;
+  --track-fill-color: lightblue;
+}
+
+.range-input::-webkit-slider-runnable-track {
+  background-color: blue;
+  height: var(--thumb-size);
+  border-radius: var(--thumb-size);
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: gray;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Firefox */
+.range-input::-moz-range-track {
+  background-color: gray;
+  height: var(--thumb-size);
+  border-radius: var(--thumb-size);
+}
+
+.range-input::-moz-range-thumb {
+  background-color: gray;
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-slider {
+  cursor: pointer;
+  height: 4px;
+  width: 100px;
+  border-radius: 50px;
+  background-color: gray;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+.volume-slider::-webkit-slider-runnable-track,
+.volume-slider::-moz-range-track {
+  background-color: gray;
+  height: var(--thumb-size);
+  border-radius: var(--thumb-size);
+}
+
+.volume-slider::-webkit-slider-thumb,
+.volume-slider::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: gray;
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* For IE */
+.volume-slider::-ms-thumb {
+  background-color: gray;
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-slider::-ms-track {
+  background-color: transparent;
+  border-color: transparent;
+  color: transparent;
+  height: var(--thumb-size);
+}

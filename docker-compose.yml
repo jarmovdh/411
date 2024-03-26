@@ -4,10 +4,7 @@ services:
     image: postgres
     volumes:
       - postgres-db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: medusa_db
-      POSTGRES_USER: jarmo411
-      POSTGRES_PASSWORD: jar5maart!@
+  
     env_file:
       - ./.env
     environment:

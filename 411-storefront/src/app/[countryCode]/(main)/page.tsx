@@ -3,14 +3,18 @@ import { Metadata } from "next"
 
 import { getCollectionsList, getProductsList, getRegion } from "@lib/data"
 import FeaturedProducts from "@modules/home/components/featured-products"
-import Hero from "@modules/home/components/hero"
 import { ProductCollectionWithPreviews } from "types/global"
 import { cache } from "react"
+import { HeroSection } from "@modules/411/components/hero-section/HeroSection"
+import { LatestShows } from "@modules/411/components/latest-shows/LatestShows"
+import { LatestNews } from "@modules/411/components/latest-news/LatestNews"
+import Loader from "@modules/411/components/loader/Loader"
+import { Slogan } from "@modules/411/components/slogan/Slogan"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "411 Radio",
   description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+    "The best in underground music. Tune in to hear the latest shows, news, and more.",
 }
 
 const getCollectionsWithProducts = cache(
@@ -68,10 +72,11 @@ export default async function Home({
 
   return (
     <>
-      <div className="py-12">
-        <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
-        </ul>
+      <div className="pt-12 pb-24">
+        <Slogan />
+        <HeroSection collections={collections} />
+        <LatestShows />
+        <LatestNews />
       </div>
     </>
   )

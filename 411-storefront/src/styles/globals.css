@@ -1,6 +1,19 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "player.css";
+
+[data-theme="dark"] {
+  --theme-background: #18191a;
+  --theme-color: #ededed;
+  --logo-fill-color: #ededed;
+}
+
+[data-theme="light"] {
+  --theme-background: #ededed;
+  --theme-color: #18191a;
+  --logo-fill-color: #18191a;
+}
 
 @layer utilities {
   /* Chrome, Safari and Opera */
@@ -51,7 +64,7 @@
 
 @layer components {
   .content-container {
-    @apply max-w-[1440px] w-full mx-auto px-6;
+    @apply max-w-[1440px] w-full mx-auto px-1 sm:px-4;
   }
 
   .contrast-btn {

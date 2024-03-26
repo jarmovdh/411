@@ -7,6 +7,7 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/modules/411/**/*.{js,ts,jsx,tsx}",
     "./src/modules/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@medusajs/ui/dist/**/*.{js,jsx,ts,tsx}",
   ],
@@ -21,6 +22,10 @@ module.exports = {
         padding: "padding-top padding-right padding-bottom padding-left",
       },
       colors: {
+        "theme-light": "#ededed",
+        "theme-dark": "#18191a",
+        primary: "#ededed",
+        secondary: "#18191a",
         grey: {
           0: "#FFFFFF",
           5: "#F9FAFB",
@@ -38,8 +43,8 @@ module.exports = {
       borderRadius: {
         none: "0px",
         soft: "2px",
-        base: "4px",
-        rounded: "8px",
+        base: "20px",
+        rounded: "35px",
         large: "16px",
         circle: "9999px",
       },
