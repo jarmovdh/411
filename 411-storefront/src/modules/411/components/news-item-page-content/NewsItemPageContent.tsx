@@ -70,7 +70,7 @@ export default function NewsItemPageContent({
 
   return (
     <div className="content-container text-[var(--text-color)]">
-      <h1>{newsItem.title}</h1>
+      <h1 className="text-2xl">{newsItem.title}</h1>
       <p>
         {new Date(newsItem.date)
           .toLocaleDateString("en-GB", {

@@ -132,7 +132,6 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
       transition={{ duration: 0.5, ease: "easeInOut" }}
       className="z-50 rounded-[20px] mb-1 border border-ui-border-base bg-[var(--theme-background)] shadow-lg w-full lg:w-1/2 mx-auto"
       style={{
-        backgroundColor: "var(--theme-background)",
         height: `${isExpanded ? 300 : initialHeight}px`,
         position: "fixed",
         bottom: `${isExpanded ? "300px" : "90px"}`,
@@ -178,14 +177,14 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
                     {show.artist}
                   </h3>
 
-                  <h4 className="font-normal text-xs text-[var(--textColor)]">
+                  <h4 className="font-normal text-2xs text-[var(--textColor)]">
                     {new Date(show.date)
-                      .toLocaleDateString(undefined, {
+                      .toLocaleDateString("en-GB", {
                         day: "2-digit",
                         month: "2-digit",
                         year: "2-digit",
                       })
-                      .replace(/-/g, ".")}
+                      .replace(/\//g, ".")}
                   </h4>
                 </div>
               ) : (

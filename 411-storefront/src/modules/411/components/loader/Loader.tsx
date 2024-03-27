@@ -5,7 +5,7 @@ import LoaderIcon from "../../../../../public/assets/icons/LoaderIcon"
 
 export const Loader = () => {
   return (
-    <div className="h-full w-full grid place-items-center p-2.5">
+    <div className="h-[full] w-full grid place-items-center p-2.5 mt-[50px]">
       <motion.div
         className="inline-block"
         animate={{ rotate: 360 }}
@@ -15,7 +15,7 @@ export const Loader = () => {
           repeat: Infinity,
         }}
       >
-        <LoaderIcon className="h-8 md:h-10" />
+        <LoaderIcon className="h-6 md:h-10" />
       </motion.div>
     </div>
   )

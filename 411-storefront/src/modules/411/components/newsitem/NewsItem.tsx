@@ -46,7 +46,7 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
             </p>
             <div className="flex flex-col cursor-pointer h-14 mb-1.5">
               <h1
-                className="text-xl font-medium hover:text-tertiary-500"
+                className="text-md font-medium hover:text-tertiary-500"
                 onClick={handleClick}
               >
                 {title}

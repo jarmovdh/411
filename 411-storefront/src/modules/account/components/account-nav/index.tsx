@@ -11,6 +11,7 @@ import User from "@modules/common/icons/user"
 import MapPin from "@modules/common/icons/map-pin"
 import Package from "@modules/common/icons/package"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import MusicFolder from "../../../../../public/assets/icons/MusicFolder"
 
 const AccountNav = ({
   customer,
@@ -60,12 +61,12 @@ const AccountNav = ({
                 </li>
                 <li>
                   <LocalizedClientLink
-                    href="/account/addresses"
+                    href="/account/favorite-shows"
                     className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
                   >
                     <>
                       <div className="flex items-center gap-x-2">
-                        <MapPin size={20} />
+                        <MusicFolder className="h-5" />
                         <span>Favorite Shows</span>
                       </div>
                       <ChevronDown className="transform -rotate-90" />

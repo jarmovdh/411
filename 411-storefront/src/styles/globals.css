@@ -3,6 +3,17 @@
 @import "tailwindcss/utilities";
 @import "player.css";
 
+body,
+html {
+  background-color: var(--theme-background);
+  color: var(--theme-color);
+}
+
+p {
+  @apply text-xs;
+  color: var(--theme-color);
+}
+
 [data-theme="dark"] {
   --theme-background: #18191a;
   --theme-color: #ededed;

@@ -20,7 +20,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <Providers>
           <Nav />
           <Suspense fallback={<Loading />}>
-            <main className="relative bg-[var(--theme-background)]">
+            <main className="relative h-lvh bg-[var(--theme-background)]">
               {props.children}
               <GlobalPlayer />
             </main>

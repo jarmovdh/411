@@ -12,6 +12,7 @@ import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "@modules/products/components/thumbnail"
+import CartIcon from "../../../../../public/assets/icons/CartIcon"
 
 const CartDropdown = ({
   cart: cartState,
@@ -72,16 +73,18 @@ const CartDropdown = ({
 
   return (
     <div
-      className="h-full z-50"
+      className="h-full z-50 bg-[var(--theme-background)]"
       onMouseEnter={openAndCancel}
       onMouseLeave={close}
     >
       <Popover className="relative h-full">
         <Popover.Button className="h-full">
           <LocalizedClientLink
-            className="hover:text-ui-fg-base"
+            className="flex flex-row text-[var(--theme-color)]"
             href="/cart"
-          >{`Cart (${totalItems})`}</LocalizedClientLink>
+          >
+            <CartIcon className="h-6" /> {` (${totalItems})`}
+          </LocalizedClientLink>
         </Popover.Button>
         <Transition
           show={cartDropdownOpen}
@@ -95,10 +98,12 @@ const CartDropdown = ({
         >
           <Popover.Panel
             static
-            className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[420px] text-ui-fg-base"
+            className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[420px] text-ui-fg-base "
           >
-            <div className="p-4 flex items-center justify-center">
-              <h3 className="text-large-semi">Cart</h3>
+            <div className="p-4 flex items-center justify-center bg-[var(--theme-background)]">
+              <h3 className="text-large-semi text-[var(--theme-color)]">
+                Cart
+              </h3>
             </div>
             {cartState && cartState.items?.length ? (
               <>
@@ -118,7 +123,7 @@ const CartDropdown = ({
                         >
                           <Thumbnail thumbnail={item.thumbnail} size="square" />
                         </LocalizedClientLink>
-                        <div className="flex flex-col justify-between flex-1">
+                        <div className="flex flex-col justify-between flex-1 ">
                           <div className="flex flex-col flex-1">
                             <div className="flex items-start justify-between">
                               <div className="flex flex-col overflow-ellipsis whitespace-nowrap mr-4 w-[180px]">
