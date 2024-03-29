@@ -162,7 +162,11 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               className="border-none cursor-pointer p-0 bg-transparent"
               onClick={togglePlayer}
             >
-              {isPlaying ? <PauseIcon height={25} /> : <PlayIcon height={25} />}
+              {isPlaying ? (
+                <PauseIcon className="h-6" />
+              ) : (
+                <PlayIcon className="h-6 " />
+              )}
             </button>
 
             <>

@@ -5,27 +5,22 @@ import Image from "next/image"
 // import { PlayerButton } from "@/components/player-button/PlayerButton"
 // import AddShowButton from "@/components/add-show-button/AddShowButton"
 // import { SocialShare } from "@/components/social-share"
-import { ShowType } from "@/schemas/types"
+import { PlayerButton } from "../player-button/PlayerButton"
+import { ShowType } from "../../../../../sanity/schemas/types"
 // import Tracklist from "../tracklist/TrackList"
 
 export default function ShowPageContent({ show }: { show: ShowType }) {
   return (
     <>
-      <div className="content-container text-[color] mb-30 rounded-[35px]">
+      <div className="content-container text-[color] my-[30px] rounded-[35px]">
         <div className="flex flex-row items-center">
-          {/* <button
-            className="border-none cursor-pointer bg-transparent"
-            show={show}
-            onClick={() => {}}
-          > */}
-          {/* <PlayerButton  /> */}
-          {/* </button> */}
-          <h1>
+          <PlayerButton show={show} onClick={() => {}} />
+          <h1 className="text-xl bold">
             {show.title} - {show.artist}
           </h1>
         </div>
 
-        <p>
+        <p className="text-2sm">
           {new Date(show.date)
             .toLocaleDateString("en-GB", {
               day: "2-digit",

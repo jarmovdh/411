@@ -81,8 +81,10 @@ export const Show = ({
   return (
     <div
       className={`relative flex flex-col ${
-        large ? "h-[555px]" : "h-[400px]"
-      } w-full bg-black text-white rounded-base `}
+        large ? "h-[350px] md:h-[450px]" : "h-[250px] md:h-[350px]"
+      } 
+  
+    w-full bg-black text-white rounded-base`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -103,9 +105,9 @@ export const Show = ({
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           {activePlayer && activePlayer.id === id ? (
-            <PauseIcon height={50} />
+            <PauseIcon className="h-10 md:h-12" />
           ) : (
-            <PlayIcon height={50} />
+            <PlayIcon className="h-10 md:h-12" />
           )}
         </div>
       </div>
@@ -129,7 +131,7 @@ export const Show = ({
         </p>
         <h1
           className={`${
-            large ? "text-xl" : "text-lg"
+            large ? "text-xl" : "text-md"
           } font-medium cursor-pointer`}
           onClick={handleClick}
         >

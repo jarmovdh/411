@@ -18,7 +18,7 @@ export const LatestShows = () => {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 gap-1 mb-1 md:grid-cols-2 md:gap-1 lg:grid-cols-3 content-container mt-1">
+    <div className="grid grid-cols-2 gap-1 mb-1 md:grid-cols-2 md:gap-1 lg:grid-cols-3 content-container mt-1">
       {shows.map((show) => (
         <Show
           artist={show.artist}
