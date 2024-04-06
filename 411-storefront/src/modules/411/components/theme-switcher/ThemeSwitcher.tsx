@@ -15,17 +15,17 @@ const ThemeSwitcher = () => {
   if (!mounted) return null
 
   return (
-    <div>
+    <>
       {theme === "dark" ? (
         <button onClick={() => setTheme("light")}>
-          <LightIcon className="h-5 md:h-6" />
+          <LightIcon className="h-6 md:h-6" />
         </button>
       ) : (
         <button onClick={() => setTheme("dark")}>
-          <DarkIcon className="h-5 md:h-6" />
+          <DarkIcon className="h-6 md:h-6" />
         </button>
       )}
-    </div>
+    </>
   )
 }
 

@@ -22,7 +22,7 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
     <>
       <div className="relative flex flex-col items-stretch h-full rounded-base transition-transform duration-300 ease-in-out">
         <div className="relative grid grid-cols-auto gap-1.5">
-          <div className="relative w-full h-[400px] rounded-base cursor-pointer overflow-hidden">
+          <div className="relative w-full h-[350px]  rounded-base cursor-pointer overflow-hidden md:h-[400px]">
             <Image
               src={imageUrl}
               width={0}

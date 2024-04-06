@@ -24,7 +24,6 @@ export default async function Nav() {
           </div>
 
           <div className="flex items-center gap-x-3 h-full flex-1 basis-0 justify-end">
-            <ThemeSwitcher />
             <div className="h-full text-[var(--theme-color)]">
               <SideMenu regions={regions} />
             </div>
@@ -40,17 +39,31 @@ export default async function Nav() {
               )}
               <LocalizedClientLink
                 className="text-[var(--theme-color)]"
-                href="/about"
+                href="/listen"
               >
-                About
+                Listen
               </LocalizedClientLink>
               <LocalizedClientLink
-                className="hover:text-ui-fg-base"
-                href="/account"
+                className="text-[var(--theme-color)]"
+                href="/news"
               >
-                <ProfileIcon className="h-6" />
+                Read
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                className="text-[var(--theme-color)]"
+                href="/store"
+              >
+                Shop
               </LocalizedClientLink>
             </div>
+            <ThemeSwitcher />
+
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base"
+              href="/account"
+            >
+              <ProfileIcon className="h-6" />
+            </LocalizedClientLink>
             <Suspense
               fallback={
                 <LocalizedClientLink

@@ -81,7 +81,7 @@ export const Show = ({
   return (
     <div
       className={`relative flex flex-col ${
-        large ? "h-[350px] md:h-[450px]" : "h-[250px] md:h-[350px]"
+        large ? "h-[350px] md:h-[525px]" : "h-[250px] md:h-[350px]"
       } 
   
     w-full bg-black text-white rounded-base`}
@@ -120,7 +120,9 @@ export const Show = ({
           transition: "height 0.5s",
         }}
       >
-        <p className={`${large ? "text-sm" : "text-xs"} text-white opacity-90`}>
+        <p
+          className={`${large ? "text-xs" : "text-2xs"} text-white opacity-90`}
+        >
           {new Date(date)
             .toLocaleDateString("en-GB", {
               day: "2-digit",
