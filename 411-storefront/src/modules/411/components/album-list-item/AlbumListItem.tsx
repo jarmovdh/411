@@ -38,12 +38,7 @@ export const AlbumListItem = ({
             width={600}
             height={300}
             sizes="100vw"
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "25px",
-              objectFit: "cover",
-            }}
+            className="w-full h-full object-cover rounded-base"
             alt={alt}
           />
         </div>
@@ -52,7 +47,7 @@ export const AlbumListItem = ({
         {artist && (
           <Link href={`/albums/${slug}`}>
             <h1
-              className="text-2xs font-medium mt-2 cursor-pointer md:text-sm"
+              className="text-xs font-medium mt-2 cursor-pointer md:text-sm"
               onClick={handleClick}
             >
               {artist} - {title}

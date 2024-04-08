@@ -69,9 +69,9 @@ export default function NewsItemPageContent({
   }
 
   return (
-    <div className="content-container text-[var(--text-color)]">
-      <h1 className="text-2xl">{newsItem.title}</h1>
-      <p>
+    <div className="content-container text-[var(--text-color)] mt-12">
+      <h1 className="text-2xl font-bold">{newsItem.title}</h1>
+      <p className="mb-4">
         {new Date(newsItem.date)
           .toLocaleDateString("en-GB", {
             day: "2-digit",
@@ -100,7 +100,7 @@ export default function NewsItemPageContent({
           />
         </div>
       )}
-      <div className="p-[20px] md:p-0">
+      <div className="p-[20px] md:px-[100px] lg:px-[200px]">
         <PortableText value={newsItem.body} components={components} />
         TODO - Add SocialShare component
         {/* <SocialShare title={newsItem.title} url={newsItem.slug.current} /> */}

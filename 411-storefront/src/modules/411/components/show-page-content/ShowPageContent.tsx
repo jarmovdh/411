@@ -15,12 +15,12 @@ export default function ShowPageContent({ show }: { show: ShowType }) {
       <div className="content-container text-[color] my-[30px] rounded-[35px]">
         <div className="flex flex-row items-center">
           <PlayerButton show={show} onClick={() => {}} />
-          <h1 className="text-xl bold">
+          <h1 className="text-2xl font-bold">
             {show.title} - {show.artist}
           </h1>
         </div>
 
-        <p className="text-2sm">
+        <p className="text-2sm mb-4">
           {new Date(show.date)
             .toLocaleDateString("en-GB", {
               day: "2-digit",
@@ -31,18 +31,15 @@ export default function ShowPageContent({ show }: { show: ShowType }) {
         </p>
         <div className="w-full h-[500px] object-cover rounded-[25px] md:h-[700px]">
           <Image
-            priority
+            alt={show.title}
             src={show.imageUrl}
             width={0}
             height={0}
             sizes="100vw"
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "25px",
-              objectFit: "cover",
-            }}
-            alt={show.title}
+            className="w-full h-full object-cover rounded-base"
+            priority
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
           />
         </div>
 

@@ -1,7 +1,7 @@
 export default function About() {
   return (
-    <div className="content-container">
-      <h1> About</h1>
+    <div className="content-container mt-12">
+      <h1 className="text-2xl font-bold"> About</h1>
       <h2>
         411 Radio is broadcasting from Amsterdam with a commitment to diverse
         music programming. Our shows blend new releases with leftfield gems
