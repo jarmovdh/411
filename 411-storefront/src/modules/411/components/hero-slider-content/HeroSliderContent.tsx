@@ -19,7 +19,6 @@ const HeroSliderContent: React.FC<Props> = ({ featuredShows }) => {
       }}
       modules={[Pagination]}
       spaceBetween={5}
-      loop={true}
       className="mySwiper"
     >
       {featuredShows.map((show) => (

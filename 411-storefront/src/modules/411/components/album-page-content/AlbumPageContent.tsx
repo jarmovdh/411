@@ -7,6 +7,7 @@ import { AlbumType } from "../../../../../sanity/schemas/types"
 import GlobeIcon from "../../../../../public/assets/icons/GlobeIcon"
 import AppleIcon from "../../../../../public/assets/icons/ApplieIcon"
 import SpotifyIcon from "../../../../../public/assets/icons/SpotifyIcon"
+import { SocialShare } from "../social-share/SocialShare"
 
 export default function AlbumPageContent({ album }: { album: AlbumType }) {
   return (
@@ -31,24 +32,26 @@ export default function AlbumPageContent({ album }: { album: AlbumType }) {
             <span key={track._key}>
               {index + 1}. {track.title}
               <br />
+              <hr className="border-b-1" />
               <br />
             </span>
           ))}
         </p>
-        <div className="grid">
+        <div className="py-5 grid mb-12">
           <a
-            className="text-[14px] flex items-center cursor-pointer"
+            className="text-[12px] flex items-center cursor-pointer"
             href={album.spotifyUrl}
             target="_blank"
           >
             <SpotifyIcon className="h-4" /> Listen on Spotify
           </a>
-          <a className="text-[14px] flex items-center cursor-pointer">
+          <a className="text-[12px] flex items-center cursor-pointer">
             <AppleIcon className="h-4" /> Listen on Apple Music
           </a>
-          <a className="text-[14px] flex items-center cursor-pointer">
+          <a className="text-[12px] flex items-center cursor-pointer">
             <GlobeIcon className="h-4" /> Website
           </a>
+          <SocialShare title={album.title} url={album.slug.current} />
         </div>
       </div>
       <div className="w-full object-cover relative rounded-[20px] cursor-pointer mt-[5px] mb-[5px]">
@@ -56,7 +59,7 @@ export default function AlbumPageContent({ album }: { album: AlbumType }) {
           priority
           src={album.coverImageUrl}
           width={0}
-          height={0}
+          height={500}
           sizes="100vw"
           style={{
             width: "100%",

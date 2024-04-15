@@ -35,7 +35,7 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
             />
           </div>
           <div className="absolute rounded-b-base bottom-0 flex flex-1 flex-col justify-between w-full p-2.5 bg-black/50">
-            <p className="text-xs mb-0 mt-0 text-primary-700/70">
+            <p className="text-xs mb-0 mt-0 text-[var(--theme-colorcontrary)]">
               {new Date(date)
                 .toLocaleDateString("en-GB", {
                   day: "2-digit",
@@ -46,7 +46,7 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
             </p>
             <div className="flex flex-col cursor-pointer h-14 mb-1.5">
               <h1
-                className="text-md font-medium hover:text-tertiary-500"
+                className="text-md text-[var(--theme-colorcontrary)] font-medium hover:text-tertiary-500"
                 onClick={handleClick}
               >
                 {title}

@@ -12,6 +12,8 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import { NewsItemType } from "../../../../../sanity/schemas/types"
 import client from "../../../../../sanity/lib/client"
 import { NewsSlider } from "../news-slider/NewSlider"
+import { SocialShare } from "../social-share/SocialShare"
+import ArrowLeftIcon from "../../../../../public/assets/icons/ArrowLeftIcon"
 
 interface ImageValue {
   blogImage: {
@@ -61,7 +63,9 @@ export default function NewsItemPageContent({
               alt={value.alt || " "}
             />
 
-            {value.caption && <figcaption>{value.caption}</figcaption>}
+            {value.caption && (
+              <figcaption className="text-2xs">{value.caption}</figcaption>
+            )}
           </figure>
         )
       },
@@ -69,7 +73,7 @@ export default function NewsItemPageContent({
   }
 
   return (
-    <div className="content-container text-[var(--text-color)] mt-12">
+    <div className="content-container text-[var(--text-color)] my-16">
       <h1 className="text-2xl font-bold">{newsItem.title}</h1>
       <p className="mb-4">
         {new Date(newsItem.date)
@@ -102,11 +106,14 @@ export default function NewsItemPageContent({
       )}
       <div className="p-[20px] md:px-[100px] lg:px-[200px]">
         <PortableText value={newsItem.body} components={components} />
-        TODO - Add SocialShare component
-        {/* <SocialShare title={newsItem.title} url={newsItem.slug.current} /> */}
+        <SocialShare title={newsItem.title} url={newsItem.slug.current} />
         <div className="flex items-center justify-end cursor-pointer">
-          {/* <ArrowLeftIcon /> */}
-          <h2> Return to news</h2>
+          <button
+            className="bg-transparent border-none cursor-pointer"
+            onClick={() => router.push("/news")}
+          >
+            <ArrowLeftIcon className="h-6" />
+          </button>
         </div>
       </div>
     </div>

@@ -11,18 +11,22 @@ html {
 
 p {
   @apply text-xs;
+  @apply md:text-sm;
   color: var(--theme-color);
 }
 
 [data-theme="dark"] {
   --theme-background: #18191a;
   --theme-color: #ededed;
+  --theme-colorcontrary: #ededed;
+
   --logo-fill-color: #ededed;
 }
 
 [data-theme="light"] {
   --theme-background: #ededed;
   --theme-color: #18191a;
+  --theme-colorcontrary: #ededed;
   --logo-fill-color: #18191a;
 }
 
