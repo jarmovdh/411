@@ -6,7 +6,6 @@ import { Show } from "../show/Show"
 import {
   addCustomerShows,
   deleteCustomerShowById,
-  deleteCustomerShows,
   getCustomersShows,
 } from "@modules/account/actions"
 
@@ -25,8 +24,8 @@ interface ShowProps {
     id: string
     first_name: string
     metadata: { shows?: string[] }
-  }
-  shows: Show[]
+  } | null
+  shows?: Show[]
 }
 
 export default function SaveShowButton({
@@ -35,6 +34,7 @@ export default function SaveShowButton({
   customer,
 }: ShowProps) {
   const [isBookmarked, setIsBookmarked] = useState(initialIsBookmarked)
+  const router = useRouter()
 
   useEffect(() => {
     const checkIsShowBookmarked = async () => {
@@ -47,6 +47,11 @@ export default function SaveShowButton({
   }, [customer, show._id])
 
   const handleAddToFavorites = async () => {
+    if (!customer) {
+      router.push("/account")
+      return
+    }
+
     if (!isBookmarked) {
       const formData = new FormData()
       formData.append("imageUrl", show.imageUrl)

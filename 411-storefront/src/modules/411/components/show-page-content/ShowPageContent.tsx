@@ -18,17 +18,17 @@ export default function ShowPageContent({
   customer: Omit<Customer, "password_hash"> | null
   show: ShowType
 }) {
-  console.log("TEST", customer)
-
   const initialIsBookmarked =
-    customer && customer.metadata && customer.metadata.shows
-      ? customer.metadata.shows.includes(show._id)
+    customer &&
+    customer.metadata &&
+    Array.isArray(customer.metadata.shows) &&
+    customer.metadata.shows.includes(show._id)
+      ? true
       : false
 
   return (
     <>
       <div className="content-container text-[color] my-[30px] rounded-[35px]">
-        <h1>hi: {customer?.email}</h1>
         <div className="flex flex-row items-center">
           <PlayerButton show={show} onClick={() => {}} />
           <h1 className="text-2xl font-bold">

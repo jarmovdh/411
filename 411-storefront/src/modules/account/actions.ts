@@ -5,6 +5,7 @@ import {
   authenticate,
   createCustomer,
   deleteShippingAddress,
+  getCustomer,
   getToken,
   updateCustomer,
   updateShippingAddress,
@@ -101,7 +102,7 @@ export async function getCustomersShows(
   if (
     customer &&
     customer.metadata &&
-    Array.isArray(customer.metadata.shows) && // Ensure customer.metadata.shows is an array
+    Array.isArray(customer.metadata.shows) &&
     customer.metadata.shows.some((showObj) => showObj._id === showId)
   ) {
     return true
@@ -123,11 +124,22 @@ export async function addCustomerShows(
 
   const customer = {
     metadata: {
-      shows: [showData],
+      shows: [],
     },
   } as StorePostCustomersCustomerReq
 
   try {
+    const existingCustomer = await getCustomer()
+    if (
+      existingCustomer &&
+      existingCustomer.metadata &&
+      existingCustomer.metadata.shows
+    ) {
+      customer.metadata.shows = existingCustomer.metadata.shows
+    }
+
+    customer.metadata.shows.push(showData)
+
     await updateCustomer(customer).then(() => {
       revalidateTag("customer")
     })
@@ -143,11 +155,22 @@ export async function deleteCustomerShowById(
 ) {
   const customer = {
     metadata: {
-      shows: [{}],
+      shows: [],
     },
   } as StorePostCustomersCustomerReq
 
   try {
+    const existingCustomer = await getCustomer()
+    if (
+      existingCustomer &&
+      existingCustomer.metadata &&
+      existingCustomer.metadata.shows
+    ) {
+      customer.metadata.shows = existingCustomer.metadata.shows.filter(
+        (show: { _id: string }) => show._id !== showId
+      )
+    }
+
     await updateCustomer(customer).then(() => {
       revalidateTag("customer")
     })

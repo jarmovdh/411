@@ -2,13 +2,13 @@
 
 import React, { useState } from "react"
 
-import { ShowProps } from "../show/Show"
 import { usePlayerContext } from "@lib/context/player-context"
 import PauseIcon from "../../../../../public/assets/icons/PauseIcon"
 import PlayIcon from "../../../../../public/assets/icons/PlayIcon"
+import { ShowType } from "../../../../../sanity/schemas/types"
 
 type PlayerButtonProps = {
-  show: ShowProps
+  show: ShowType
   onClick?: (isPlaying: boolean) => void
 }
 
