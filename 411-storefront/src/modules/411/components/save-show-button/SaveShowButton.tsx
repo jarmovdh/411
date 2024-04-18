@@ -15,6 +15,7 @@ interface Show {
   cloudUrl: string
   excerpt: string
   title: string
+  slug: { current: string }
 }
 
 interface ShowProps {
@@ -59,6 +60,8 @@ export default function SaveShowButton({
       formData.append("cloudUrl", show.cloudUrl)
       formData.append("excerpt", show.excerpt)
       formData.append("title", show.title)
+
+      formData.append("slug", show.slug.current)
       formData.append("isBookmarked", "true")
 
       const result = await addCustomerShows({}, formData)
@@ -84,6 +87,8 @@ export default function SaveShowButton({
       }
     }
   }
+
+  console.log("TEST, customer.metadata.shows: ", customer?.metadata)
   return (
     <div>
       <button

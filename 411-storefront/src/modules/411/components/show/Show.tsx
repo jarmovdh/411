@@ -19,6 +19,10 @@ export interface ShowProps {
   slug?: string
   tags: string[]
   title: string
+  tracklist?: {
+    artist: string
+    title: string
+  }[]
 }
 
 export const Show = ({

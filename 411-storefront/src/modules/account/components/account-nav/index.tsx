@@ -175,7 +175,7 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
   return (
     <LocalizedClientLink
       href={href}
-      className={clx("text-ui-fg-subtle hover:text-ui-fg-base", {
+      className={clx(" hover:text-ui-fg-base", {
         "text-ui-fg-base font-semibold": active,
       })}
     >

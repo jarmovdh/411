@@ -11,7 +11,7 @@ import { SocialShare } from "../social-share/SocialShare"
 
 export default function AlbumPageContent({ album }: { album: AlbumType }) {
   return (
-    <div className="content-container flex flex-col-reverse md:grid md:grid-cols-2 mt-12">
+    <div className="content-container flex flex-col-reverse lg:grid lg:grid-cols-2 mt-12">
       <div>
         <h1 className="text-2xl font-bold">
           {album.artist} - {album.title}
@@ -54,7 +54,7 @@ export default function AlbumPageContent({ album }: { album: AlbumType }) {
           <SocialShare title={album.title} url={album.slug.current} />
         </div>
       </div>
-      <div className="w-full object-cover relative rounded-[20px] cursor-pointer mt-[5px] mb-[5px]">
+      <div className="w-full h-full md:h-[700px] object-cover relative rounded-[20px] cursor-pointer mt-[5px] mb-[5px]">
         <Image
           priority
           src={album.coverImageUrl}

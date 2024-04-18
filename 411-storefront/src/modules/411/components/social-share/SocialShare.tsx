@@ -46,7 +46,7 @@ export const SocialShare = ({ url, title }: SocialShareProps) => {
   }
 
   return (
-    <div className="flex items-center gap-2 mt-4">
+    <div className="flex items-center gap-2">
       <p>share:</p>
       <button
         className="bg-transparent border-none cursor-pointer"

@@ -120,6 +120,7 @@ export async function addCustomerShows(
     cloudUrl: formData.get("cloudUrl") as string,
     excerpt: formData.get("excerpt") as string,
     title: formData.get("title") as string,
+    slug: formData.get("slug") as string,
   }
 
   const customer = {

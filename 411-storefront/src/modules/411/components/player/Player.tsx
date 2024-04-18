@@ -1,6 +1,3 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable react/button-has-type */
-
 "use client"
 
 import React, { useState, useRef, useMemo } from "react"
@@ -8,7 +5,6 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 
 import ReactPlayer from "react-player"
-import Tracklist from "../tracklist/TrackList"
 
 import { usePlayerContext } from "@lib/context/player-context"
 import VolumeMuteIcon from "../../../../../public/assets/icons/VolumeMuteIcon"
@@ -20,22 +16,11 @@ import MenuHamburger from "../../../../../public/assets/icons/MenuHamburger"
 import CloseIcon from "../../../../../public/assets/icons/CloseIcon"
 import { motion } from "framer-motion"
 import SoundCloudIcon from "../../../../../public/assets/icons/SoundCloudIcon"
+import { ShowType } from "../../../../../sanity/schemas/types"
+import Tracklist from "../tracklist/TrackList"
 
 interface PlayerProps {
-  show: {
-    artist: string
-    cloudUrl: string
-    date: string
-    id: number
-    imageUrl: string
-    title: string
-    slug: string
-    tracklist?: {
-      _key: string
-      artist: string
-      title: string
-    }[]
-  }
+  show: ShowType
   onClose: () => void
   isVisible?: boolean
 }
@@ -123,6 +108,8 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
     }
     return <VolumeUpIcon height={20} />
   }, [muteVolume, volume])
+
+  console.log("PLAYER", show)
 
   return (
     <motion.div
@@ -259,9 +246,8 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
             />
           </div>
         </div>
-        {/* TODO add tracklists */}
-        {/* <Tracklist tracklist={show.tracklist} /> */}
       </div>
+      <Tracklist tracklist={show.tracklist} />
     </motion.div>
   )
 }

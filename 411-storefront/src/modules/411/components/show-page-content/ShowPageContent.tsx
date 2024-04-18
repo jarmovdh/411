@@ -1,5 +1,4 @@
 "use client"
-//TODO add components
 import React from "react"
 import Image from "next/image"
 import { PlayerButton } from "../player-button/PlayerButton"
@@ -7,9 +6,8 @@ import { ShowType } from "../../../../../sanity/schemas/types"
 import { SocialShare } from "../social-share/SocialShare"
 import SaveShowButton from "../save-show-button/SaveShowButton"
 import { Customer } from "@medusajs/medusa"
-import AccountLayout from "@modules/account/templates/account-layout"
-
-// import Tracklist from "../tracklist/TrackList"
+import { useRouter } from "next/navigation"
+import Tracklist from "../tracklist/TrackList"
 
 export default function ShowPageContent({
   show,
@@ -18,6 +16,12 @@ export default function ShowPageContent({
   customer: Omit<Customer, "password_hash"> | null
   show: ShowType
 }) {
+  const router = useRouter()
+
+  if (!show) {
+    router.push(`/not-found`)
+  }
+
   const initialIsBookmarked =
     customer &&
     customer.metadata &&
@@ -59,19 +63,18 @@ export default function ShowPageContent({
           />
         </div>
 
-        <div className="flex flex-1 flex-row gap-2.5 md:flex-col mt-4">
-          <div>
-            <p>{show.excerpt}</p>
-            {/* <Tracklist tracklist={show.tracklist} /> */}
-            <div className="flex-basis[calc(50%-10px)]">
-              <SaveShowButton
-                show={show}
-                initialIsBookmarked={initialIsBookmarked}
-                customer={customer}
-              />
-              <SocialShare title={show.title} url={show.slug.current} />
-            </div>
-          </div>
+        <div className="grid md:grid-cols-2 pt-5">
+          <p>{show.excerpt}</p>
+          <Tracklist tracklist={show.tracklist} />
+        </div>
+
+        <div className="flex gap-2 items-center">
+          <SaveShowButton
+            show={show}
+            initialIsBookmarked={initialIsBookmarked}
+            customer={customer}
+          />
+          <SocialShare title={show.title} url={show.slug.current} />
         </div>
       </div>
     </>
