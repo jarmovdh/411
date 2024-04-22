@@ -37,21 +37,31 @@ export default function AlbumPageContent({ album }: { album: AlbumType }) {
             </span>
           ))}
         </p>
-        <div className="py-5 grid mb-12">
+        <div className="py-5 grid mb-12 gap-0.5">
           <a
-            className="text-[12px] flex items-center cursor-pointer"
+            className="text-[12px] flex items-center cursor-pointer gap-1"
             href={album.spotifyUrl}
             target="_blank"
           >
             <SpotifyIcon className="h-4" /> Listen on Spotify
           </a>
-          <a className="text-[12px] flex items-center cursor-pointer">
+          <a
+            className="text-[12px] flex items-center cursor-pointer gap-1"
+            href={album.appleMusicUrl}
+            target="_blank"
+          >
             <AppleIcon className="h-4" /> Listen on Apple Music
           </a>
-          <a className="text-[12px] flex items-center cursor-pointer">
+          <a
+            href={album.siteUrl}
+            target="_blank"
+            className="text-[12px] flex items-center cursor-pointer gap-1"
+          >
             <GlobeIcon className="h-4" /> Website
           </a>
-          <SocialShare title={album.title} url={album.slug.current} />
+          <div className="mt-5">
+            <SocialShare title={album.title} url={album.slug.current} />
+          </div>
         </div>
       </div>
       <div className="w-full h-full md:h-[700px] object-cover relative rounded-[20px] cursor-pointer mt-[5px] mb-[5px]">

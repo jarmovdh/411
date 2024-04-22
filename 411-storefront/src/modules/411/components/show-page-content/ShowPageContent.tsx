@@ -7,7 +7,7 @@ import { SocialShare } from "../social-share/SocialShare"
 import SaveShowButton from "../save-show-button/SaveShowButton"
 import { Customer } from "@medusajs/medusa"
 import { useRouter } from "next/navigation"
-import Tracklist from "../tracklist/TrackList"
+import Tracklist from "../tracklist/Tracklist"
 
 export default function ShowPageContent({
   show,
@@ -32,7 +32,7 @@ export default function ShowPageContent({
 
   return (
     <>
-      <div className="content-container text-[color] my-[30px] rounded-[35px]">
+      <div className="content-container text-[color] my-[30px] rounded-[35px] mb-[100px]">
         <div className="flex flex-row items-center">
           <PlayerButton show={show} onClick={() => {}} />
           <h1 className="text-2xl font-bold">
@@ -63,7 +63,7 @@ export default function ShowPageContent({
           />
         </div>
 
-        <div className="grid md:grid-cols-2 pt-5">
+        <div className="grid md:grid-cols-2 py-5 gap-4">
           <p>{show.excerpt}</p>
           <Tracklist tracklist={show.tracklist} />
         </div>

@@ -73,7 +73,7 @@ export default function NewsItemPageContent({
   }
 
   return (
-    <div className="content-container text-[var(--text-color)] my-16">
+    <div className="content-container text-[var(--text-color)] my-20">
       <h1 className="text-2xl font-bold">{newsItem.title}</h1>
       <p className="mb-4">
         {new Date(newsItem.date)
@@ -106,7 +106,10 @@ export default function NewsItemPageContent({
       )}
       <div className="p-[20px] md:px-[100px] lg:px-[200px]">
         <PortableText value={newsItem.body} components={components} />
-        <SocialShare title={newsItem.title} url={newsItem.slug.current} />
+        <div className="mt-5">
+          <SocialShare title={newsItem.title} url={newsItem.slug.current} />
+        </div>
+
         <div className="flex items-center justify-end cursor-pointer">
           <button
             className="bg-transparent border-none cursor-pointer"

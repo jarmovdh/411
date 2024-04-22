@@ -17,7 +17,7 @@ import CloseIcon from "../../../../../public/assets/icons/CloseIcon"
 import { motion } from "framer-motion"
 import SoundCloudIcon from "../../../../../public/assets/icons/SoundCloudIcon"
 import { ShowType } from "../../../../../sanity/schemas/types"
-import Tracklist from "../tracklist/TrackList"
+import Tracklist from "../tracklist/Tracklist"
 
 interface PlayerProps {
   show: ShowType
@@ -109,8 +109,6 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
     return <VolumeUpIcon height={20} />
   }, [muteVolume, volume])
 
-  console.log("PLAYER", show)
-
   return (
     <motion.div
       initial="hidden"
@@ -160,7 +158,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               {!isPlaying ? (
                 <div className="flex flex-col justify-center w-full">
                   <h3
-                    className="cursor-pointer font-normal text-sm m-0 uppercase text-[var(--textColor)]"
+                    className="cursor-pointer font-normal text-2xs md:text-sm m-0 uppercase text-[var(--textColor)]"
                     onClick={handleClick}
                   >
                     {show.title}
@@ -247,7 +245,10 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
           </div>
         </div>
       </div>
-      <Tracklist tracklist={show.tracklist} />
+      <div className="px-2 h-[200px]  md:grid md:grid-cols-2 gap-5 overflow-auto pt-3">
+        <p className="text-xs">{show.excerpt}</p>
+        <Tracklist tracklist={show.tracklist} />
+      </div>
     </motion.div>
   )
 }

@@ -120,7 +120,7 @@ const AccountNav = ({
       <div className="hidden small:block">
         <div>
           <div className="pb-4">
-            <h3 className="text-base-semi">Account</h3>
+            <h3 className="text-xl text-base-semi">Account</h3>
           </div>
           <div className="text-base-regular">
             <ul className="flex mb-0 justify-start items-start flex-col gap-y-4">
@@ -175,8 +175,8 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
   return (
     <LocalizedClientLink
       href={href}
-      className={clx(" hover:text-ui-fg-base", {
-        "text-ui-fg-base font-semibold": active,
+      className={clx(" hover:underline underline-offset-8", {
+        " font-bold": active,
       })}
     >
       {children}

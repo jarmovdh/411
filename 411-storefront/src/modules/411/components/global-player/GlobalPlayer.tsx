@@ -11,6 +11,10 @@ const GlobalPlayer = () => {
     setActivePlayer(null)
   }
 
+  if (!activePlayer) {
+    return null
+  }
+
   return (
     activePlayer && (
       <Player

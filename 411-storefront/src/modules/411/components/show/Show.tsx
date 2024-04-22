@@ -8,6 +8,7 @@ import PauseIcon from "../../../../../public/assets/icons/PauseIcon"
 import PlayIcon from "../../../../../public/assets/icons/PlayIcon"
 
 export interface ShowProps {
+  _id?: string
   artist?: string
   cloudUrl?: string
   date: string
@@ -107,7 +108,7 @@ export const Show = ({
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
         />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40">
           {activePlayer && activePlayer.id === id ? (
             <PauseIcon className="h-10 md:h-12" />
           ) : (
@@ -120,7 +121,13 @@ export const Show = ({
           large ? "p-5" : "p-2"
         }`}
         style={{
-          height: isHovered ? "125px" : "90px",
+          height: isHovered
+            ? large
+              ? "160px"
+              : "125px"
+            : large
+            ? "120px"
+            : "90px",
           transition: "height 0.5s",
         }}
       >
@@ -146,7 +153,9 @@ export const Show = ({
         <p
           className={`transition-opacity duration-500 ${
             isHovered ? "opacity-100" : "opacity-0"
-          } ${large ? "text-base" : "text-xs"} line-clamp-2`}
+          } ${
+            large ? "text-xs text-white" : "text-2xs md:text-xs text-white"
+          } line-clamp-2`}
         >
           {excerpt}
         </p>
@@ -158,7 +167,7 @@ export const Show = ({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs bg-black text-white rounded-full px-1 bg-opacity-70 border border-white"
+              className="text-xs bg-black text-white rounded-full px-1 bg-opacity-60 border border-white"
             >
               {tag}
             </span>

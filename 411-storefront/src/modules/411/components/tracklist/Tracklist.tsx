@@ -11,21 +11,23 @@ interface TracklistProps {
 const Tracklist = ({ tracklist }: TracklistProps) => {
   return (
     <>
-      <div className="p-0">
-        <h1>Tracklist</h1>
+      <div className="">
+        <h1 className="mb-3">Tracklist</h1>
         {tracklist && tracklist.length === 0 ? (
           <h3>No Tracklist Provided</h3>
         ) : (
-          <ul className="text-sm">
-            {tracklist?.map((track) => (
-              <li
-                key={track._key}
-                className="text-sm border-b border-gray-300 border-solid"
-              >
-                <strong>{track.artist}</strong> - {track.title}
-              </li>
-            ))}
-          </ul>
+          <div className="px-4">
+            <ol className="text-xs px-4 list-decimal">
+              {tracklist?.map((track) => (
+                <li
+                  key={track._key}
+                  className="text-xs border-b border-gray-300 border-solid pb-1"
+                >
+                  <strong>{track.artist}</strong> - {track.title}
+                </li>
+              ))}
+            </ol>
+          </div>
         )}
       </div>
     </>
