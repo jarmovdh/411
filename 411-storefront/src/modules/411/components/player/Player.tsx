@@ -209,7 +209,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               type="button"
               onClick={onClose}
             >
-              <CloseIcon height={20} />
+              <CloseIcon className="h-6" />
             </button>
             <ReactPlayer
               ref={reactPlayerRef}

@@ -9,6 +9,7 @@ import LogoIcon from "../../../../../public/assets/icons/LogoIcon"
 import Link from "next/link"
 import ProfileIcon from "../../../../../public/assets/icons/ProfileIcon"
 import CartIcon from "../../../../../public/assets/icons/CartIcon"
+import SearchBar from "@modules/411/components/searchbar/SearchBar"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
@@ -24,6 +25,7 @@ export default async function Nav() {
           </div>
 
           <div className="flex items-center gap-x-3 h-full flex-1 basis-0 justify-end">
+            <SearchBar placeholder="Search for whatever" />
             <div className="h-full text-[var(--theme-color)]">
               <SideMenu regions={regions} />
             </div>
@@ -41,19 +43,19 @@ export default async function Nav() {
                 className="text-[var(--theme-color)]"
                 href="/listen"
               >
-                Listen
+                LISTEN
               </LocalizedClientLink>
               <LocalizedClientLink
                 className="text-[var(--theme-color)]"
                 href="/news"
               >
-                Read
+                READ
               </LocalizedClientLink>
               <LocalizedClientLink
                 className="text-[var(--theme-color)]"
                 href="/store"
               >
-                Shop
+                SHOP
               </LocalizedClientLink>
             </div>
             <ThemeSwitcher />

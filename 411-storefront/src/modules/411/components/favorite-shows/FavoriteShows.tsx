@@ -2,6 +2,7 @@
 import { Customer } from "@medusajs/medusa"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import BinIcon from "../../../../../public/assets/icons/BinIcon"
 
 type FavoriteShowsProps = {
   customer: Omit<Customer, "password_hash">
@@ -14,6 +15,7 @@ export const FavoriteShowsList: React.FC<FavoriteShowsProps> = ({
     _id: string | number | null | undefined
     title: string
     imageUrl: string
+    excerpt?: string
     slug: { current: string }
   }[]
 
@@ -41,7 +43,7 @@ export const FavoriteShowsList: React.FC<FavoriteShowsProps> = ({
               imageUrl: string
               slug: { current: string }
             }) => (
-              <div key={show._id} className="grid grid-cols-4 gap-4">
+              <div key={show._id} className="grid  grid-cols-4 gap-4">
                 <Image
                   alt={show.title}
                   src={show.imageUrl}
@@ -54,9 +56,10 @@ export const FavoriteShowsList: React.FC<FavoriteShowsProps> = ({
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
                   onClick={() => handleClick(show.slug.current)}
                 />
-                <div className="col-span-2 md:col-span-3">
+                <div className="grid place-content-between col-span-2 md:col-span-3">
                   <h1>{show.title}</h1>
                   <p>{show.excerpt}</p>
+                  <BinIcon className="h-4 md:h-6" />
                 </div>
               </div>
             )
