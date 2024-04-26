@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import SearchIcon from "../../../../../public/assets/icons/SearchIcon"
 import CloseIcon from "../../../../../public/assets/icons/CloseIcon"
+import { useRouter } from "next/navigation"
 
 interface SearchBarProps {
   placeholder?: string
@@ -16,13 +17,15 @@ export default function SearchBar({
 }: SearchBarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState("")
+  const router = useRouter()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value)
   }
 
   const handleSearch = () => {
-    if (query.trim()) {
+    router.push(`/search?q=${query}`)
+    if (query.trim() && typeof onSearch === "function") {
       onSearch(query.trim())
     }
   }

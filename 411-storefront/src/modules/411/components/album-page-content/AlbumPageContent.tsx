@@ -27,7 +27,7 @@ export default function AlbumPageContent({ album }: { album: AlbumType }) {
             .replace(/\//g, ".")}
         </p>
         <PortableText value={album.body} />
-        <p className="text-[12px] my-[20px] px-8">
+        <div className="text-[12px] my-[20px] px-8">
           {album.tracklist?.map((track, index) => (
             <span key={track._key}>
               {index + 1}. {track.title}
@@ -36,7 +36,7 @@ export default function AlbumPageContent({ album }: { album: AlbumType }) {
               <br />
             </span>
           ))}
-        </p>
+        </div>
         <div className="py-5 grid mb-12 gap-0.5">
           <a
             className="text-[12px] flex items-center cursor-pointer gap-1"
