@@ -70,6 +70,15 @@ export default function NewsItemPageContent({
         )
       },
     },
+    block: {
+      // Custom serializer for <p> tags based on 'normal' style
+      normal: ({ children }) => {
+        if (children.length === 1 && children[0] === "") {
+          return <br />
+        }
+        return <p>{children}</p>
+      },
+    },
   }
 
   return (

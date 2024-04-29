@@ -9,6 +9,17 @@ import AppleIcon from "../../../../../public/assets/icons/ApplieIcon"
 import SpotifyIcon from "../../../../../public/assets/icons/SpotifyIcon"
 import { SocialShare } from "../social-share/SocialShare"
 
+const components = {
+  block: {
+    normal: ({ children }) => {
+      if (children.length === 1 && children[0] === "") {
+        return <br />
+      }
+      return <p>{children}</p>
+    },
+  },
+}
+
 export default function AlbumPageContent({ album }: { album: AlbumType }) {
   return (
     <div className="content-container flex flex-col-reverse lg:grid lg:grid-cols-2 mt-12">
@@ -26,7 +37,7 @@ export default function AlbumPageContent({ album }: { album: AlbumType }) {
             })
             .replace(/\//g, ".")}
         </p>
-        <PortableText value={album.body} />
+        <PortableText value={album.body} components={components} />
         <div className="text-[12px] my-[20px] px-8">
           {album.tracklist?.map((track, index) => (
             <span key={track._key}>

@@ -16,13 +16,13 @@ import Image from "next/image"
 
 export default function SearchPage() {
   const searchParams = useSearchParams()
-  const router = useRouter()
   const q = searchParams?.get("q")
   const searchQuery = q as string
   const [shows, setShows] = useState<ShowType[]>([])
   const [newsItems, setNewsItems] = useState<NewsItemType[]>([])
   const [albums, setAlbums] = useState<AlbumType[]>([])
   const [activeTab, setActiveTab] = useState("All")
+  const router = useRouter()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,27 +82,43 @@ export default function SearchPage() {
         <h1 className="p-5">
           Search results for: <strong>{searchQuery}</strong>
         </h1>
-        <div className="tab-container w-full justify-between flex gap-4 p-5 border-b-2 ">
+        <div className="tab-container w-full justify-between flex gap-4 p-5 border-b-2 lg:px-[500px]">
           <button
-            className={`button ${activeTab === "All" ? "font-bold" : ""}`}
+            className={`button ${
+              activeTab === "All"
+                ? "font-bold underline underline-offset-4"
+                : ""
+            }`}
             onClick={() => setActiveTab("All")}
           >
             All
           </button>
           <button
-            className={`button ${activeTab === "Shows" ? "font-bold" : ""}`}
+            className={`button ${
+              activeTab === "Shows"
+                ? "font-bold underline underline-offset-4"
+                : ""
+            }`}
             onClick={() => setActiveTab("Shows")}
           >
             Shows
           </button>
           <button
-            className={`button ${activeTab === "Products" ? "font-bold" : ""}`}
+            className={`button ${
+              activeTab === "Products"
+                ? "font-bold underline underline-offset-4"
+                : ""
+            }`}
             onClick={() => setActiveTab("Products")}
           >
             Products
           </button>
           <button
-            className={`button ${activeTab === "News" ? "font-bold" : ""}`}
+            className={`button ${
+              activeTab === "News"
+                ? "font-bold underline underline-offset-4"
+                : ""
+            }`}
             onClick={() => setActiveTab("News")}
           >
             News
