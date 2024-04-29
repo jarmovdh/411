@@ -17,6 +17,7 @@ p {
 
 [data-theme="dark"] {
   --theme-background: #18191a;
+  --theme-background-hover: #2b2d2f;
   --theme-color: #ededed;
   --theme-colorcontrary: #ededed;
   --logo-fill-color: #ededed;
@@ -24,6 +25,7 @@ p {
 
 [data-theme="light"] {
   --theme-background: #ededed;
+  --theme-background-hover: rgb(220, 219, 219);
   --theme-color: #18191a;
   --theme-colorcontrary: #ededed;
   --logo-fill-color: #18191a;
