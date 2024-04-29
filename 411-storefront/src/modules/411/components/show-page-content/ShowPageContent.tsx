@@ -1,31 +1,46 @@
 "use client"
-//TODO add components
 import React from "react"
 import Image from "next/image"
-// import { PlayerButton } from "@/components/player-button/PlayerButton"
-// import AddShowButton from "@/components/add-show-button/AddShowButton"
-// import { SocialShare } from "@/components/social-share"
-import { ShowType } from "@/schemas/types"
-// import Tracklist from "../tracklist/TrackList"
+import { PlayerButton } from "../player-button/PlayerButton"
+import { ShowType } from "../../../../../sanity/schemas/types"
+import { SocialShare } from "../social-share/SocialShare"
+import SaveShowButton from "../save-show-button/SaveShowButton"
+import { Customer } from "@medusajs/medusa"
+import { useRouter } from "next/navigation"
+import Tracklist from "../tracklist/Tracklist"
 
-export default function ShowPageContent({ show }: { show: ShowType }) {
+export default function ShowPageContent({
+  show,
+  customer,
+}: {
+  customer: Omit<Customer, "password_hash"> | null
+  show: ShowType
+}) {
+  const router = useRouter()
+
+  if (!show) {
+    router.push(`/not-found`)
+  }
+
+  const initialIsBookmarked =
+    customer &&
+    customer.metadata &&
+    Array.isArray(customer.metadata.shows) &&
+    customer.metadata.shows.includes(show._id)
+      ? true
+      : false
+
   return (
     <>
-      <div className="content-container text-[color] mb-30 rounded-[35px]">
+      <div className="content-container text-[color] my-[30px] rounded-[35px] mb-[100px]">
         <div className="flex flex-row items-center">
-          {/* <button
-            className="border-none cursor-pointer bg-transparent"
-            show={show}
-            onClick={() => {}}
-          > */}
-          {/* <PlayerButton  /> */}
-          {/* </button> */}
-          <h1>
+          <PlayerButton show={show} onClick={() => {}} />
+          <h1 className="text-2xl font-bold">
             {show.title} - {show.artist}
           </h1>
         </div>
 
-        <p>
+        <p className="text-2sm mb-4">
           {new Date(show.date)
             .toLocaleDateString("en-GB", {
               day: "2-digit",
@@ -36,31 +51,30 @@ export default function ShowPageContent({ show }: { show: ShowType }) {
         </p>
         <div className="w-full h-[500px] object-cover rounded-[25px] md:h-[700px]">
           <Image
-            priority
+            alt={show.title}
             src={show.imageUrl}
             width={0}
             height={0}
             sizes="100vw"
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "25px",
-              objectFit: "cover",
-            }}
-            alt={show.title}
+            className="w-full h-full object-cover rounded-base"
+            priority
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
           />
         </div>
 
-        <div className="flex flex-1 flex-row gap-2.5 md:flex-col">
-          <div>
-            <p>{show.excerpt}</p>
-            <div className="flex-basis[calc(50%-10px)]">
-              {/* <AddShowButton show={show} initialIsBookmarked={false} />
-              <SocialShare url="" title="" /> */}
-            </div>
-          </div>
+        <div className="grid md:grid-cols-2 py-5 gap-4">
+          <p>{show.excerpt}</p>
+          <Tracklist tracklist={show.tracklist} />
+        </div>
 
-          {/* <Tracklist tracklist={show.tracklist} /> */}
+        <div className="flex gap-2 items-center">
+          <SaveShowButton
+            show={show}
+            initialIsBookmarked={initialIsBookmarked}
+            customer={customer}
+          />
+          <SocialShare title={show.title} url={show.slug.current} />
         </div>
       </div>
     </>

@@ -11,6 +11,7 @@ import User from "@modules/common/icons/user"
 import MapPin from "@modules/common/icons/map-pin"
 import Package from "@modules/common/icons/package"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import MusicFolder from "../../../../../public/assets/icons/MusicFolder"
 
 const AccountNav = ({
   customer,
@@ -60,12 +61,12 @@ const AccountNav = ({
                 </li>
                 <li>
                   <LocalizedClientLink
-                    href="/account/addresses"
+                    href="/account/favorite-shows"
                     className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
                   >
                     <>
                       <div className="flex items-center gap-x-2">
-                        <MapPin size={20} />
+                        <MusicFolder className="h-5" />
                         <span>Favorite Shows</span>
                       </div>
                       <ChevronDown className="transform -rotate-90" />
@@ -119,7 +120,7 @@ const AccountNav = ({
       <div className="hidden small:block">
         <div>
           <div className="pb-4">
-            <h3 className="text-base-semi">Account</h3>
+            <h3 className="text-xl text-base-semi">Account</h3>
           </div>
           <div className="text-base-regular">
             <ul className="flex mb-0 justify-start items-start flex-col gap-y-4">
@@ -174,8 +175,8 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
   return (
     <LocalizedClientLink
       href={href}
-      className={clx("text-ui-fg-subtle hover:text-ui-fg-base", {
-        "text-ui-fg-base font-semibold": active,
+      className={clx(" hover:underline underline-offset-8", {
+        " font-bold": active,
       })}
     >
       {children}

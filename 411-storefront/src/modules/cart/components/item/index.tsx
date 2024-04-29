@@ -46,7 +46,7 @@ const Item = ({ item, region, type = "full" }: ItemProps) => {
   }
 
   return (
-    <Table.Row className="w-full">
+    <Table.Row className="w-full bg-[var(--theme-background)]">
       <Table.Cell className="!pl-0 p-4 w-24">
         <LocalizedClientLink
           href={`/products/${handle}`}
@@ -60,7 +60,7 @@ const Item = ({ item, region, type = "full" }: ItemProps) => {
       </Table.Cell>
 
       <Table.Cell className="text-left">
-        <Text className="txt-medium-plus text-ui-fg-base">{item.title}</Text>
+        <Text className="txt-medium-plus">{item.title}</Text>
         <LineItemOptions variant={item.variant} />
       </Table.Cell>
 

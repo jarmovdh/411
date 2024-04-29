@@ -2,6 +2,7 @@ import { Metadata } from "next"
 
 import { getCustomer, listRegions } from "@lib/data"
 import { notFound } from "next/navigation"
+import { FavoriteShowsList } from "@modules/411/components/favorite-shows/FavoriteShows"
 
 export const metadata: Metadata = {
   title: "Favorite shows",
@@ -10,11 +11,12 @@ export const metadata: Metadata = {
 
 export default async function FavoriteShows() {
   const customer = await getCustomer()
-  const regions = await listRegions()
 
-  if (!customer || !regions) {
+  if (!customer) {
     notFound()
   }
+
+  console.log("TEST", customer)
 
   return (
     <div className="w-full">
@@ -22,8 +24,9 @@ export default async function FavoriteShows() {
         <h1 className="text-2xl-semi">Favorite Shows</h1>
         <p className="text-base-regular">
           Listen to your saved shows. You can favorite shows by clicking the
-          heart icon on the show page.
+          save icon on the show page.
         </p>
+        <FavoriteShowsList customer={customer} />
       </div>
     </div>
   )

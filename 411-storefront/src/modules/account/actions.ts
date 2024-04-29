@@ -5,6 +5,7 @@ import {
   authenticate,
   createCustomer,
   deleteShippingAddress,
+  getCustomer,
   getToken,
   updateCustomer,
   updateShippingAddress,
@@ -82,6 +83,114 @@ export async function updateCustomerEmail(
 ) {
   const customer = {
     email: formData.get("email"),
+  } as StorePostCustomersCustomerReq
+
+  try {
+    await updateCustomer(customer).then(() => {
+      revalidateTag("customer")
+    })
+    return { success: true, error: null }
+  } catch (error: any) {
+    return { success: false, error: error.toString() }
+  }
+}
+
+export async function getCustomersShows(
+  customer: Customer,
+  showId: string
+): Promise<boolean> {
+  if (
+    customer &&
+    customer.metadata &&
+    Array.isArray(customer.metadata.shows) &&
+    customer.metadata.shows.some((showObj) => showObj._id === showId)
+  ) {
+    return true
+  }
+  return false
+}
+
+export async function addCustomerShows(
+  _currentState: Record<string, unknown>,
+  formData: FormData
+) {
+  const showData = {
+    imageUrl: formData.get("imageUrl") as string,
+    _id: formData.get("_id") as string,
+    cloudUrl: formData.get("cloudUrl") as string,
+    excerpt: formData.get("excerpt") as string,
+    title: formData.get("title") as string,
+    slug: formData.get("slug") as string,
+  }
+
+  const customer = {
+    metadata: {
+      shows: [],
+    },
+  } as StorePostCustomersCustomerReq
+
+  try {
+    const existingCustomer = await getCustomer()
+    if (
+      existingCustomer &&
+      existingCustomer.metadata &&
+      existingCustomer.metadata.shows
+    ) {
+      customer.metadata.shows = existingCustomer.metadata.shows
+    }
+
+    customer.metadata.shows.push(showData)
+
+    await updateCustomer(customer).then(() => {
+      revalidateTag("customer")
+    })
+    return { success: true, error: null }
+  } catch (error: any) {
+    return { success: false, error: error.toString() }
+  }
+}
+
+export async function deleteCustomerShowById(
+  _currentState: Record<string, unknown>,
+  showId: string
+) {
+  const customer = {
+    metadata: {
+      shows: [],
+    },
+  } as StorePostCustomersCustomerReq
+
+  try {
+    const existingCustomer = await getCustomer()
+    if (
+      existingCustomer &&
+      existingCustomer.metadata &&
+      existingCustomer.metadata.shows
+    ) {
+      customer.metadata.shows = existingCustomer.metadata.shows.filter(
+        (show: { _id: string }) => show._id !== showId
+      )
+    }
+
+    await updateCustomer(customer).then(() => {
+      revalidateTag("customer")
+    })
+    return { success: true, error: null }
+  } catch (error: any) {
+    return { success: false, error: error.toString() }
+  }
+}
+
+export async function deleteCustomerShows(
+  _currentState: Record<string, unknown>,
+  showId: string
+) {
+  const customer = {
+    metadata: {
+      shows: {
+        _id: showId,
+      },
+    },
   } as StorePostCustomersCustomerReq
 
   try {

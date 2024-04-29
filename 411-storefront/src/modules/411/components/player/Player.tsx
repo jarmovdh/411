@@ -1,6 +1,3 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable react/button-has-type */
-
 "use client"
 
 import React, { useState, useRef, useMemo } from "react"
@@ -8,7 +5,6 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 
 import ReactPlayer from "react-player"
-import Tracklist from "../tracklist/TrackList"
 
 import { usePlayerContext } from "@lib/context/player-context"
 import VolumeMuteIcon from "../../../../../public/assets/icons/VolumeMuteIcon"
@@ -20,22 +16,11 @@ import MenuHamburger from "../../../../../public/assets/icons/MenuHamburger"
 import CloseIcon from "../../../../../public/assets/icons/CloseIcon"
 import { motion } from "framer-motion"
 import SoundCloudIcon from "../../../../../public/assets/icons/SoundCloudIcon"
+import { ShowType } from "../../../../../sanity/schemas/types"
+import Tracklist from "../tracklist/Tracklist"
 
 interface PlayerProps {
-  show: {
-    artist: string
-    cloudUrl: string
-    date: string
-    id: number
-    imageUrl: string
-    title: string
-    slug: string
-    tracklist?: {
-      _key: string
-      artist: string
-      title: string
-    }[]
-  }
+  show: ShowType
   onClose: () => void
   isVisible?: boolean
 }
@@ -132,7 +117,6 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
       transition={{ duration: 0.5, ease: "easeInOut" }}
       className="z-50 rounded-[20px] mb-1 border border-ui-border-base bg-[var(--theme-background)] shadow-lg w-full lg:w-1/2 mx-auto"
       style={{
-        backgroundColor: "var(--theme-background)",
         height: `${isExpanded ? 300 : initialHeight}px`,
         position: "fixed",
         bottom: `${isExpanded ? "300px" : "90px"}`,
@@ -163,14 +147,18 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               className="border-none cursor-pointer p-0 bg-transparent"
               onClick={togglePlayer}
             >
-              {isPlaying ? <PauseIcon height={25} /> : <PlayIcon height={25} />}
+              {isPlaying ? (
+                <PauseIcon className="h-6" />
+              ) : (
+                <PlayIcon className="h-6 " />
+              )}
             </button>
 
             <>
               {!isPlaying ? (
                 <div className="flex flex-col justify-center w-full">
                   <h3
-                    className="cursor-pointer font-normal text-sm m-0 uppercase text-[var(--textColor)]"
+                    className="cursor-pointer font-normal text-2xs md:text-sm m-0 uppercase text-[var(--textColor)]"
                     onClick={handleClick}
                   >
                     {show.title}
@@ -178,14 +166,14 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
                     {show.artist}
                   </h3>
 
-                  <h4 className="font-normal text-xs text-[var(--textColor)]">
+                  <h4 className="font-normal text-2xs text-[var(--textColor)]">
                     {new Date(show.date)
-                      .toLocaleDateString(undefined, {
+                      .toLocaleDateString("en-GB", {
                         day: "2-digit",
                         month: "2-digit",
                         year: "2-digit",
                       })
-                      .replace(/-/g, ".")}
+                      .replace(/\//g, ".")}
                   </h4>
                 </div>
               ) : (
@@ -221,7 +209,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               type="button"
               onClick={onClose}
             >
-              <CloseIcon height={20} />
+              <CloseIcon className="h-6" />
             </button>
             <ReactPlayer
               ref={reactPlayerRef}
@@ -256,8 +244,10 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
             />
           </div>
         </div>
-        {/* TODO add tracklists */}
-        {/* <Tracklist tracklist={show.tracklist} /> */}
+      </div>
+      <div className="px-2 h-[200px]  md:grid md:grid-cols-2 gap-5 overflow-auto pt-3">
+        <p className="text-xs">{show.excerpt}</p>
+        <Tracklist tracklist={show.tracklist} />
       </div>
     </motion.div>
   )

@@ -13,9 +13,7 @@ import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 // import "./styles.css"
 
-export const ProductSlider = ({ collections, region }) => {
-  console.log(collections)
-  console.log(collections[0].products[0])
+export const ProductSlider = ({ collections }) => {
   return (
     <Swiper
       pagination={{
@@ -27,7 +25,7 @@ export const ProductSlider = ({ collections, region }) => {
       className="mySwiper"
       style={{ width: "100%", height: "100%" }}
     >
-      {collections.map((collection) =>
+      {collections.map((collection: { products: any[] }) =>
         collection.products.map((product) => (
           <SwiperSlide key={product.id}>
             <LocalizedClientLink

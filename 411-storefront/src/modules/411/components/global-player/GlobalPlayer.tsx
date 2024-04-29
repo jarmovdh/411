@@ -11,12 +11,16 @@ const GlobalPlayer = () => {
     setActivePlayer(null)
   }
 
+  if (!activePlayer) {
+    return null
+  }
+
   return (
     activePlayer && (
       <Player
         show={{
           ...activePlayer,
-          tracklist: activePlayer.tracklist?.map((track) => track.title) || [],
+          tracklist: activePlayer.tracklist || [],
         }}
         onClose={handlePlayerClose}
       />

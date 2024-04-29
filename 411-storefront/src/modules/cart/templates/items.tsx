@@ -15,13 +15,15 @@ const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
       <div className="pb-3 flex items-center">
         <Heading className="text-[2rem] leading-[2.75rem]">Cart</Heading>
       </div>
-      <Table>
-        <Table.Header className="border-t-0">
-          <Table.Row className="text-ui-fg-subtle txt-medium-plus">
-            <Table.HeaderCell className="!pl-0">Item</Table.HeaderCell>
+      <Table className="bg-[var(--theme-background)]">
+        <Table.Header className="border-t-0 ">
+          <Table.Row className="text-ui-fg-subtle txt-medium-plus bg-[var(--theme-background)]">
+            <Table.HeaderCell className="!pl-0 bg-[var(--theme-background)]">
+              Item
+            </Table.HeaderCell>
             <Table.HeaderCell></Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
-            <Table.HeaderCell className="hidden small:table-cell">
+            <Table.HeaderCell className="hidden small:table-cell bg-[var(--theme-background)]">
               Price
             </Table.HeaderCell>
             <Table.HeaderCell className="!pr-0 text-right">
@@ -29,7 +31,7 @@ const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-        <Table.Body>
+        <Table.Body className="bg-[var(--theme-background)]">
           {items && region
             ? items
                 .sort((a, b) => {

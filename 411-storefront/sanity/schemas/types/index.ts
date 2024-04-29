@@ -15,6 +15,7 @@ export type AlbumType = {
   }
   spotifyUrl: string
   appleMusicUrl: string
+  siteUrl: string
   tracklist: {
     _key: string
     _type: string
@@ -43,7 +44,7 @@ export type NewsItemType = {
 }
 
 export type ShowType = {
-  _id: number
+  _id?: string
   id: number
   artist: string
   title: string
@@ -61,5 +62,5 @@ export type ShowType = {
     artist: string
     title: string
   }[]
-  isFeatured: boolean
+  isFeatured?: boolean
 }

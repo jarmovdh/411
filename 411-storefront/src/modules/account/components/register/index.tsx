@@ -19,9 +19,9 @@ const Register = ({ setCurrentView }: Props) => {
   return (
     <div className="max-w-sm flex flex-col items-center">
       <h1 className="text-large-semi uppercase mb-6">
-        Become a Medusa Store Member
+        Become a 411 Radio Member
       </h1>
-      <p className="text-center text-base-regular text-ui-fg-base mb-4">
+      <p className="text-center text-base-regular mb-4">
         Create your Medusa Store Member profile, and get access to an enhanced
         shopping experience.
       </p>
@@ -56,8 +56,8 @@ const Register = ({ setCurrentView }: Props) => {
           />
         </div>
         <ErrorMessage error={message} />
-        <span className="text-center text-ui-fg-base text-small-regular mt-6">
-          By creating an account, you agree to Medusa Store&apos;s{" "}
+        <span className="text-center text-small-regular mt-6">
+          By creating an account, you agree to 411 Radio&apos;s{" "}
           <LocalizedClientLink
             href="/content/privacy-policy"
             className="underline"
@@ -75,7 +75,7 @@ const Register = ({ setCurrentView }: Props) => {
         </span>
         <SubmitButton className="w-full mt-6">Join</SubmitButton>
       </form>
-      <span className="text-center text-ui-fg-base text-small-regular mt-6">
+      <span className="text-center text-small-regular mt-6">
         Already a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
