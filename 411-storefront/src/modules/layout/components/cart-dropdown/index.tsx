@@ -98,7 +98,7 @@ const CartDropdown = ({
         >
           <Popover.Panel
             static
-            className="hidden small:block absolute top-[calc(100%+1px)] bg-[var(--theme-background)] right-0 border-x border-b border-[var(--theme-color)] w-[420px] text-ui-fg-base "
+            className="hidden small:block absolute top-[calc(100%+1px)] bg-[var(--theme-background)] right-0 border-x border-b border-[var(--theme-color)] w-[420px] [var(--theme-color)] "
           >
             <div className="p-4 flex items-center justify-center bg-[var(--theme-background)]">
               <h3 className="text-large-semi text-[var(--theme-color)]">
@@ -155,7 +155,7 @@ const CartDropdown = ({
                 </div>
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">
-                    <span className="text-ui-fg-base font-semibold">
+                    <span className="[var(--theme-color)] font-semibold">
                       Subtotal{" "}
                       <span className="font-normal">(excl. taxes)</span>
                     </span>

@@ -17,7 +17,7 @@ const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
       </div>
       <Table className="bg-[var(--theme-background)] hover:bg-[var(--theme-background-hover)]">
         <Table.Header className="border-t-0">
-          <Table.Row className="text-ui-fg-subtle txt-medium-plus bg-[var(--theme-background)]">
+          <Table.Row className="text-[var(--colorsubtle)] txt-medium-plus bg-[var(--theme-background)]">
             <Table.HeaderCell className="!pl-0 bg-[var(--theme-background)]">
               Item
             </Table.HeaderCell>

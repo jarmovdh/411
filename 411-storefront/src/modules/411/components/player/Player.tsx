@@ -115,13 +115,11 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
       animate={isVisible ? "visible" : "hidden"}
       variants={playerVariants}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="z-50 rounded-[20px] mb-1 border border-ui-border-base bg-[var(--theme-background)] shadow-lg w-full lg:w-1/2 mx-auto"
+      className="z-50 rounded-[20px] mb-1 border border-[var(--theme-color)] bg-[var(--theme-background)] left-0 shadow-lg w-full lg:w-1/2 lg:left-[228px]"
       style={{
         height: `${isExpanded ? 300 : initialHeight}px`,
         position: "fixed",
         bottom: `${isExpanded ? "300px" : "90px"}`,
-        left: 0,
-        right: 0,
         transition: "bottom 0.5s ease-in-out, height 0.5s ease-in-out",
         boxShadow:
           "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
@@ -202,7 +200,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               className="border-none cursor-pointer p-0 bg-transparent"
               onClick={toggleExpansion}
             >
-              <MenuHamburger height={20} />
+              <MenuHamburger height={18} />
             </button>
             <button
               className="border-none cursor-pointer p-0 bg-transparent"
@@ -228,7 +226,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
           <div className="hidden lg:flex items-center">
             {" "}
             <button
-              className="bg-transparent border-none cursor-pointer w-9"
+              className="bg-transparent border-none cursor-pointer w-6"
               aria-label="control volume"
               onClick={() => setMuteVolume((prevMuteVolume) => !prevMuteVolume)}
             >
