@@ -85,7 +85,11 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
 
   const playerVariants = {
     hidden: { y: "100%", opacity: 1 },
-    visible: { y: "0", opacity: 1 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeInOut" },
+    },
   }
 
   const formatTime = (time: number): string => {
@@ -111,15 +115,14 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
 
   return (
     <motion.div
-      initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
       variants={playerVariants}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      initial="hidden"
+      animate={isVisible ? "hidden" : "visible"}
       className="z-50 rounded-[20px] mb-1 border border-[var(--theme-color)] bg-[var(--theme-background)] left-0 shadow-lg w-full lg:w-1/2 lg:left-[228px]"
       style={{
         height: `${isExpanded ? 300 : initialHeight}px`,
         position: "fixed",
-        bottom: `${isExpanded ? "300px" : "90px"}`,
+        bottom: 0,
         transition: "bottom 0.5s ease-in-out, height 0.5s ease-in-out",
         boxShadow:
           "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",

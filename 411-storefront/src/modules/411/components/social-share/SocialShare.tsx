@@ -5,6 +5,7 @@ import ShareIcon from "../../../../../public/assets/icons/ShareIcon"
 import FacebookIcon from "../../../../../public/assets/icons/FacebookIcon"
 import Xicon from "../../../../../public/assets/icons/Xicon"
 import LinkIcon from "../../../../../public/assets/icons/LinkIcon"
+import WhatsappIcon from "../../../../../public/assets/icons/WhatsappIcon"
 
 interface SocialShareProps {
   url: string
@@ -18,6 +19,7 @@ export const SocialShare = ({ url, title }: SocialShareProps) => {
     setIsOpen(!isOpen)
   }
 
+  //TODO update share functionalities
   const shareOnFacebook = () => {
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
       url
@@ -60,6 +62,12 @@ export const SocialShare = ({ url, title }: SocialShareProps) => {
         onClick={shareOnTwitter}
       >
         <Xicon className="h-4 md:h-5" />
+      </button>
+      <button
+        className="bg-transparent border-none cursor-pointer"
+        onClick={shareOnTwitter}
+      >
+        <WhatsappIcon className="h-4 md:h-5" />
       </button>
       <button
         className="bg-transparent border-none cursor-pointer"

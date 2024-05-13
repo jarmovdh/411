@@ -54,6 +54,10 @@
   -moz-appearance: none;
   appearance: none;
   border: none;
+  --thumb-color: gray;
+  --track-fill-color: var(--theme-color);
+  --thumb-size: 6px;
+  --track-fill-color: var(--theme-color);
 }
 .volume-slider::-webkit-slider-runnable-track,
 .volume-slider::-moz-range-track {
