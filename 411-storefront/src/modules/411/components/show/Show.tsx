@@ -86,7 +86,7 @@ export const Show = ({
   return (
     <div
       className={`relative flex flex-col ${
-        large ? "h-[350px] md:h-[525px]" : "h-[250px] md:h-[350px]"
+        large ? "h-[350px] md:h-[525px]" : "h-[200px] md:h-[350px]"
       } 
   
     w-full bg-black text-white rounded-base`}

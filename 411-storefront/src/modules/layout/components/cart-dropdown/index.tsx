@@ -73,7 +73,7 @@ const CartDropdown = ({
 
   return (
     <div
-      className="h-full z-50 bg-[var(--theme-background)]"
+      className="h-full z-20 bg-[var(--theme-background)]"
       onMouseEnter={openAndCancel}
       onMouseLeave={close}
     >

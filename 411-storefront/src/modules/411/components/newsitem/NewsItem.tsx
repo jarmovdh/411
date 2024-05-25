@@ -22,7 +22,7 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
     <>
       <div className="relative flex flex-col items-stretch h-full rounded-base transition-transform duration-300 ease-in-out">
         <div className="relative grid grid-cols-auto gap-1.5">
-          <div className="relative w-full h-[350px]  rounded-base cursor-pointer overflow-hidden md:h-[400px]">
+          <div className="relative w-full h-[300px]  rounded-base cursor-pointer overflow-hidden md:h-[400px]">
             <Image
               src={imageUrl}
               width={0}
@@ -46,7 +46,7 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
             </p>
             <div className="flex flex-col cursor-pointer h-14 mb-1.5">
               <h1
-                className="text-md text-[var(--theme-colorcontrary)] font-medium hover:text-tertiary-500"
+                className="text-sm md:text-xl sm:text-lg text-[var(--theme-colorcontrary)] font-medium hover:text-tertiary-500"
                 onClick={handleClick}
               >
                 {title}
