@@ -39,68 +39,76 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                   <MenuIcon height={24} />
                 </Popover.Button>
               </div>
-
-              <motion.div
-                initial={{ y: "-100%" }}
-                animate={{ y: isOpen ? 0 : "-100%" }}
-                transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                className="flex flex-col absolute w-full sm:pr-0 sm:w-1/3  2xl:w-1/4 sm:min-w-min h-[calc(100vh)] z-30 right-0 text-sm  backdrop-blur-2xl "
+              <Transition
+                show={open}
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
               >
-                <div className="flex flex-col h-full  bg-[var(--theme-background)] rounded-rounded justify-between p-6">
-                  <div className="flex justify-end" id="xmark">
-                    <button
-                      onClick={() => {
-                        close()
-                        setIsOpen(false)
-                      }}
-                    >
-                      <XMark />
-                    </button>
-                  </div>
-                  <ul className="flex flex-col gap-6 items-start justify-start">
-                    {Object.entries(SideMenuItems).map(([name, href]) => {
-                      return (
-                        <li key={name}>
-                          <LocalizedClientLink
-                            href={href}
-                            className="text-3xl leading-10 hover:text-ui-fg-disabled"
-                            onClick={() => {
-                              close()
-                              setIsOpen(false)
-                            }}
-                          >
-                            {name}
-                          </LocalizedClientLink>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                  <div className="flex flex-col gap-y-6">
-                    <div
-                      className="flex justify-between"
-                      onMouseEnter={toggleState.open}
-                      onMouseLeave={toggleState.close}
-                    >
-                      {regions && (
-                        <CountrySelect
-                          toggleState={toggleState}
-                          regions={regions}
-                        />
-                      )}
-                      <ArrowRightMini
-                        className={clx(
-                          "transition-transform duration-150",
-                          toggleState.state ? "-rotate-90" : ""
-                        )}
-                      />
+                <Popover.Panel
+                  static
+                  className="block absolute top-[calc(100%+1px)] bg-[var(--theme-background)] right-0 border-x border-b border-[var(--theme-color)] w-full sm:w-[420px] [var(--theme-color)]"
+                >
+                  <div className="flex flex-col h-full bg-[var(--theme-background)] justify-between p-6">
+                    <div className="flex justify-end" id="xmark">
+                      <button
+                        onClick={() => {
+                          close()
+                          setIsOpen(false)
+                        }}
+                      >
+                        <XMark />
+                      </button>
                     </div>
-                    <Text className="flex justify-between txt-compact-small">
-                      © {new Date().getFullYear()} 411 Radio. All rights
-                      reserved.
-                    </Text>
+                    <ul className="flex flex-col gap-6 items-start justify-start">
+                      {Object.entries(SideMenuItems).map(([name, href]) => {
+                        return (
+                          <li key={name}>
+                            <LocalizedClientLink
+                              href={href}
+                              className="text-3xl leading-10 hover:text-ui-fg-disabled"
+                              onClick={() => {
+                                close()
+                                setIsOpen(false)
+                              }}
+                            >
+                              {name}
+                            </LocalizedClientLink>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                    <div className="flex flex-col gap-y-6">
+                      <div
+                        className="flex justify-between"
+                        onMouseEnter={toggleState.open}
+                        onMouseLeave={toggleState.close}
+                      >
+                        {regions && (
+                          <CountrySelect
+                            toggleState={toggleState}
+                            regions={regions}
+                          />
+                        )}
+                        <ArrowRightMini
+                          className={clx(
+                            "transition-transform duration-150",
+                            toggleState.state ? "-rotate-90" : ""
+                          )}
+                        />
+                      </div>
+                      <Text className="flex justify-between txt-compact-small">
+                        © {new Date().getFullYear()} 411 Radio. All rights
+                        reserved.
+                      </Text>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </Popover.Panel>
+              </Transition>
             </>
           )}
         </Popover>
