@@ -38,7 +38,9 @@ const Login = ({ setCurrentView }: Props) => {
           />
         </div>
         <ErrorMessage error={message} />
-        <SubmitButton className="w-full mt-6">Sign in</SubmitButton>
+        <SubmitButton className="w-full mt-6 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]">
+          Sign in
+        </SubmitButton>
       </form>
       <span className="text-center text-small-regular mt-6">
         Not a member?{" "}

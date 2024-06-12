@@ -55,7 +55,8 @@ const AccountInfo = ({
         <div>
           <Button
             variant="secondary"
-            className="w-[100px] min-h-[25px] py-1"
+            className="w-[100px] min-h-[25px] py-1 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] 
+            hover:text-[var(--theme-background)]"
             onClick={handleToggle}
             type={state ? "reset" : "button"}
           >

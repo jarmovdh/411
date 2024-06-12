@@ -73,7 +73,9 @@ const Register = ({ setCurrentView }: Props) => {
           </LocalizedClientLink>
           .
         </span>
-        <SubmitButton className="w-full mt-6">Join</SubmitButton>
+        <SubmitButton className="w-full mt-6 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]">
+          Join
+        </SubmitButton>
       </form>
       <span className="text-center text-small-regular mt-6">
         Already a member?{" "}

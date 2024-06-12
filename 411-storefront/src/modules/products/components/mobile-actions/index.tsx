@@ -111,7 +111,8 @@ const MobileActions: React.FC<MobileActionsProps> = ({
               <Button
                 onClick={handleAddToCart}
                 disabled={!inStock || !variant}
-                className="w-full"
+                className="w-full bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] 
+            hover:text-[var(--theme-background)]"
                 isLoading={isAdding}
               >
                 {!variant

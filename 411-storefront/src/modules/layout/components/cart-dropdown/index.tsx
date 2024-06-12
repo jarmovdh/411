@@ -168,7 +168,17 @@ const CartDropdown = ({
                     </span>
                   </div>
                   <LocalizedClientLink href="/cart" passHref>
-                    <Button className="w-full" size="large">
+                    <Button
+                      className="
+                       w-full 
+                       bg-[var(--theme-background)] 
+                       border 
+                       text-[var(--theme-color)] 
+                       hover:bg-[var(--theme-color)] 
+                       hover:text-[var(--theme-background)]
+                     "
+                      size="large"
+                    >
                       Go to cart
                     </Button>
                   </LocalizedClientLink>

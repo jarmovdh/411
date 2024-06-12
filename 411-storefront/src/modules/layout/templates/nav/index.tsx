@@ -49,7 +49,7 @@ export default async function Nav() {
               </LocalizedClientLink>
             </div>
             <div className="flex text-[var(--theme-color)] z-40">
-              <DropdownButton />
+              <DropdownButton regions={regions} />
             </div>
             <ThemeSwitcher />
 
