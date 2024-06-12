@@ -83,7 +83,7 @@ const CartDropdown = ({
             className="flex flex-row text-[var(--theme-color)]"
             href="/cart"
           >
-            <CartIcon className="h-6" /> {` (${totalItems})`}
+            <CartIcon className="h-5 md:h-6" /> {` (${totalItems})`}
           </LocalizedClientLink>
         </Popover.Button>
         <Transition

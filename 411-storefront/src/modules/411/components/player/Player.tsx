@@ -118,7 +118,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
       variants={playerVariants}
       initial="hidden"
       animate={isVisible ? "hidden" : "visible"}
-      className="z-50 rounded-[20px] mb-1 border border-[var(--theme-color)] bg-[var(--theme-background)] left-0 shadow-lg w-full lg:w-1/2 lg:left-[228px]"
+      className="z-50 rounded-[20px] mb-1 border border-[var(--theme-color)] bg-[var(--theme-background)] left-0 shadow-lg w-full lg:w-1/2 "
       style={{
         height: `${isExpanded ? 300 : initialHeight}px`,
         position: "fixed",
@@ -197,7 +197,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               )}
             </>
             <button className="border-none cursor-pointer p-0 bg-transparent">
-              <SoundCloudIcon className="h-6 md:h-6" />
+              <SoundCloudIcon className="h-5 md:h-6" />
             </button>
             <button
               className="border-none cursor-pointer p-0 bg-transparent"
@@ -210,7 +210,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
               type="button"
               onClick={onClose}
             >
-              <CloseIcon className="h-6" />
+              <CloseIcon className="h-5 md:h-6" />
             </button>
             <ReactPlayer
               ref={reactPlayerRef}

@@ -5,6 +5,7 @@ import { ArrowRightMini, XMark } from "@medusajs/icons"
 import { Region } from "@medusajs/medusa"
 import { Text, clx, useToggleState } from "@medusajs/ui"
 import { Fragment, useState } from "react"
+import { Variants } from "framer-motion"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CountrySelect from "../country-select"
@@ -35,9 +36,7 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                 <Popover.Button
                   className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none "
                   onClick={() => setIsOpen(!isOpen)}
-                >
-                  <MenuIcon height={24} />
-                </Popover.Button>
+                ></Popover.Button>
               </div>
               <Transition
                 show={open}
@@ -51,7 +50,11 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
               >
                 <Popover.Panel
                   static
-                  className="block absolute top-[calc(100%+1px)] bg-[var(--theme-background)] right-0 border-x border-b border-[var(--theme-color)] w-full sm:w-[420px] [var(--theme-color)]"
+                  className="block absolute h-[800px] top-[calc(100%+1px)] bg-[var(--theme-background)] right-0 border-x border-b border-[var(--theme-color)] w-full sm:w-[420px] [var(--theme-color)]"
+                  style={{
+                    boxShadow:
+                      "0 4px 6px -1px rgba(0, 0, 0, 0.1), -4px 0 6px -1px rgba(0, 0, 0, 0.1)",
+                  }}
                 >
                   <div className="flex flex-col h-full bg-[var(--theme-background)] justify-between p-6">
                     <div className="flex justify-end" id="xmark">
@@ -64,7 +67,32 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                         <XMark />
                       </button>
                     </div>
-                    <ul className="flex flex-col gap-6 items-start justify-start">
+                    <motion.ul
+                      variants={{
+                        open: {
+                          clipPath: "inset(0% 0% 0% 0% )",
+                          transition: {
+                            type: "spring",
+                            bounce: 0,
+                            duration: 0.7,
+                            delayChildren: 0.3,
+                            staggerChildren: 0.05,
+                          },
+                        },
+                        closed: {
+                          clipPath: "inset(0% 0% 0% 100% )",
+                          transition: {
+                            type: "spring",
+                            bounce: 0,
+                            duration: 0.6,
+                            delayChildren: 0.3,
+                            staggerChildren: 0.05,
+                          },
+                        },
+                      }}
+                      style={{ pointerEvents: isOpen ? "auto" : "none" }}
+                      className="flex flex-col gap-6 items-start justify-start"
+                    >
                       {Object.entries(SideMenuItems).map(([name, href]) => {
                         return (
                           <li key={name}>
@@ -81,7 +109,7 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                           </li>
                         )
                       })}
-                    </ul>
+                    </motion.ul>
                     <div className="flex flex-col gap-y-6">
                       <div
                         className="flex justify-between"
