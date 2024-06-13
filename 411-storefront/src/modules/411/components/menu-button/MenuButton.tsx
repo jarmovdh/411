@@ -27,39 +27,36 @@ const DropdownButton = ({ regions }: { regions: Region[] | null }) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggleState = useToggleState()
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen)
-  }
-
   return (
     <>
       <DropdownMenu>
         <DropdownMenu.Trigger className="flex items-center justify-center">
           <MenuIcon className="h-5 md:h-6" />
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="flex flex-col w-[350px] h-[600px] mt-4 z-50 bg-[var(--theme-background)] border border-[var(--theme-color)] p-4">
+        <DropdownMenu.Content
+          className="flex flex-col w-[350px] h-[600px] mt-4 z-50 bg-[var(--theme-background)] border border-[var(--theme-color)] p-4"
+          style={{ width: "calc(100vw - 15px)", maxWidth: "450px" }}
+        >
           {Object.entries(SideMenuItems).map(([name, href]) => {
             return (
-              <li
+              <LocalizedClientLink
+                href={href}
+                className="leading-10"
                 key={name}
-                className="flex text-[var(--theme-color)] bg-[var(--theme-background)] p-y-0"
               >
-                <LocalizedClientLink
-                  href={href}
-                  className="text-md sm:text-lg leading-10 "
-                >
+                <DropdownMenu.Item className="text-lg sm:text-lg flex text-[var(--theme-color)] bg-[var(--theme-background)] focus:bg-[var(--theme-background-hover)]">
                   {name}
-                </LocalizedClientLink>
-              </li>
+                </DropdownMenu.Item>
+              </LocalizedClientLink>
             )
           })}
           <div className="flex flex-col justify-between flex-grow">
-            <div className="border-t 1px flex gap-4 pt-2">
-              <InstagramIcon className="h-4" />
-              <Xicon className="h-4" />
-              <NewsLetterIcon className="h-4" />
-              <SpotifyIcon className="h-4" />
-              <SoundCloudIcon className="h-4" />
+            <div className="border-t 1px flex gap-4 pt-2 mt-2 px-2">
+              <InstagramIcon className="h-5" />
+              <Xicon className="h-5" />
+              <NewsLetterIcon className="h-5" />
+              <SpotifyIcon className="h-5" />
+              <SoundCloudIcon className="h-5" />
             </div>
             <div className="flex flex-col gap-y-6">
               <div
@@ -72,7 +69,7 @@ const DropdownButton = ({ regions }: { regions: Region[] | null }) => {
                 )}
                 <ArrowRightMini
                   className={clx(
-                    "transition-transform duration-150",
+                    "transition-transform duration-150 text-[var(--theme-color)]",
                     toggleState.state ? "-rotate-90" : ""
                   )}
                 />

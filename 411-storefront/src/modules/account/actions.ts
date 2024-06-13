@@ -121,6 +121,7 @@ export async function addCustomerShows(
     excerpt: formData.get("excerpt") as string,
     title: formData.get("title") as string,
     slug: formData.get("slug") as string,
+    artist: formData.get("artist") as string,
   }
 
   const customer = {

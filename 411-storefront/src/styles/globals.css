@@ -141,3 +141,12 @@ p {
     @apply text-[32px] leading-[44px] font-semibold;
   }
 }
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  max-height: 3rem;
+}

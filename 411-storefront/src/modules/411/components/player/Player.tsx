@@ -178,7 +178,7 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
                   </h4>
                 </div>
               ) : (
-                <div className="flex items-center justify-between gap-2 w-full">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-2 w-full">
                   <span className="text-[11px] font-nums text-[var(--textColor)]">
                     {formatTime(timeProgress)}
                   </span>

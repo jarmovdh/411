@@ -124,7 +124,7 @@ export const Show = ({
           height: isHovered
             ? large
               ? "160px"
-              : "125px"
+              : "135px"
             : large
             ? "120px"
             : "90px",
@@ -155,19 +155,19 @@ export const Show = ({
             isHovered ? "opacity-100" : "opacity-0"
           } ${
             large ? "text-xs text-white" : "text-2xs md:text-xs text-white"
-          } line-clamp-2`}
+          } line-clamp`}
         >
           {excerpt}
         </p>
         <div
-          className={`transition-opacity duration-500 flex gap-1 mt-2 ${
+          className={`transition-opacity duration-300 flex gap-1 mt-2 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
           {tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs bg-black text-white rounded-full px-1 bg-opacity-60 border border-white"
+              className="text-2xs md:text-2xs bg-black text-white rounded-full px-1 bg-opacity-60 border border-white"
             >
               {tag}
             </span>

@@ -22,7 +22,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
   }, [order])
 
   return (
-    <div className="bg-white flex flex-col">
+    <div className="flex flex-col">
       <div className="uppercase text-large-semi mb-1">#{order.display_id}</div>
       <div className="flex items-center divide-x divide-gray-200 text-small-regular [var(--theme-color)]">
         <span className="pr-2">
@@ -67,7 +67,12 @@ const OrderCard = ({ order }: OrderCardProps) => {
       </div>
       <div className="flex justify-end">
         <LocalizedClientLink href={`/account/orders/details/${order.id}`}>
-          <Button variant="secondary">See details</Button>
+          <Button
+            variant="secondary"
+            className="bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]"
+          >
+            See details
+          </Button>
         </LocalizedClientLink>
       </div>
     </div>

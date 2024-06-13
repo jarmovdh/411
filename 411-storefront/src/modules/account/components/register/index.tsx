@@ -22,8 +22,7 @@ const Register = ({ setCurrentView }: Props) => {
         Become a 411 Radio Member
       </h1>
       <p className="text-center text-base-regular mb-4">
-        Create your Medusa Store Member profile, and get access to an enhanced
-        shopping experience.
+        Create your profile, and get access to an enhanced radio experience.
       </p>
       <form className="w-full flex flex-col" action={formAction}>
         <div className="flex flex-col w-full gap-y-2">
