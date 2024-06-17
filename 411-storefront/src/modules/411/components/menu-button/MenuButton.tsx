@@ -34,7 +34,7 @@ const DropdownButton = ({ regions }: { regions: Region[] | null }) => {
           <MenuIcon className="h-5 md:h-6" />
         </DropdownMenu.Trigger>
         <DropdownMenu.Content
-          className="flex flex-col w-[350px] h-[600px] mt-4 z-50 bg-[var(--theme-background)] border border-[var(--theme-color)] p-4"
+          className="flex flex-col w-[350px] h-[600px] mt-4 z-50 bg-[var(--theme-background)] rounded-[20px] border border-[var(--theme-color)] p-4"
           style={{ width: "calc(100vw - 15px)", maxWidth: "450px" }}
         >
           {Object.entries(SideMenuItems).map(([name, href]) => {
