@@ -1,32 +1,29 @@
 "use client"
-import Input from "@modules/common/components/input"
+import { useState } from "react"
 import UnderlineLink from "@modules/common/components/interactive-link"
-import { SubmitButton } from "@modules/checkout/components/submit-button"
+import RequestPasswordForm from "@modules/411/components/request-password-form/RequestPasswordForm"
 
 export default function ForgotPassword() {
+  const [message, setMessage] = useState("")
+
+  const handleSuccess = (msg: string) => {
+    setMessage(msg)
+  }
+
+  const handleError = (msg: string) => {
+    setMessage(msg)
+  }
+
   return (
     <>
       <div className="content-container max-w-sm w-full flex flex-col items-center h-full">
         <h1 className="text-large-semi uppercase mb-6">Forgot Password</h1>
-        <p className="text-center text-base-regular  mb-8">
-          Enter the email used for your 411 account and we will send you a link
-          to reset your password.{" "}
+        <p className="text-center text-base-regular mb-8">
+          Enter the email used for your account and we will send you a link to
+          reset your password.
         </p>
-        <form className="w-full">
-          <div className="flex flex-col w-full gap-y-2">
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              title="Enter your email address."
-              autoComplete="email"
-              required
-            />
-          </div>
-          <SubmitButton className="w-full mt-6 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]">
-            Submit
-          </SubmitButton>
-        </form>
+        <RequestPasswordForm onSuccess={handleSuccess} onError={handleError} />
+        {message && <p className="text-center text-red-500 mb-4">{message}</p>}
       </div>
       <div className="flex flex-col small:flex-row items-end justify-between small:border-t border-gray-200 py-12 gap-8">
         <div>
