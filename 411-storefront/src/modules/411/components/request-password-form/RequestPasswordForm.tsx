@@ -2,22 +2,7 @@
 import { useState } from "react"
 import Input from "@modules/common/components/input"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
-
-const sendResetPasswordEmail = async (email: string) => {
-  const response = await fetch("/api/reset-password", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email }),
-  })
-
-  if (!response.ok) {
-    throw new Error("Failed to send reset password email")
-  }
-
-  return await response.json()
-}
+import { medusaClient } from "@lib/config"
 
 interface PasswordResetFormProps {
   onSuccess: (message: string) => void
@@ -31,20 +16,34 @@ const RequestPasswordForm = ({
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
+  const sendResetPasswordEmail = async (email: string) => {
+    const response = await fetch("/api/reset-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to send reset password email")
+    }
+
+    return await response.json()
+  }
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     setIsLoading(true)
     console.log("Submitted email:", email)
 
     try {
-      await sendResetPasswordEmail(email)
-      onSuccess(
-        "If an account exists with this email, a reset link has been sent."
-      )
+      const result = await sendResetPasswordEmail(email)
+      onSuccess(result.message)
     } catch (error) {
       console.error("Error:", error)
       onError(
-        "If an account exists with this email, a reset link has been sent."
+        "An error occurred while processing your request. Please try again later."
       )
     } finally {
       setIsLoading(false)

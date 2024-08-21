@@ -24,19 +24,6 @@ import { Resend } from "resend"
 
 const resend = new Resend("process.env.RESEND_API_KEY")
 
-export async function sendResetPasswordEmail(email: string) {
-  try {
-    await resend.emails.send({
-      from: "info@411.radio",
-      to: email,
-      subject: "Reset Your Password",
-      text: "test mail by 411",
-    })
-  } catch (error) {
-    throw new Error("Failed to send reset password email")
-  }
-}
-
 export async function signUp(_currentState: unknown, formData: FormData) {
   const customer = {
     email: formData.get("email"),
