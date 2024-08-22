@@ -1,23 +1,30 @@
-import middlewares from "@medusajs/medusa/dist/api/middlewares"
-import { Router } from "express"
+import { Router } from 'express';
+import Medusa from "@medusajs/medusa-js";
 
-const router = Router()
+const route = Router();
 
-export default (app) => {
-  app.use("/store/auth", router)
+route.post('/store/customers/reset-password', async (req, res) => {
+  const { token, password } = req.body;
 
-  router.post("/reset-password", middlewares.wrap(require("./reset-password").default))
+  if (!token || !password) {
+    return res.status(400).json({ message: "Token and password are required" });
+  }
 
-  return app
-}
-
-export const post = async (req, res) => {
-  const { email } = req.body
+  const medusa = new Medusa({ baseUrl: process.env.MEDUSA_BACKEND_URL, maxRetries: 3 });
 
   try {
-    await req.scope.resolve("customerService").generatePasswordToken(email)
-    res.sendStatus(204)
+    await medusa.customers.resetPassword({
+      token,
+      password,
+      email: ''
+    });
+    res.status(200).json({ message: 'Password reset successfully' });
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(500).json({ message: 'Failed to reset password', error: error.message });
   }
-}
+});
+
+export default (app) => {
+  app.use('/store', route);
+  return app;
+};

@@ -2,7 +2,6 @@
 import { useState } from "react"
 import Input from "@modules/common/components/input"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { medusaClient } from "@lib/config"
 
 interface PasswordResetFormProps {
   onSuccess: (message: string) => void

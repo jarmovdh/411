@@ -1,14 +1,14 @@
 const PlayIcon = ({
   className,
-  fill = "var(--logo-fill-color)",
+  fill = "currentColor",
 }: {
-  className: string
+  className?: string
   fill?: string
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    className={`fill-current ${className}`}
+    className={className}
     fill={fill}
   >
     <path fill="none" d="M0 0h24v24H0z" />
