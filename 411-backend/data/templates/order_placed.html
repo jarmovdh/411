@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Placed</title>
+</head>
+<body>
+    <h1>Thank you for your order!</h1>
+    <p>Hello {{customer.first_name}},</p>
+    <p>Your order (ID: {{order.display_id}}) has been successfully placed.</p>
+    <p>Order details:</p>
+    <ul>
+    {{#each order.items}}
+        <li>{{this.title}} - Quantity: {{this.quantity}} - Price: {{this.unit_price}}</li>
+    {{/each}}
+    </ul>
+    <p>Total: {{order.total}}</p>
+    <p>Thank you for shopping with us!</p>
+</body>
+</html>

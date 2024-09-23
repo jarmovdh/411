@@ -97,6 +97,7 @@ const projectConfig = {
     {
       resolve: `${__dirname}/dist/loaders/reset-password`,
     },
+    
   ],
 };
 
