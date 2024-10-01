@@ -9,7 +9,7 @@ export default async function News() {
   return (
     <>
       <div className="content-container my-20">
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:m-0 2xl:grid-cols-2">
+        <div className="grid grid-cols-1 gap-1 md:grid-cols-2 md:m-0 2xl:grid-cols-2">
           {newsItems.map(
             (news: {
               _id: string | number | null | undefined

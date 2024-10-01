@@ -99,6 +99,27 @@ const projectConfig = {
     },
     
   ],
+  models: {
+    SubscriptionRequest: {
+      resolveKey: "subscription_request",
+      schema: "subscription-request",
+    },
+  },
+  modules: {
+    // ... other modules
+    customApi: {
+      resolve: "./src/api",
+      options: {
+        customOptions: {}
+      }
+    },
+    serviceModules: [
+      {
+        resolve: `${__dirname}/dist/services/subscription-request`,
+        options: {},
+      },
+    ],
+  },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */

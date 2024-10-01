@@ -1,5 +1,6 @@
-import { type SubscriberConfig, type SubscriberArgs, OrderService, FulfillmentService } from "@medusajs/medusa";
+import { type SubscriberConfig, type SubscriberArgs, OrderService } from "@medusajs/medusa";
 import { Resend } from 'resend';
+import { Fulfillment } from "@medusajs/medusa";
 
 export default async function handleOrderShipped({
   data,
@@ -7,14 +8,13 @@ export default async function handleOrderShipped({
 }: SubscriberArgs<Record<string, any>>) {
   const resendService = new Resend(process.env.RESEND_API_KEY);
   const orderService: OrderService = container.resolve("orderService");
-  const fulfillmentService: FulfillmentService = container.resolve("fulfillmentService");
 
   const order = await orderService.retrieve(data.id, { 
-    relations: ["items", "shipping_address", "customer", "fulfillments"] 
+    relations: ["items", "shipping_address", "customer", "fulfillments", "fulfillments.tracking_links"] 
   });
 
   const { email } = order.customer;
-  const { first_name, last_name } = order.shipping_address;
+  const { first_name } = order.shipping_address;
   const { display_id, items, fulfillments } = order;
 
   const fromEmail = process.env.SES_FROM;
@@ -26,34 +26,42 @@ export default async function handleOrderShipped({
     throw new Error("Order items are not in expected array format");
   }
 
-  // Get tracking information
-  let trackingInfo = '';
-  if (fulfillments && fulfillments.length > 0) {
-    const latestFulfillment = fulfillments[fulfillments.length - 1];
-    const tracking_numbers = latestFulfillment.tracking_numbers;
-    const tracking_links = latestFulfillment.tracking_links;
+  // Extract tracking information from fulfillments
+  const trackingInfo = fulfillments.flatMap((fulfillment: Fulfillment) => 
+    fulfillment.tracking_links.map(link => ({
+      number: link.tracking_number,
+      url: link.url
+    }))
+  );
 
-    if (tracking_numbers && tracking_numbers.length > 0) {
-      trackingInfo += `<p>Tracking Number(s): ${tracking_numbers.join(', ')}</p>`;
-    }
-    if (tracking_links && tracking_links.length > 0) {
-      trackingInfo += `<p>Tracking Link(s):<br>${tracking_links.map(link => `<a href="${link.url}">${link.url}</a>`).join('<br>')}</p>`;
-    }
-  }
+  const trackingSection = trackingInfo.length > 0
+    ? `
+      <p>You can track your order using the following tracking information:</p>
+      <ul>
+        ${trackingInfo.map(info => `
+          <li>
+            Tracking Number: <b>${info.number}</b>
+            ${info.url ? `<br><a href="${info.url}">Track your package</a>` : ''}
+          </li>
+        `).join('')}
+      </ul>
+    `
+    : '<p>No tracking information is available at this time.</p>';
 
   await resendService.emails.send({
     from: fromEmail,
     to: email,
     subject: `Your Order #${display_id} Has Been Shipped`,
     html: `
-      <h3>Hello ${first_name} ${last_name},</h3>
+      <p>Hello ${first_name},</p>
       <p>Great news! Your order #${display_id} has been shipped.</p>
-      <h2>Order Details:</h2>
+      <h3>Order Details:</h3>
       <ul>
         ${items.map(item => `<li>${item.title} - Quantity: ${item.quantity}</li>`).join('')}
       </ul>
-      ${trackingInfo}
+      ${trackingSection}
       <p>Thank you for shopping with us!</p>
+      <p>Best regards,<br>The 411 Team</p>
     `,
   });
 }

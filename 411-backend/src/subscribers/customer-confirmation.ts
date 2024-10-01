@@ -10,7 +10,7 @@ export default async function handleCustomerCreated({
 
   const customer = await customerService.retrieve(data.id);
 
-  const { email, first_name, last_name } = customer;
+  const { email, first_name } = customer;
 
   const fromEmail = process.env.SES_FROM;
   if (!fromEmail) {

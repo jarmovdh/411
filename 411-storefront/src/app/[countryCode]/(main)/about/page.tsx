@@ -1,7 +1,9 @@
+import NewsletterForm from "@modules/411/components/newsletter-form/NewsletterForm"
+
 export default function About() {
   return (
-    <div className="content-container mt-12 flex flex-col gap-2">
-      <h1 className="text-2xl font-bold"> About</h1>
+    <div className="max-w-lg content-container my-12 flex flex-col gap-2">
+      <h1 className="text-large-semi uppercase text-center"> About</h1>
       <p>
         411 Radio is broadcasting from Amsterdam with a commitment to diverse
         music programming. Our shows blend new releases with leftfield gems
@@ -26,16 +28,18 @@ export default function About() {
         industry seriously. We are committed to operating our platform in full
         compliance with all relevant laws and regulations governing online radio
         broadcasting.
-        <ol className="list-decimal list-inside mb-4">
-          <li>
-            BUMA/STEMRA License: This allows us to broadcast copyrighted musical
-            works.
-          </li>
-          <li>
-            SENA License: This permits us to use and broadcast recorded
-            performances.
-          </li>
-        </ol>
+      </p>
+      <ol className="list-decimal list-inside mb-4">
+        <li className="text-base-regular">
+          BUMA/STEMRA License: This allows us to broadcast copyrighted musical
+          works.
+        </li>
+        <li className="text-base-regular">
+          SENA License: This permits us to use and broadcast recorded
+          performances.
+        </li>
+      </ol>
+      <p>
         These licenses ensure that rights holders are fairly compensated for the
         use of their work on our platform. We respect the intellectual property
         rights of all artists, composers, and performers. Our community
@@ -57,11 +61,14 @@ export default function About() {
         information on these important matters.
       </p>
 
-      <h1>Contact</h1>
-      <p>
-        For any inquiries, please contact us at{" "}
-        <a href="mailto:info@411.radio">info@411.radio</a>
-      </p>
+      <NewsletterForm />
+      <div className="mt-4 mb-20">
+        <h1 className="text-large-semi uppercase text-center">Contact</h1>
+        <p>
+          For any inquiries, please contact us at{" "}
+          <a href="mailto:info@411.radio">info@411.radio</a>
+        </p>
+      </div>
     </div>
   )
 }
