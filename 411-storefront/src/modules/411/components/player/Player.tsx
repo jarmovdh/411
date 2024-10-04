@@ -105,151 +105,155 @@ export const Player = ({ show, onClose, isVisible }: PlayerProps) => {
 
   const volumeIcon = useMemo(() => {
     if (muteVolume || volume < 1) {
-      return <VolumeMuteIcon height={20} />
+      return <VolumeMuteIcon height={18} />
     }
     if (volume < 40) {
-      return <VolumeDownIcon height={20} />
+      return <VolumeDownIcon height={18} />
     }
-    return <VolumeUpIcon height={20} />
+    return <VolumeUpIcon height={18} />
   }, [muteVolume, volume])
 
   return (
-    <motion.div
-      variants={playerVariants}
-      initial="hidden"
-      animate={isVisible ? "hidden" : "visible"}
-      className="z-50 rounded-[20px] mb-1 border border-[var(--theme-color)] bg-[var(--theme-background)] left-0 shadow-lg w-full lg:w-1/2 "
-      style={{
-        height: `${isExpanded ? 300 : initialHeight}px`,
-        position: "fixed",
-        bottom: 0,
-        transition: "bottom 0.5s ease-in-out, height 0.5s ease-in-out",
-        boxShadow:
-          "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
-      }}
-    >
-      <div className="flex flex-row border border-transparent">
-        <div
-          className="cursor-pointer h-[85px] object-cover p-[5px] w-[150px] sm:w-[150px]"
-          onClick={handleClick}
+    <div className="fixed bottom-0 left-0 right-0 z-50">
+      <div className="content-container">
+        <motion.div
+          variants={playerVariants}
+          initial="hidden"
+          animate={isVisible ? "hidden" : "visible"}
+          className="rounded-[20px] mb-1 border border-[var(--theme-color)] bg-[var(--theme-background)] shadow-lg w-full lg:w-1/2"
+          style={{
+            height: `${isExpanded ? 300 : initialHeight}px`,
+            transition: "height 0.5s ease-in-out",
+            boxShadow:
+              "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
+          }}
         >
-          <Image
-            alt={show.title}
-            src={show.imageUrl}
-            width={0}
-            height={0}
-            sizes="100vw"
-            className="w-full h-full object-cover rounded-[15px]"
-          />
-        </div>
-        <div className="flex flex-col pt-1 justify-evenly w-full">
-          <div className="flex items-center gap-2.5">
-            <button
-              className="border-none cursor-pointer p-0 bg-transparent"
-              onClick={togglePlayer}
+          <div className="flex flex-row border border-transparent">
+            <div
+              className="cursor-pointer h-[85px] object-cover p-[5px] w-[150px] sm:w-[150px]"
+              onClick={handleClick}
             >
-              {isPlaying ? (
-                <PauseIcon className="h-6" />
-              ) : (
-                <PlayIcon className="h-6 " />
-              )}
-            </button>
+              <Image
+                alt={show.title}
+                src={show.imageUrl}
+                width={0}
+                height={0}
+                sizes="100vw"
+                className="w-full h-full object-cover rounded-[15px]"
+              />
+            </div>
+            <div className="flex flex-col pt-1 justify-evenly w-full">
+              <div className="flex items-center gap-2.5">
+                <button
+                  className="border-none cursor-pointer p-0 bg-transparent"
+                  onClick={togglePlayer}
+                >
+                  {isPlaying ? (
+                    <PauseIcon className="h-6" />
+                  ) : (
+                    <PlayIcon className="h-6 " />
+                  )}
+                </button>
 
-            <>
-              {!isPlaying ? (
-                <div className="flex flex-col justify-center w-full">
-                  <h3
-                    className="cursor-pointer font-normal text-2xs md:text-sm m-0 uppercase text-[var(--textColor)]"
-                    onClick={handleClick}
-                  >
-                    {show.title}
-                    {" - "}
-                    {show.artist}
-                  </h3>
+                <>
+                  {!isPlaying ? (
+                    <div className="flex flex-col justify-center w-full">
+                      <h3
+                        className="cursor-pointer font-normal text-2xs md:text-sm m-0 uppercase text-[var(--textColor)]"
+                        onClick={handleClick}
+                      >
+                        {show.title}
+                        {" - "}
+                        {show.artist}
+                      </h3>
 
-                  <h4 className="font-normal text-2xs text-[var(--textColor)]">
-                    {new Date(show.date)
-                      .toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "2-digit",
-                      })
-                      .replace(/\//g, ".")}
-                  </h4>
-                </div>
-              ) : (
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-2 w-full">
-                  <span className="text-[11px] font-nums text-[var(--textColor)]">
-                    {formatTime(timeProgress)}
-                  </span>
-                  <input
-                    className="range-input"
-                    type="range"
-                    ref={progressBarRef}
-                    max={duration.toString()}
-                    value={timeProgress.toString()}
-                    onChange={handleProgressChange}
-                  />
-                  <span className="text-[11px] font-nums text-[var(--textColor)]">
-                    {formatTime(duration)}
-                  </span>
-                </div>
-              )}
-            </>
-            <button className="border-none cursor-pointer p-0 bg-transparent">
-              <SoundCloudIcon className="h-5 md:h-6" />
-            </button>
-            <button
-              className="border-none cursor-pointer p-0 bg-transparent"
-              onClick={toggleExpansion}
-            >
-              <MenuHamburger height={18} />
-            </button>
-            <button
-              className="border-none cursor-pointer p-0 bg-transparent"
-              type="button"
-              onClick={onClose}
-            >
-              <CloseIcon className="h-5 md:h-6" />
-            </button>
-            <ReactPlayer
-              ref={reactPlayerRef}
-              url={show.cloudUrl}
-              playing={isPlaying}
-              width="0"
-              height="0"
-              volume={muteVolume ? 0 : volume / 100}
-              onDuration={handleDuration}
-              onProgress={handleProgress}
-              onEnded={() => setIsPlaying(false)}
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-            />
+                      <h4 className="font-normal text-2xs text-[var(--textColor)]">
+                        {new Date(show.date)
+                          .toLocaleDateString("en-GB", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "2-digit",
+                          })
+                          .replace(/\//g, ".")}
+                      </h4>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-2 w-full">
+                      <span className="text-[11px] font-nums text-[var(--textColor)]">
+                        {formatTime(timeProgress)}
+                      </span>
+                      <input
+                        className="range-input"
+                        type="range"
+                        ref={progressBarRef}
+                        max={duration.toString()}
+                        value={timeProgress.toString()}
+                        onChange={handleProgressChange}
+                      />
+                      <span className="text-[11px] font-nums text-[var(--textColor)]">
+                        {formatTime(duration)}
+                      </span>
+                    </div>
+                  )}
+                </>
+                <button className="border-none cursor-pointer p-0 bg-transparent">
+                  <SoundCloudIcon className="h-5 md:h-6" />
+                </button>
+                <button
+                  className="border-none cursor-pointer p-0 bg-transparent"
+                  onClick={toggleExpansion}
+                >
+                  <MenuHamburger height={18} />
+                </button>
+                <button
+                  className="border-none cursor-pointer p-0 bg-transparent"
+                  type="button"
+                  onClick={onClose}
+                >
+                  <CloseIcon className="h-5 md:h-6" />
+                </button>
+                <ReactPlayer
+                  ref={reactPlayerRef}
+                  url={show.cloudUrl}
+                  playing={isPlaying}
+                  width="0"
+                  height="0"
+                  volume={muteVolume ? 0 : volume / 100}
+                  onDuration={handleDuration}
+                  onProgress={handleProgress}
+                  onEnded={() => setIsPlaying(false)}
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                />
+              </div>
+              <div className="hidden lg:flex items-center">
+                {" "}
+                <button
+                  className="bg-transparent border-none cursor-pointer w-8 pl-2"
+                  aria-label="control volume"
+                  onClick={() =>
+                    setMuteVolume((prevMuteVolume) => !prevMuteVolume)
+                  }
+                >
+                  {volumeIcon}
+                </button>
+                <input
+                  type="range"
+                  className="volume-slider"
+                  min={0}
+                  max={100}
+                  value={volume}
+                  onChange={(e) => setVolume(parseInt(e.target.value, 10))}
+                />
+              </div>
+            </div>
           </div>
-          <div className="hidden lg:flex items-center">
-            {" "}
-            <button
-              className="bg-transparent border-none cursor-pointer w-6"
-              aria-label="control volume"
-              onClick={() => setMuteVolume((prevMuteVolume) => !prevMuteVolume)}
-            >
-              {volumeIcon}
-            </button>
-            <input
-              type="range"
-              className="volume-slider"
-              min={0}
-              max={100}
-              value={volume}
-              onChange={(e) => setVolume(parseInt(e.target.value, 10))}
-            />
+          <div className="px-2 h-[200px]  md:grid md:grid-cols-2 gap-5 overflow-auto pt-3">
+            <p className="text-xs">{show.excerpt}</p>
+            <Tracklist tracklist={show.tracklist} />
           </div>
-        </div>
+        </motion.div>
       </div>
-      <div className="px-2 h-[200px]  md:grid md:grid-cols-2 gap-5 overflow-auto pt-3">
-        <p className="text-xs">{show.excerpt}</p>
-        <Tracklist tracklist={show.tracklist} />
-      </div>
-    </motion.div>
+    </div>
   )
 }

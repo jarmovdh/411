@@ -40,7 +40,6 @@ export async function POST(request: NextRequest) {
     }
 
     const { token } = await subscriptionResponse.json()
-    console.log("Received token from Medusa:", token)
 
     // Send confirmation email
     const resend = new Resend(process.env.RESEND_API_KEY)

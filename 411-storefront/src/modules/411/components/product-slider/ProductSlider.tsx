@@ -2,7 +2,6 @@
 
 import React from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import ProductPreview from "@modules/products/components/product-preview"
 
 // import required modules
 import { Pagination } from "swiper/modules"

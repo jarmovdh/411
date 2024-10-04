@@ -19,11 +19,6 @@ export default function About() {
         provides a soundtrack for every moment.
       </p>
       <p>
-        At 411 Radio, we believe in the power of music to unite, inspire, and
-        transform. Join our community of passionate listeners and collectors,
-        and let's celebrate the universal language of music together.
-      </p>
-      <p>
         At 411 Radio, we take our responsibility to artists and the music
         industry seriously. We are committed to operating our platform in full
         compliance with all relevant laws and regulations governing online radio
@@ -62,7 +57,7 @@ export default function About() {
       </p>
 
       <NewsletterForm />
-      <div className="mt-4 mb-20">
+      <div className="mt-4 mb-20 pb-24">
         <h1 className="text-large-semi uppercase text-center">Contact</h1>
         <p>
           For any inquiries, please contact us at{" "}

@@ -1,9 +1,7 @@
 import { Region } from "@medusajs/medusa"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Text } from "@medusajs/ui"
-import { ArrowRightMini, XMark } from "@medusajs/icons"
 import { motion } from "framer-motion"
-import CountrySelect from "@modules/layout/components/country-select"
 
 const SideMenuItems = {
   Home: "/",
@@ -22,7 +20,7 @@ const DropdownMenu = ({ regions }: { regions: Region[] | null }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col bg-[var(--theme-background)] justify-between p-6 border border-[var(--theme-color)]"
+      className="flex flex-col bg-[var(--theme-background)] justify-between p-6 pb-4 border border-[var(--theme-color)]"
     >
       <motion.ul className="flex flex-col gap-6 items-start justify-start">
         {Object.entries(SideMenuItems).map(([name, href]) => {

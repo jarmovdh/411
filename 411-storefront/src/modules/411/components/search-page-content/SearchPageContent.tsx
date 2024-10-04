@@ -1,59 +1,59 @@
 "use client"
-import { useEffect, useState } from "react"
-import { useSearchParams, useRouter } from "next/navigation"
-import {
-  getAlbums,
-  getNewsItems,
-  getShows,
-} from "../../../../../sanity/lib/queries"
-import { getCollectionsList, getRegion } from "@lib/data"
-
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import {
   ShowType,
   NewsItemType,
   AlbumType,
 } from "../../../../../sanity/schemas/types"
 import Image from "next/image"
+import ProductPreview from "@modules/products/components/product-preview"
+import { ProductPreviewType } from "types/global"
 
-export default function SearchPage() {
-  const searchParams = useSearchParams()
-  const q = searchParams?.get("q")
-  const searchQuery = q as string
-  const [shows, setShows] = useState<ShowType[]>([])
-  const [newsItems, setNewsItems] = useState<NewsItemType[]>([])
-  const [albums, setAlbums] = useState<AlbumType[]>([])
+type SearchPageProps = {
+  initialShows: ShowType[]
+  initialNews: NewsItemType[]
+  initialAlbums: AlbumType[]
+  initialProducts: ProductPreviewType[]
+  initialRegion?: any
+  searchQuery: string
+}
+
+export default function SearchPage({
+  initialShows,
+  initialNews,
+  initialAlbums,
+  initialProducts,
+  initialRegion,
+  searchQuery,
+}: SearchPageProps) {
+  const [shows] = useState<ShowType[]>(initialShows)
+  const [newsItems] = useState<NewsItemType[]>(initialNews)
+  const [albums] = useState<AlbumType[]>(initialAlbums)
+  const [products] = useState<ProductPreviewType[]>(initialProducts)
   const [activeTab, setActiveTab] = useState("All")
+  const [region] = useState<any>(initialRegion)
   const router = useRouter()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const showsData = await getShows()
-        setShows(showsData)
-        const newsData = await getNewsItems()
-        setNewsItems(newsData)
-        const albumsData = await getAlbums()
-        setAlbums(albumsData)
-      } catch (error) {
-        console.error("Error fetching data:", error)
-      }
-    }
-    fetchData()
-  }, [])
 
   const filterData = (data: any[], query: string) =>
     data.filter((item) =>
       item.title.toLowerCase().includes(query.toLowerCase())
     )
 
-  const navigateToItem = (item: { type: string; slug: { current: any } }) => {
+  const navigateToItem = (item: {
+    type: string
+    slug?: { current: string }
+    handle?: string
+  }) => {
     console.log("Navigating to item:", item)
     if (item.type === "show") {
-      router.push(`/listen/${item.slug.current || "404"}`)
+      router.push(`/listen/${item.slug?.current || "404"}`)
     } else if (item.type === "album") {
-      router.push(`/albums/${item.slug.current || "404"}`)
+      router.push(`/albums/${item.slug?.current || "404"}`)
     } else if (item.type === "news") {
-      router.push(`/news/${item.slug.current || "404"}`)
+      router.push(`/news/${item.slug?.current || "404"}`)
+    } else if (item.type === "product") {
+      router.push(`/products/${item.handle || "404"}`)
     } else {
       console.error("Unknown item type:", item.type)
     }
@@ -75,6 +75,10 @@ export default function SearchPage() {
             ...item,
             type: "album",
           })),
+          ...filterData(products, searchQuery).map((item) => ({
+            ...item,
+            type: "product",
+          })),
         ]
       case "Shows":
         return filterData(shows, searchQuery).map((item) => ({
@@ -91,6 +95,11 @@ export default function SearchPage() {
           ...item,
           type: "news",
         }))
+      case "Products":
+        return filterData(products, searchQuery).map((item) => ({
+          ...item,
+          type: "product",
+        }))
       default:
         return []
     }
@@ -99,8 +108,8 @@ export default function SearchPage() {
   return (
     <>
       <div className="content-container">
-        <h1 className="p-5 text-center text-base-regular uppercase">
-          Search results for: <strong className="italic">{searchQuery}</strong>
+        <h1 className="p-5">
+          Search results for: <strong>{searchQuery}</strong>
         </h1>
         <div className="tab-container w-full justify-between flex gap-4 p-5 border-b-2 lg:px-[500px]">
           <button
@@ -144,7 +153,11 @@ export default function SearchPage() {
             News
           </button>
           <button
-            className={`button ${activeTab === "Albums" ? "font-bold" : ""}`}
+            className={`button ${
+              activeTab === "Albums"
+                ? "font-bold underline underline-offset-4"
+                : ""
+            }`}
             onClick={() => setActiveTab("Albums")}
           >
             Albums
@@ -166,17 +179,21 @@ export default function SearchPage() {
                   style={{ cursor: "pointer" }}
                 >
                   <div className="col-span-2 md:col-span-2">
-                    <Image
-                      alt={item.title}
-                      src={item.imageUrl || item.coverImageUrl}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      className="h-[130px] w-[200px] md:w-[350px] md:h-[250px] object-cover rounded-base"
-                      priority
-                      placeholder="blur"
-                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
-                    />
+                    {item.type === "product" ? (
+                      <ProductPreview productPreview={item} region={region} />
+                    ) : (
+                      <Image
+                        alt={item.title}
+                        src={item.imageUrl || item.coverImageUrl}
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        className="h-[130px] w-[200px] md:w-[350px] md:h-[250px] object-cover rounded-base"
+                        priority
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
+                      />
+                    )}
                   </div>
                   <div className="col-span-3 md:col-span-3">
                     <h2>{item.title}</h2>

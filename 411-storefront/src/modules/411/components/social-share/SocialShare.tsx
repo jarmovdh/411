@@ -10,34 +10,35 @@ import WhatsappIcon from "../../../../../public/assets/icons/WhatsappIcon"
 interface SocialShareProps {
   url: string
   title: string
+  prefix?: "news" | "listen" | "albums"
 }
 
-export const SocialShare = ({ url, title }: SocialShareProps) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const openShareDiv = () => {
-    setIsOpen(!isOpen)
+export const SocialShare = ({ url, title, prefix }: SocialShareProps) => {
+  const getFullUrl = () => {
+    const baseUrl =
+      process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:8000"
+    const urlPrefix = prefix ? `/${prefix}/` : "/"
+    return `${baseUrl}${urlPrefix}${url}`
   }
 
-  //TODO update share functionalities
   const shareOnFacebook = () => {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      url
-    )}`
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getFullUrl())}`
     window.open(facebookUrl, "_blank")
   }
 
   const shareOnTwitter = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-      url
-    )}&text=${encodeURIComponent(title)}`
+    const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(getFullUrl())}&text=${encodeURIComponent(title)}`
     window.open(twitterUrl, "_blank")
   }
 
+  const shareOnWhatsapp = () => {
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(title + " " + getFullUrl())}`
+    window.open(whatsappUrl, "_blank")
+  }
+
   const copyLinkToClipboard = () => {
-    // Use the Clipboard API to copy the link to the clipboard
     navigator.clipboard
-      .writeText(url)
+      .writeText(getFullUrl())
       .then(() => {
         alert("Link copied to clipboard!")
       })
@@ -65,7 +66,7 @@ export const SocialShare = ({ url, title }: SocialShareProps) => {
       </button>
       <button
         className="bg-transparent border-none cursor-pointer"
-        onClick={shareOnTwitter}
+        onClick={shareOnWhatsapp}
       >
         <WhatsappIcon className="h-4 md:h-5" />
       </button>

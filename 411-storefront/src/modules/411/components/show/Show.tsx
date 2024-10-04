@@ -126,8 +126,8 @@ export const Show = ({
               ? "160px"
               : "135px"
             : large
-            ? "120px"
-            : "90px",
+              ? "120px"
+              : "90px",
           transition: "height 0.5s",
         }}
       >

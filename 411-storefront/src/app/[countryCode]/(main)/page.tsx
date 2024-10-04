@@ -2,13 +2,11 @@ import { Product } from "@medusajs/medusa"
 import { Metadata } from "next"
 
 import { getCollectionsList, getProductsList, getRegion } from "@lib/data"
-import FeaturedProducts from "@modules/home/components/featured-products"
 import { ProductCollectionWithPreviews } from "types/global"
 import { cache } from "react"
 import { HeroSection } from "@modules/411/components/hero-section/HeroSection"
 
 import { LatestNews } from "@modules/411/components/latest-news/LatestNews"
-import Loader from "@modules/411/components/loader/Loader"
 import { Slogan } from "@modules/411/components/slogan/Slogan"
 import LatestShows from "@modules/411/components/latest-shows/LatestShows"
 

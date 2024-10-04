@@ -32,7 +32,7 @@ export default function ShowPageContent({
 
   return (
     <>
-      <div className="content-container text-[color] my-[30px] rounded-[35px] mb-[100px]">
+      <div className="content-container text-[color] my-[30px] rounded-[35px] mb-[100px] pb-24">
         <div className="flex flex-row items-center">
           <PlayerButton show={show} onClick={() => {}} />
           <h1 className="text-2xl font-bold">
@@ -64,7 +64,21 @@ export default function ShowPageContent({
         </div>
 
         <div className="grid md:grid-cols-2 py-5 gap-4">
-          <p>{show.excerpt}</p>
+          <div>
+            <p>{show.excerpt}</p>
+            {show.tags && show.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-4 mb-4">
+                {show.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-2xs md:text-2xs bg-black text-white rounded-full px-2 py-1 bg-opacity-60 border border-white"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
           <Tracklist tracklist={show.tracklist} />
         </div>
 
@@ -74,7 +88,11 @@ export default function ShowPageContent({
             initialIsBookmarked={initialIsBookmarked}
             customer={customer}
           />
-          <SocialShare title={show.title} url={show.slug.current} />
+          <SocialShare
+            title={show.title}
+            url={show.slug.current}
+            prefix="listen"
+          />
         </div>
       </div>
     </>

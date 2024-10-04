@@ -6,9 +6,7 @@ import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import imageUrlBuilder from "@sanity/image-url"
 import { SanityImageSource } from "@sanity/image-url/lib/types/types"
-// import { SocialShare } from "@/components/social-share"
 
-// import ArrowLeftIcon from "../../public/assets/icons/arrow-left.svg"
 import { NewsItemType } from "../../../../../sanity/schemas/types"
 import client from "../../../../../sanity/lib/client"
 import { NewsSlider } from "../news-slider/NewSlider"
@@ -53,7 +51,7 @@ export default function NewsItemPageContent({
         }
         const imageUrl = urlFor(value.blogImage).url()
         return (
-          <figure className="m-0">
+          <figure className="my-4">
             <Image
               src={imageUrl}
               width={0}
@@ -82,7 +80,7 @@ export default function NewsItemPageContent({
   }
 
   return (
-    <div className="content-container text-[var(--text-color)] my-20">
+    <div className="content-container text-[var(--text-color)] my-20 pb-24">
       <h1 className="text-2xl font-bold">{newsItem.title}</h1>
       <p className="mb-4">
         {new Date(newsItem.date)
@@ -116,7 +114,11 @@ export default function NewsItemPageContent({
       <div className="p-[20px] md:px-[100px] lg:px-[200px]">
         <PortableText value={newsItem.body} components={components} />
         <div className="mt-5">
-          <SocialShare title={newsItem.title} url={newsItem.slug.current} />
+          <SocialShare
+            title={newsItem.title}
+            url={newsItem.slug.current}
+            prefix="news"
+          />
         </div>
 
         <div className="flex items-center justify-end cursor-pointer">
