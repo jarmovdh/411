@@ -123,7 +123,7 @@ export default function NewsItemPageContent({
 
         <div className="flex items-center justify-end cursor-pointer">
           <button
-            className="bg-transparent border-none cursor-pointer"
+            className="bg-[var(--theme-background-hover)] border-none cursor-pointer rounded-full p-2 w-10 h-10 flex items-center justify-center"
             onClick={() => router.push("/news")}
           >
             <ArrowLeftIcon className="h-6" />

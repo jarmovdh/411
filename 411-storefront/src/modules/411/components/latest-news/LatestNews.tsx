@@ -5,7 +5,6 @@ import { FreeMode, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { useRouter } from "next/navigation"
 
-// import ArrowRightIcon from "../../public/assets/icons/arrow-right.svg"
 // // Import Swiper styles
 import "swiper/css"
 import "swiper/css/free-mode"
@@ -13,14 +12,11 @@ import "swiper/css/pagination"
 import { NewsItemType } from "../../../../../sanity/schemas/types"
 import { NewsItem } from "../newsitem/NewsItem"
 import { getNewsItems } from "../../../../../sanity/lib/queries"
+import ArrowRightIcon from "../../../../../public/assets/icons/ArrowRightIcon"
 
 export const LatestNews = () => {
   const router = useRouter()
   const [newsItems, setNewsItems] = useState<NewsItemType[]>([])
-
-  const handleClick = () => {
-    router.push("/news")
-  }
 
   useEffect(() => {
     async function fetchNews() {
@@ -69,11 +65,10 @@ export const LatestNews = () => {
             <SwiperSlide>
               <div className="flex flex-col justify-end items-start underline leading-6 self-end relative">
                 <button
-                  onClick={handleClick}
-                  className="grid grid-flow-col auto-cols-max gap-4 bg-transparent border-none cursor-pointer p-0"
+                  className="bg-[var(--theme-background-hover)] border-none cursor-pointer rounded-full p-2 w-10 h-10 flex items-center justify-center"
+                  onClick={() => router.push("/news")}
                 >
-                  <h1>More News</h1>
-                  {/* <ArrowRightIcon className="text-current h-10" /> */}
+                  <ArrowRightIcon className="h-6" />
                 </button>
               </div>
             </SwiperSlide>

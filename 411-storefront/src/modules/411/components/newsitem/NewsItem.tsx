@@ -30,6 +30,7 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
               sizes="100vw"
               className="w-full h-full object-cover rounded-base"
               alt={title}
+              priority
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS+2Uz0oDQRSGz9"
             />

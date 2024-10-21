@@ -9,8 +9,10 @@ export default async function Listen() {
   return (
     <>
       <div className="content-container mt-1 pb-24">
-        <p>The latest additions to the 411 Radio archive, updated weekly.</p>
-        <div className="grid grid-cols-2 gap-1 m-1 place-items-center sm:gap-1 sm:m-0 md:grid-cols-2 lg:grid-cols-3">
+        <p className="py-8">
+          The latest additions to the 411 Radio archive, updated weekly.
+        </p>
+        <div className="grid grid-cols-1 gap-1 m-1 place-items-center sm:gap-1 sm:m-0 md:grid-cols-2 lg:grid-cols-3">
           {shows.map(
             (show: {
               artist: string | undefined
@@ -33,7 +35,6 @@ export default async function Listen() {
                 tags={show.tags}
                 imageUrl={show.imageUrl}
                 cloudUrl={show.cloudUrl}
-                id={show._id}
               />
             )
           )}
