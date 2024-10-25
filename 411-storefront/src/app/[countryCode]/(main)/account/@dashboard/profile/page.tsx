@@ -44,7 +44,7 @@ export default async function Profile() {
         <Divider />
         <ProfileBillingAddress customer={customer} regions={regions} />
         <Divider />
-        <DeleteAccount />
+        <DeleteAccount customer={customer} />
       </div>
     </div>
   )

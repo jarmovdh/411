@@ -76,7 +76,7 @@ export default function SearchBar({
         }}
       >
         <motion.div
-          className="h-8 w-12 flex items-center justify-center bg-transparent cursor-pointer"
+          className="h-6 w-12 flex items-center justify-center bg-transparent cursor-pointer"
           onClick={toggleSearch}
           animate={isOpen ? "open" : "closed"}
           variants={{
@@ -85,7 +85,7 @@ export default function SearchBar({
           }}
           transition={{ type: "easeIn", damping: 40 }}
         >
-          <SearchIcon className="h-5 md:h-6" />
+          <SearchIcon className="h-4 md:h-5" />
         </motion.div>
         <motion.input
           type="text"

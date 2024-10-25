@@ -44,7 +44,7 @@ export type NewsItemType = {
 }
 
 export type ShowType = {
-  _id: number
+  _id?: number
   id: number
   artist: string
   title: string

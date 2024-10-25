@@ -13,7 +13,7 @@ export interface ShowProps {
   cloudUrl?: string
   date: string
   excerpt?: string
-  id?: number
+  id: number
   imageUrl: string
   isFeatured?: boolean
   large?: boolean

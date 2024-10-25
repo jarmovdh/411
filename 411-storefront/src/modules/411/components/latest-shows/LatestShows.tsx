@@ -10,15 +10,15 @@ export default async function LatestShows() {
       {shows.map((show: ShowType) => (
         <Show
           artist={show.artist}
-          excerpt={show.excerpt}
-          key={show._id}
+          cloudUrl={show.cloudUrl}
           date={show.date}
-          title={show.title}
+          excerpt={show.excerpt}
+          id={show._id}
+          imageUrl={show.imageUrl}
+          key={show._id}
           slug={show.slug.current}
           tags={show.tags}
-          imageUrl={show.imageUrl}
-          cloudUrl={show.cloudUrl}
-          id={show._id}
+          title={show.title}
         />
       ))}
     </div>

@@ -21,7 +21,7 @@ export default async function Nav() {
         <nav className="content-container txt-xsmall-plus text-[var(--colorsubtle)] flex items-center justify-between w-full h-full text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center">
             <Link href="/">
-              <LogoIcon className="h-10 md:h-12" />
+              <LogoIcon className="h-8 md:h-11" />
             </Link>
           </div>
 

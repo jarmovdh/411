@@ -43,6 +43,7 @@ export const NewsSlider: React.FC<NewsSliderProps> = ({ carouselImages }) => {
                   objectFit: "cover",
                 }}
                 alt={image.alt}
+                priority
               />
             </div>
           </SwiperSlide>
