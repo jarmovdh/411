@@ -36,7 +36,7 @@ export const NewsItem = ({ date, title, slug, imageUrl }: NewsProps) => {
             />
           </div>
           <div className="absolute rounded-b-base bottom-0 flex flex-1 flex-col justify-between w-full p-2.5 bg-black/50">
-            <p className="text-xs mb-0 mt-0 text-[var(--theme-colorcontrary)]">
+            <p className="text-2xs mb-0 mt-0 text-[var(--theme-colorcontrary)]">
               {new Date(date)
                 .toLocaleDateString("en-GB", {
                   day: "2-digit",

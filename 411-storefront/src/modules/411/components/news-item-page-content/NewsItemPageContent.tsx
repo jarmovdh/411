@@ -2,8 +2,10 @@
 
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import type { PortableTextBlock } from "@portabletext/types"
+import type { PortableTextComponentProps } from "@portabletext/react"
 
-import { PortableText } from "@portabletext/react"
+import { PortableText, PortableTextReactComponents } from "@portabletext/react"
 import imageUrlBuilder from "@sanity/image-url"
 import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 
@@ -12,6 +14,7 @@ import client from "../../../../../sanity/lib/client"
 import { NewsSlider } from "../news-slider/NewSlider"
 import { SocialShare } from "../social-share/SocialShare"
 import ArrowLeftIcon from "../../../../../public/assets/icons/ArrowLeftIcon"
+import { ReactNode } from "react"
 
 interface ImageValue {
   blogImage: {
@@ -43,7 +46,7 @@ export default function NewsItemPageContent({
     return builder.image(source)
   }
 
-  const components = {
+  const components: Partial<PortableTextReactComponents> = {
     types: {
       image: ({ value }: { value: ImageValue }) => {
         if (!value || !value.blogImage) {
@@ -60,7 +63,6 @@ export default function NewsItemPageContent({
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               alt={value.alt || " "}
             />
-
             {value.caption && (
               <figcaption className="text-2xs">{value.caption}</figcaption>
             )}
@@ -69,9 +71,12 @@ export default function NewsItemPageContent({
       },
     },
     block: {
-      // Custom serializer for <p> tags based on 'normal' style
-      normal: ({ children }) => {
-        if (children.length === 1 && children[0] === "") {
+      normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => {
+        if (
+          Array.isArray(children) &&
+          children.length === 1 &&
+          children[0] === ""
+        ) {
           return <br />
         }
         return <p>{children}</p>
@@ -123,7 +128,7 @@ export default function NewsItemPageContent({
 
         <div className="flex items-center justify-end cursor-pointer">
           <button
-            className="bg-[var(--theme-background-hover)] border-none cursor-pointer rounded-full p-2 w-10 h-10 flex items-center justify-center"
+            className="bg-[var(--theme-background-hover)] border-none cursor-pointer rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-[var(--theme-colorsubtle)] "
             onClick={() => router.push("/news")}
           >
             <ArrowLeftIcon className="h-6" />
