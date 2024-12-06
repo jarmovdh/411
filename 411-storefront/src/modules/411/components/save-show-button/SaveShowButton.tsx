@@ -8,6 +8,7 @@ import {
   deleteCustomerShowById,
   getCustomersShows,
 } from "@modules/account/actions"
+import { form } from "sanity/structure"
 
 interface Show {
   imageUrl: string
@@ -15,6 +16,7 @@ interface Show {
   cloudUrl: string
   excerpt: string
   title: string
+  artist: string
   slug: { current: string }
 }
 
@@ -60,7 +62,7 @@ export default function SaveShowButton({
       formData.append("cloudUrl", show.cloudUrl)
       formData.append("excerpt", show.excerpt)
       formData.append("title", show.title)
-
+      formData.append("artist", show.artist)
       formData.append("slug", show.slug.current)
       formData.append("isBookmarked", "true")
 

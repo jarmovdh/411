@@ -16,8 +16,6 @@ export default async function FavoriteShows() {
     notFound()
   }
 
-  console.log("TEST", customer)
-
   return (
     <div className="w-full">
       <div className="mb-8 flex flex-col gap-y-4">

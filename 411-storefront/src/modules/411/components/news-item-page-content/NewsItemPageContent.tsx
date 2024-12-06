@@ -2,18 +2,19 @@
 
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import type { PortableTextBlock } from "@portabletext/types"
+import type { PortableTextComponentProps } from "@portabletext/react"
 
-import { PortableText } from "@portabletext/react"
+import { PortableText, PortableTextReactComponents } from "@portabletext/react"
 import imageUrlBuilder from "@sanity/image-url"
 import { SanityImageSource } from "@sanity/image-url/lib/types/types"
-// import { SocialShare } from "@/components/social-share"
 
-// import ArrowLeftIcon from "../../public/assets/icons/arrow-left.svg"
 import { NewsItemType } from "../../../../../sanity/schemas/types"
 import client from "../../../../../sanity/lib/client"
 import { NewsSlider } from "../news-slider/NewSlider"
 import { SocialShare } from "../social-share/SocialShare"
 import ArrowLeftIcon from "../../../../../public/assets/icons/ArrowLeftIcon"
+import { ReactNode } from "react"
 
 interface ImageValue {
   blogImage: {
@@ -45,7 +46,7 @@ export default function NewsItemPageContent({
     return builder.image(source)
   }
 
-  const components = {
+  const components: Partial<PortableTextReactComponents> = {
     types: {
       image: ({ value }: { value: ImageValue }) => {
         if (!value || !value.blogImage) {
@@ -53,7 +54,7 @@ export default function NewsItemPageContent({
         }
         const imageUrl = urlFor(value.blogImage).url()
         return (
-          <figure className="m-0">
+          <figure className="my-4">
             <Image
               src={imageUrl}
               width={0}
@@ -62,7 +63,6 @@ export default function NewsItemPageContent({
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               alt={value.alt || " "}
             />
-
             {value.caption && (
               <figcaption className="text-2xs">{value.caption}</figcaption>
             )}
@@ -71,9 +71,12 @@ export default function NewsItemPageContent({
       },
     },
     block: {
-      // Custom serializer for <p> tags based on 'normal' style
-      normal: ({ children }) => {
-        if (children.length === 1 && children[0] === "") {
+      normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => {
+        if (
+          Array.isArray(children) &&
+          children.length === 1 &&
+          children[0] === ""
+        ) {
           return <br />
         }
         return <p>{children}</p>
@@ -82,7 +85,7 @@ export default function NewsItemPageContent({
   }
 
   return (
-    <div className="content-container text-[var(--text-color)] my-20">
+    <div className="content-container text-[var(--text-color)] my-20 pb-24">
       <h1 className="text-2xl font-bold">{newsItem.title}</h1>
       <p className="mb-4">
         {new Date(newsItem.date)
@@ -116,12 +119,16 @@ export default function NewsItemPageContent({
       <div className="p-[20px] md:px-[100px] lg:px-[200px]">
         <PortableText value={newsItem.body} components={components} />
         <div className="mt-5">
-          <SocialShare title={newsItem.title} url={newsItem.slug.current} />
+          <SocialShare
+            title={newsItem.title}
+            url={newsItem.slug.current}
+            prefix="news"
+          />
         </div>
 
         <div className="flex items-center justify-end cursor-pointer">
           <button
-            className="bg-transparent border-none cursor-pointer"
+            className="bg-[var(--theme-background-hover)] border-none cursor-pointer rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-[var(--theme-colorsubtle)] "
             onClick={() => router.push("/news")}
           >
             <ArrowLeftIcon className="h-6" />

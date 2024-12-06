@@ -2,15 +2,15 @@ import { Product } from "@medusajs/medusa"
 import { Metadata } from "next"
 
 import { getCollectionsList, getProductsList, getRegion } from "@lib/data"
-import FeaturedProducts from "@modules/home/components/featured-products"
 import { ProductCollectionWithPreviews } from "types/global"
 import { cache } from "react"
 import { HeroSection } from "@modules/411/components/hero-section/HeroSection"
 
 import { LatestNews } from "@modules/411/components/latest-news/LatestNews"
-import Loader from "@modules/411/components/loader/Loader"
 import { Slogan } from "@modules/411/components/slogan/Slogan"
 import LatestShows from "@modules/411/components/latest-shows/LatestShows"
+import NewsletterForm from "@modules/411/components/newsletter-form/NewsletterForm"
+import LogoIcon from "../../../../public/assets/icons/LogoIcon"
 
 export const metadata: Metadata = {
   title: "411 Radio",
@@ -73,11 +73,20 @@ export default async function Home({
 
   return (
     <>
-      <div className="pt-12 pb-24">
-        <Slogan />
-        <HeroSection collections={collections} />
-        <LatestShows />
-        <LatestNews />
+      <div className="min-h-screen flex items-center justify-center py-12">
+        {/* <div className="pt-12 pb-24"> */}
+        {/* <Slogan /> */}
+        {/* <HeroSection collections={collections} /> */}
+        {/* <LatestShows />
+        <LatestNews /> */}
+        <div
+          className="max-w-[calc(100%-2rem)] px-6
+        md:max-w-[calc(100%-400px)]
+        xl:w-[600px] xl:px-20 w-full flex flex-col items-center"
+        >
+          <LogoIcon className="h-12 mb-12" />
+          <NewsletterForm />
+        </div>
       </div>
     </>
   )

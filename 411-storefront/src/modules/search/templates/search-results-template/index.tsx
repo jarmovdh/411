@@ -34,7 +34,7 @@ const SearchResultsTemplate = ({
         </div>
         <LocalizedClientLink
           href="/store"
-          className="txt-medium text-ui-fg-subtle hover:text-ui-fg-base"
+          className="txt-medium text-[var(--colorsubtle)] hover:[var(--theme-color)]"
         >
           Clear
         </LocalizedClientLink>

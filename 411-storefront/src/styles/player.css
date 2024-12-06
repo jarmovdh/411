@@ -8,13 +8,13 @@
   -moz-appearance: none;
   appearance: none;
   --thumb-color: gray;
-  --track-fill-color: blue;
+  --track-fill-color: var(--theme-color);
   --thumb-size: 6px;
-  --track-fill-color: lightblue;
+  --track-fill-color: var(--theme-color);
 }
 
 .range-input::-webkit-slider-runnable-track {
-  background-color: blue;
+  background-color: var(--theme-color);
   height: var(--thumb-size);
   border-radius: var(--thumb-size);
 }
@@ -22,9 +22,9 @@
 .range-input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  background-color: gray;
-  height: 8px;
-  width: 8px;
+  background-color: var(--thumb-color);
+  height: 6px;
+  width: 6px;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -49,36 +49,39 @@
   height: 4px;
   width: 100px;
   border-radius: 50px;
-  background-color: gray;
+  background-color: var(--theme-color);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
+  --thumb-color: gray;
+  --track-fill-color: var(--theme-color);
+  --thumb-size: 6px;
+  --track-fill-color: var(--theme-color);
 }
-
 .volume-slider::-webkit-slider-runnable-track,
 .volume-slider::-moz-range-track {
-  background-color: gray;
-  height: var(--thumb-size);
-  border-radius: var(--thumb-size);
+  background-color: var(--theme-color);
+  height: 4px; /* Maintain consistent height with slider base */
+  border-radius: 2px;
 }
 
 .volume-slider::-webkit-slider-thumb,
 .volume-slider::-moz-range-thumb {
   -webkit-appearance: none;
   appearance: none;
-  background-color: gray;
-  height: var(--thumb-size);
-  width: var(--thumb-size);
+  background-color: var(--theme-color);
+  width: 6px; /* Adjust as needed */
+  height: 6px; /* Adjust as needed */
   border-radius: 50%;
   cursor: pointer;
 }
 
 /* For IE */
 .volume-slider::-ms-thumb {
-  background-color: gray;
-  height: var(--thumb-size);
-  width: var(--thumb-size);
+  background-color: var(--theme-color);
+  height: 6px;
+  width: 6px;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -87,5 +90,6 @@
   background-color: transparent;
   border-color: transparent;
   color: transparent;
-  height: var(--thumb-size);
+  height: 4px;
+  width: 100%;
 }

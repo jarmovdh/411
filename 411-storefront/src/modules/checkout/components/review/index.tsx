@@ -21,7 +21,7 @@ const Review = ({
     cart.payment_session
 
   return (
-    <div className="bg-white">
+    <div>
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"
@@ -39,7 +39,7 @@ const Review = ({
         <>
           <div className="flex items-start gap-x-1 w-full mb-6">
             <div className="w-full">
-              <Text className="txt-medium-plus text-ui-fg-base mb-1">
+              <Text className="txt-medium-plus [var(--theme-color)] mb-1">
                 By clicking the Place Order button, you confirm that you have
                 read, understand and accept our Terms of Use, Terms of Sale and
                 Returns Policy and acknowledge that you have read Medusa

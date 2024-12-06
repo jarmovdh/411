@@ -65,7 +65,7 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
         }
       >
         <Listbox.Button className="py-1 w-full">
-          <div className="txt-compact-small flex items-start gap-x-2">
+          <div className="txt-compact-small text-[var(--theme-color)] flex items-start gap-x-2">
             <span>Shipping to:</span>
             {current && (
               <span className="txt-compact-small flex items-center gap-x-2">
@@ -91,7 +91,7 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
             leaveTo="opacity-0"
           >
             <Listbox.Options
-              className="absolute -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar rounded-rounded w-full"
+              className="absolute text-[var(--theme-color)] -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] drop-shadow-md text-small-regular uppercase  no-scrollbar w-full"
               static
             >
               {options?.map((o, index) => {
@@ -99,7 +99,7 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
                   <Listbox.Option
                     key={index}
                     value={o}
-                    className="py-2 hover:bg-gray-200 px-3 cursor-pointer flex items-center gap-x-2"
+                    className="py-2 hover:bg-[var(--theme-background-hover)] px-3 cursor-pointer flex items-center gap-x-2"
                   >
                     <ReactCountryFlag
                       svg

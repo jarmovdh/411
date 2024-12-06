@@ -46,7 +46,7 @@ const Item = ({ item, region, type = "full" }: ItemProps) => {
   }
 
   return (
-    <Table.Row className="w-full bg-[var(--theme-background)]">
+    <Table.Row className="w-full bg-[var(--theme-background)] hover:bg-[var(--theme-background-hover)]">
       <Table.Cell className="!pl-0 p-4 w-24">
         <LocalizedClientLink
           href={`/products/${handle}`}

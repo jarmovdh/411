@@ -100,7 +100,7 @@ const Payment = ({
   }, [isOpen])
 
   return (
-    <div className="bg-white">
+    <div>
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"
@@ -153,7 +153,7 @@ const Payment = ({
 
             {isStripe && stripeReady && (
               <div className="mt-5 transition-all duration-150 ease-in-out">
-                <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                <Text className="txt-medium-plus [var(--theme-color)] mb-1">
                   Enter your card details:
                 </Text>
 
@@ -175,7 +175,7 @@ const Payment = ({
 
             <Button
               size="large"
-              className="mt-6"
+              className="mt-6 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]"
               onClick={handleSubmit}
               isLoading={isLoading}
               disabled={(isStripe && !cardComplete) || !cart.payment_session}
@@ -184,7 +184,7 @@ const Payment = ({
             </Button>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center px-4 py-16 text-ui-fg-base">
+          <div className="flex flex-col items-center justify-center px-4 py-16 [var(--theme-color)]">
             <Spinner />
           </div>
         )}
@@ -193,10 +193,10 @@ const Payment = ({
           {cart && paymentReady && cart.payment_session && (
             <div className="flex items-start gap-x-1 w-full">
               <div className="flex flex-col w-1/3">
-                <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                <Text className="txt-medium-plus [var(--theme-color)] mb-1">
                   Payment method
                 </Text>
-                <Text className="txt-medium text-ui-fg-subtle">
+                <Text className="txt-medium text-[var(--colorsubtle)]">
                   {paymentInfoMap[cart.payment_session.provider_id]?.title ||
                     cart.payment_session.provider_id}
                 </Text>
@@ -209,10 +209,10 @@ const Payment = ({
                   )}
               </div>
               <div className="flex flex-col w-1/3">
-                <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                <Text className="txt-medium-plus [var(--theme-color)] mb-1">
                   Payment details
                 </Text>
-                <div className="flex gap-2 txt-medium text-ui-fg-subtle items-center">
+                <div className="flex gap-2 txt-medium text-[var(--colorsubtle)] items-center">
                   <Container className="flex items-center h-7 w-fit p-2 bg-ui-button-neutral-hover">
                     {paymentInfoMap[cart.payment_session.provider_id]?.icon || (
                       <CreditCard />

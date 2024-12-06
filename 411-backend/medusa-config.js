@@ -52,21 +52,35 @@ const plugins = [
       },
     },
   },
+  {
+    resolve: "medusa-plugin-resend",
+       options: {
+          api_key: process.env.RESEND_API_KEY,
+          from: process.env.SES_FROM,
+          enable_endpoint: process.env.SES_ENABLE_ENDPOINT,
+          template_path: process.env.SES_TEMPLATE_PATH,
+          subject_template_type: process.env.RESEND_SUBJECT_TEMPLATE_TYPE,
+          body_template_type: process.env.RESEND_BODY_TEMPLATE_TYPE,
+          order_placed_template: 'order_placed',
+          order_shipped_template: 'order_shipped',
+          customer_password_reset_template:'customer_password_reset'
+    },
+  },
 ];
 
 const modules = {
-  /*eventBus: {
-    resolve: "@medusajs/event-bus-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  },
-  cacheService: {
-    resolve: "@medusajs/cache-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  },*/
+  // eventBus: {
+  //   resolve: "@medusajs/event-bus-redis",
+  //   options: {
+  //     redisUrl: REDIS_URL
+  //   }
+  // },
+  // cacheService: {
+  //   resolve: "@medusajs/cache-redis",
+  //   options: {
+  //     redisUrl: REDIS_URL
+  //   }
+  // },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
@@ -78,6 +92,34 @@ const projectConfig = {
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
   // redis_url: REDIS_URL
+  loaders: [
+    // ... other loaders
+    {
+      resolve: `${__dirname}/dist/loaders/reset-password`,
+    },
+    
+  ],
+  models: {
+    SubscriptionRequest: {
+      resolveKey: "subscription_request",
+      schema: "subscription-request",
+    },
+  },
+  modules: {
+    // ... other modules
+    customApi: {
+      resolve: "./src/api",
+      options: {
+        customOptions: {}
+      }
+    },
+    serviceModules: [
+      {
+        resolve: `${__dirname}/dist/services/subscription-request`,
+        options: {},
+      },
+    ],
+  },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */

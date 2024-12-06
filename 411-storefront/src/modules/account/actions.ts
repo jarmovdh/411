@@ -20,6 +20,9 @@ import {
   StorePostCustomersCustomerReq,
   StorePostCustomersReq,
 } from "@medusajs/medusa"
+import { Resend } from "resend"
+
+const resend = new Resend("process.env.RESEND_API_KEY")
 
 export async function signUp(_currentState: unknown, formData: FormData) {
   const customer = {
@@ -121,6 +124,7 @@ export async function addCustomerShows(
     excerpt: formData.get("excerpt") as string,
     title: formData.get("title") as string,
     slug: formData.get("slug") as string,
+    artist: formData.get("artist") as string,
   }
 
   const customer = {

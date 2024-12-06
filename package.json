@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "@svgr/webpack": "^8.1.0"
+  },
+  "dependencies": {
+    "@medusajs/cache-redis": "^1.9.2",
+    "@medusajs/event-bus-redis": "^1.8.14"
   }
 }

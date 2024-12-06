@@ -1,4 +1,4 @@
-import { Disclosure } from "@headlessui/react"
+import { Disclosure, DisclosurePanel } from "@headlessui/react"
 import { Badge, Button, clx } from "@medusajs/ui"
 import { useEffect } from "react"
 
@@ -55,7 +55,8 @@ const AccountInfo = ({
         <div>
           <Button
             variant="secondary"
-            className="w-[100px] min-h-[25px] py-1"
+            className="w-[100px] min-h-[25px] py-1 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] 
+            hover:text-[var(--theme-background)]"
             onClick={handleToggle}
             type={state ? "reset" : "button"}
           >
@@ -66,7 +67,7 @@ const AccountInfo = ({
 
       {/* Success state */}
       <Disclosure>
-        <Disclosure.Panel
+        <DisclosurePanel
           static
           className={clx(
             "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
@@ -79,12 +80,12 @@ const AccountInfo = ({
           <Badge className="p-2 my-4" color="green">
             <span>{label} updated succesfully</span>
           </Badge>
-        </Disclosure.Panel>
+        </DisclosurePanel>
       </Disclosure>
 
       {/* Error state  */}
       <Disclosure>
-        <Disclosure.Panel
+        <DisclosurePanel
           static
           className={clx(
             "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
@@ -97,11 +98,11 @@ const AccountInfo = ({
           <Badge className="p-2 my-4" color="red">
             <span>{errorMessage}</span>
           </Badge>
-        </Disclosure.Panel>
+        </DisclosurePanel>
       </Disclosure>
 
       <Disclosure>
-        <Disclosure.Panel
+        <DisclosurePanel
           static
           className={clx(
             "transition-[max-height,opacity] duration-300 ease-in-out overflow-visible",
@@ -123,7 +124,7 @@ const AccountInfo = ({
               </Button>
             </div>
           </div>
-        </Disclosure.Panel>
+        </DisclosurePanel>
       </Disclosure>
     </div>
   )

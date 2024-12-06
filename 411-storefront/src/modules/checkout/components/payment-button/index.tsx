@@ -126,6 +126,7 @@ const StripePaymentButton = ({
         onClick={handlePayment}
         size="large"
         isLoading={submitting}
+        className="bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]"
       >
         Place order
       </Button>
@@ -217,6 +218,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         isLoading={submitting}
         onClick={handlePayment}
         size="large"
+        className="bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]"
       >
         Place order
       </Button>

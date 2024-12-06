@@ -73,7 +73,7 @@ const CartDropdown = ({
 
   return (
     <div
-      className="h-full z-50 bg-[var(--theme-background)]"
+      className="h-full z-20 bg-[var(--theme-background)]"
       onMouseEnter={openAndCancel}
       onMouseLeave={close}
     >
@@ -83,7 +83,7 @@ const CartDropdown = ({
             className="flex flex-row text-[var(--theme-color)]"
             href="/cart"
           >
-            <CartIcon className="h-6" /> {` (${totalItems})`}
+            <CartIcon className="h-5 md:h-6" /> {` (${totalItems})`}
           </LocalizedClientLink>
         </Popover.Button>
         <Transition
@@ -98,7 +98,7 @@ const CartDropdown = ({
         >
           <Popover.Panel
             static
-            className="hidden small:block absolute top-[calc(100%+1px)] bg-[var(--theme-background)] right-0 border-x border-b border-[var(--theme-color)] w-[420px] text-ui-fg-base "
+            className="hidden small:block absolute top-[calc(100%+1px)] bg-[var(--theme-background)] right-0 border-x border-b border-[var(--theme-color)] w-[420px] [var(--theme-color)] "
           >
             <div className="p-4 flex items-center justify-center bg-[var(--theme-background)]">
               <h3 className="text-large-semi text-[var(--theme-color)]">
@@ -155,7 +155,7 @@ const CartDropdown = ({
                 </div>
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">
-                    <span className="text-ui-fg-base font-semibold">
+                    <span className="[var(--theme-color)] font-semibold">
                       Subtotal{" "}
                       <span className="font-normal">(excl. taxes)</span>
                     </span>
@@ -168,7 +168,17 @@ const CartDropdown = ({
                     </span>
                   </div>
                   <LocalizedClientLink href="/cart" passHref>
-                    <Button className="w-full" size="large">
+                    <Button
+                      className="
+                       w-full 
+                       bg-[var(--theme-background)] 
+                       border 
+                       text-[var(--theme-color)] 
+                       hover:bg-[var(--theme-color)] 
+                       hover:text-[var(--theme-background)]
+                     "
+                      size="large"
+                    >
                       Go to cart
                     </Button>
                   </LocalizedClientLink>
@@ -177,15 +187,20 @@ const CartDropdown = ({
             ) : (
               <div>
                 <div className="flex py-16 flex-col gap-y-4 items-center justify-center">
-                  <div className="bg-gray-900 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
-                    <span>0</span>
+                  <div className="text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
+                    <span className="text-lg">0</span>
                   </div>
                   <span>Your shopping bag is empty.</span>
                   <div>
                     <LocalizedClientLink href="/store">
                       <>
                         <span className="sr-only">Go to all products page</span>
-                        <Button onClick={close}>Explore products</Button>
+                        <Button
+                          onClick={close}
+                          className="bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]"
+                        >
+                          Explore products
+                        </Button>
                       </>
                     </LocalizedClientLink>
                   </div>

@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import "styles/globals.css"
-import Providers from "./providers"
+import Providers from "../context/providers"
 import Nav from "@modules/layout/templates/nav"
 import { Suspense } from "react"
 import Loading from "./loading"
@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-mode="light">
+    <html lang="en">
       <body>
         <Providers>
-          <Nav />
+          {/* <Nav /> */}
           <Suspense fallback={<Loading />}>
             <main className="relative h-lvh bg-[var(--theme-background)]">
               {props.children}

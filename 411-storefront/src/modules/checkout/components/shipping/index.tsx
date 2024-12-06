@@ -64,7 +64,7 @@ const Shipping: React.FC<ShippingProps> = ({
   }, [isOpen])
 
   return (
-    <div className="bg-white">
+    <>
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"
@@ -124,7 +124,7 @@ const Shipping: React.FC<ShippingProps> = ({
                         />
                         <span className="text-base-regular">{option.name}</span>
                       </div>
-                      <span className="justify-self-end text-ui-fg-base">
+                      <span className="justify-self-end [var(--theme-color)]">
                         {formatAmount({
                           amount: option.amount!,
                           region: cart?.region,
@@ -135,7 +135,7 @@ const Shipping: React.FC<ShippingProps> = ({
                   )
                 })
               ) : (
-                <div className="flex flex-col items-center justify-center px-4 py-8 text-ui-fg-base">
+                <div className="flex flex-col items-center justify-center px-4 py-8 [var(--theme-color)]">
                   <Spinner />
                 </div>
               )}
@@ -146,7 +146,7 @@ const Shipping: React.FC<ShippingProps> = ({
 
           <Button
             size="large"
-            className="mt-6"
+            className="mt-6 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]"
             onClick={handleSubmit}
             isLoading={isLoading}
             disabled={!cart.shipping_methods[0]}
@@ -159,10 +159,10 @@ const Shipping: React.FC<ShippingProps> = ({
           <div className="text-small-regular">
             {cart && cart.shipping_methods.length > 0 && (
               <div className="flex flex-col w-1/3">
-                <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                <Text className="txt-medium-plus [var(--theme-color)] mb-1">
                   Method
                 </Text>
-                <Text className="txt-medium text-ui-fg-subtle">
+                <Text className="txt-medium text-[var(--colorsubtle)]">
                   {cart.shipping_methods[0].shipping_option.name} (
                   {formatAmount({
                     amount: cart.shipping_methods[0].price,
@@ -179,7 +179,7 @@ const Shipping: React.FC<ShippingProps> = ({
         </div>
       )}
       <Divider className="mt-8" />
-    </div>
+    </>
   )
 }
 
