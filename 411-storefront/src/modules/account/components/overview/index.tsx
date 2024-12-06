@@ -16,7 +16,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
       <div className="hidden small:block">
         <div className="text-xl-semi flex justify-between items-center mb-4">
           <span>Hello {customer?.first_name}</span>
-          <span className="text-small-regular text-ui-fg-base">
+          <span className="text-small-regular [var(--theme-color)]">
             Signed in as:{" "}
             <span className="font-semibold">{customer?.email}</span>
           </span>
@@ -30,7 +30,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                   <span className="text-3xl-semi leading-none">
                     {getProfileCompletion(customer)}%
                   </span>
-                  <span className="uppercase text-base-regular text-ui-fg-subtle">
+                  <span className="uppercase text-base-regular text-[var(--colorsubtle)]">
                     Completed
                   </span>
                 </div>
@@ -42,7 +42,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                   <span className="text-3xl-semi leading-none">
                     {customer?.shipping_addresses?.length || 0}
                   </span>
-                  <span className="uppercase text-base-regular text-ui-fg-subtle">
+                  <span className="uppercase text-base-regular text-[var(--colorsubtle)]">
                     Saved
                   </span>
                 </div>
@@ -61,7 +61,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                         <LocalizedClientLink
                           href={`/account/orders/details/${order.id}`}
                         >
-                          <Container className="bg-gray-50 flex justify-between items-center p-4">
+                          <Container className="bg-[var(--theme-background)] flex justify-between items-center p-4">
                             <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1">
                               <span className="font-semibold">Date placed</span>
                               <span className="font-semibold">

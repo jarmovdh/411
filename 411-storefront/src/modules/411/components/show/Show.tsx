@@ -86,7 +86,7 @@ export const Show = ({
   return (
     <div
       className={`relative flex flex-col ${
-        large ? "h-[350px] md:h-[525px]" : "h-[250px] md:h-[350px]"
+        large ? "h-[350px] md:h-[525px]" : "h-[200px] md:h-[350px]"
       } 
   
     w-full bg-black text-white rounded-base`}
@@ -124,10 +124,10 @@ export const Show = ({
           height: isHovered
             ? large
               ? "160px"
-              : "125px"
+              : "135px"
             : large
-            ? "120px"
-            : "90px",
+              ? "120px"
+              : "90px",
           transition: "height 0.5s",
         }}
       >
@@ -155,19 +155,19 @@ export const Show = ({
             isHovered ? "opacity-100" : "opacity-0"
           } ${
             large ? "text-xs text-white" : "text-2xs md:text-xs text-white"
-          } line-clamp-2`}
+          } line-clamp`}
         >
           {excerpt}
         </p>
         <div
-          className={`transition-opacity duration-500 flex gap-1 mt-2 ${
+          className={`transition-opacity duration-300 flex gap-1 mt-2 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
           {tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs bg-black text-white rounded-full px-1 bg-opacity-60 border border-white"
+              className="text-2xs md:text-2xs bg-black text-white rounded-full px-1 bg-opacity-60 border border-white"
             >
               {tag}
             </span>

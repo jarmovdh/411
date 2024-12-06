@@ -7,6 +7,7 @@ body,
 html {
   background-color: var(--theme-background);
   color: var(--theme-color);
+  
 }
 
 p {
@@ -17,14 +18,18 @@ p {
 
 [data-theme="dark"] {
   --theme-background: #18191a;
+  --theme-background-hover: #2b2d2f;
   --theme-color: #ededed;
+  --theme-colorsubtle: #8e8e8e;
   --theme-colorcontrary: #ededed;
   --logo-fill-color: #ededed;
 }
 
 [data-theme="light"] {
   --theme-background: #ededed;
+  --theme-background-hover: rgb(220, 219, 219);
   --theme-color: #18191a;
+  --theme-colorsubtle: #8e8e8e;
   --theme-colorcontrary: #ededed;
   --logo-fill-color: #18191a;
 }
@@ -135,5 +140,28 @@ p {
 
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
+  }
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  max-height: 3rem;
+}
+
+.player-container {
+  width: 100%;
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .player-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1440px;
   }
 }

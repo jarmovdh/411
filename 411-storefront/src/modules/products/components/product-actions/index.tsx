@@ -152,14 +152,15 @@ export default function ProductActions({
           onClick={handleAddToCart}
           disabled={!inStock || !variant}
           variant="primary"
-          className="w-full h-10"
+          className="w-full h-10 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] 
+            hover:text-[var(--theme-background)]"
           isLoading={isAdding}
         >
           {!variant
             ? "Select variant"
             : !inStock
-            ? "Out of stock"
-            : "Add to cart"}
+              ? "Out of stock"
+              : "Add to cart"}
         </Button>
         <MobileActions
           product={product}

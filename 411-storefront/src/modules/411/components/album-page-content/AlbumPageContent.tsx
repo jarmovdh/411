@@ -8,11 +8,16 @@ import GlobeIcon from "../../../../../public/assets/icons/GlobeIcon"
 import AppleIcon from "../../../../../public/assets/icons/ApplieIcon"
 import SpotifyIcon from "../../../../../public/assets/icons/SpotifyIcon"
 import { SocialShare } from "../social-share/SocialShare"
+import React from "react"
+
+type BlockProps = {
+  children: React.ReactNode
+}
 
 const components = {
   block: {
-    normal: ({ children }) => {
-      if (children.length === 1 && children[0] === "") {
+    normal: ({ children }: BlockProps) => {
+      if (React.isValidElement(children) && children.props.children === "") {
         return <br />
       }
       return <p>{children}</p>
@@ -22,7 +27,7 @@ const components = {
 
 export default function AlbumPageContent({ album }: { album: AlbumType }) {
   return (
-    <div className="content-container flex flex-col-reverse lg:grid lg:grid-cols-2 mt-12">
+    <div className="content-container flex flex-col-reverse gap-2 lg:grid lg:grid-cols-2 mt-12">
       <div>
         <h1 className="text-2xl font-bold">
           {album.artist} - {album.title}
@@ -71,7 +76,11 @@ export default function AlbumPageContent({ album }: { album: AlbumType }) {
             <GlobeIcon className="h-4" /> Website
           </a>
           <div className="mt-5">
-            <SocialShare title={album.title} url={album.slug.current} />
+            <SocialShare
+              title={album.title}
+              url={album.slug.current}
+              prefix="albums"
+            />
           </div>
         </div>
       </div>

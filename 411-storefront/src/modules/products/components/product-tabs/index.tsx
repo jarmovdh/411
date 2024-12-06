@@ -22,6 +22,10 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       label: "Shipping & Returns",
       component: <ShippingInfoTab />,
     },
+    {
+      label: "Authenticity",
+      component: <AuthenticityTab />,
+    },
   ]
 
   return (
@@ -120,6 +124,20 @@ const ShippingInfoTab = () => {
           </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+const AuthenticityTab = () => {
+  return (
+    <div className="text-small-regular py-8">
+      <h3 className="font-semibold mb-4">Guaranteed Authenticity</h3>
+      <p>
+        Each pre-owned item undergoes authentication by a team of experts. The
+        photos displayed are of the exact product you will receive. We take
+        pride in our thorough processes and confidently guarantee the
+        authenticity of every item sold.
+      </p>
     </div>
   )
 }

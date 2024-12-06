@@ -77,7 +77,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
             {address.first_name} {address.last_name}
           </Heading>
           {address.company && (
-            <Text className="txt-compact-small text-ui-fg-base">
+            <Text className="txt-compact-small [var(--theme-color)]">
               {address.company}
             </Text>
           )}
@@ -97,14 +97,14 @@ const EditAddress: React.FC<EditAddressProps> = ({
         </div>
         <div className="flex items-center gap-x-4">
           <button
-            className="text-small-regular text-ui-fg-base flex items-center gap-x-2"
+            className="text-small-regular [var(--theme-color)] flex items-center gap-x-2"
             onClick={open}
           >
             <Edit />
             Edit
           </button>
           <button
-            className="text-small-regular text-ui-fg-base flex items-center gap-x-2"
+            className="text-small-regular [var(--theme-color)] flex items-center gap-x-2"
             onClick={removeAddress}
           >
             {removing ? <Spinner /> : <Trash />}

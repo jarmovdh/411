@@ -2,24 +2,41 @@
 
 import React from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import ProductPreview from "@modules/products/components/product-preview"
 
 // import required modules
-import { Pagination } from "swiper/modules"
+import { Autoplay, Pagination } from "swiper/modules"
 
 import "swiper/css"
 import "swiper/css/pagination"
 import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-// import "./styles.css"
 
-export const ProductSlider = ({ collections }) => {
+interface Product {
+  id: string
+  handle: string
+  thumbnail: string
+  title: string
+}
+
+interface Collection {
+  products: Product[]
+}
+
+interface ProductSliderProps {
+  collections: Collection[]
+}
+
+export const ProductSlider = ({ collections }: ProductSliderProps) => {
   return (
     <Swiper
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
       pagination={{
         dynamicBullets: true,
       }}
-      modules={[Pagination]}
+      modules={[Pagination, Autoplay]}
       spaceBetween={5}
       loop={true}
       className="mySwiper"

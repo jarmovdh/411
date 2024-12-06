@@ -76,7 +76,7 @@ const AddressSelect = ({ addresses, cart }: AddressSelectProps) => {
                         {address.first_name} {address.last_name}
                       </span>
                       {address.company && (
-                        <span className="text-small-regular text-ui-fg-base">
+                        <span className="text-small-regular [var(--theme-color)]">
                           {address.company}
                         </span>
                       )}

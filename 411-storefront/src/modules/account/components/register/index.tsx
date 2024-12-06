@@ -22,8 +22,7 @@ const Register = ({ setCurrentView }: Props) => {
         Become a 411 Radio Member
       </h1>
       <p className="text-center text-base-regular mb-4">
-        Create your Medusa Store Member profile, and get access to an enhanced
-        shopping experience.
+        Create your profile, and get access to an enhanced radio experience.
       </p>
       <form className="w-full flex flex-col" action={formAction}>
         <div className="flex flex-col w-full gap-y-2">
@@ -73,7 +72,9 @@ const Register = ({ setCurrentView }: Props) => {
           </LocalizedClientLink>
           .
         </span>
-        <SubmitButton className="w-full mt-6">Join</SubmitButton>
+        <SubmitButton className="w-full mt-6 bg-[var(--theme-background)] border text-[var(--theme-color)]  hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]">
+          Join
+        </SubmitButton>
       </form>
       <span className="text-center text-small-regular mt-6">
         Already a member?{" "}

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 
 interface ShowProps {
   id: number
@@ -73,6 +73,11 @@ export const PlayerProvider: React.FC<PlayerProviderProps> = ({ children }) => {
   const handlePlayerClose = () => {
     setActivePlayer(null)
   }
+
+  useEffect(() => {
+    setTimeProgress(0)
+    setDuration(0)
+  }, [activePlayer])
 
   return (
     <PlayerContext.Provider

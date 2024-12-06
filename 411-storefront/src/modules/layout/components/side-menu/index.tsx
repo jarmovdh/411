@@ -4,21 +4,26 @@ import { Popover, Transition } from "@headlessui/react"
 import { ArrowRightMini, XMark } from "@medusajs/icons"
 import { Region } from "@medusajs/medusa"
 import { Text, clx, useToggleState } from "@medusajs/ui"
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
+import { Variants } from "framer-motion"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CountrySelect from "../country-select"
+import { motion } from "framer-motion"
+import MenuIcon from "../../../../../public/assets/icons/MenuIcon"
 
 const SideMenuItems = {
   Home: "/",
-  Store: "/store",
-  Search: "/search",
+  Listen: "/listen",
+  Read: "/news",
+  Shop: "/store",
   Account: "/account",
   About: "/about",
   Cart: "/cart",
 }
 
 const SideMenu = ({ regions }: { regions: Region[] | null }) => {
+  const [isOpen, setIsOpen] = useState(false)
   const toggleState = useToggleState()
 
   return (
@@ -28,43 +33,83 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
           {({ open, close }) => (
             <>
               <div className="relative flex h-full">
-                <Popover.Button className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none ">
-                  Menu
-                </Popover.Button>
+                <Popover.Button
+                  className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none "
+                  onClick={() => setIsOpen(!isOpen)}
+                ></Popover.Button>
               </div>
-
               <Transition
                 show={open}
                 as={Fragment}
-                enter="transition ease-out duration-150"
-                enterFrom="opacity-0"
-                enterTo="opacity-100 backdrop-blur-2xl"
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
                 leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 backdrop-blur-2xl"
-                leaveTo="opacity-0"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-30 inset-x-0 text-sm text-ui-fg-on-color m-2 backdrop-blur-2xl">
-                  <div className="flex flex-col h-full bg-[rgba(3,7,18,0.5)] rounded-rounded justify-between p-6">
+                <Popover.Panel
+                  static
+                  className="block absolute h-[800px] top-[calc(100%+1px)] bg-[var(--theme-background)] right-0 border-x border-b border-[var(--theme-color)] w-full sm:w-[420px] [var(--theme-color)]"
+                  style={{
+                    boxShadow:
+                      "0 4px 6px -1px rgba(0, 0, 0, 0.1), -4px 0 6px -1px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <div className="flex flex-col h-full bg-[var(--theme-background)] justify-between p-6">
                     <div className="flex justify-end" id="xmark">
-                      <button onClick={close}>
+                      <button
+                        onClick={() => {
+                          close()
+                          setIsOpen(false)
+                        }}
+                      >
                         <XMark />
                       </button>
                     </div>
-                    <ul className="flex flex-col gap-6 items-start justify-start">
+                    <motion.ul
+                      variants={{
+                        open: {
+                          clipPath: "inset(0% 0% 0% 0% )",
+                          transition: {
+                            type: "spring",
+                            bounce: 0,
+                            duration: 0.7,
+                            delayChildren: 0.3,
+                            staggerChildren: 0.05,
+                          },
+                        },
+                        closed: {
+                          clipPath: "inset(0% 0% 0% 100% )",
+                          transition: {
+                            type: "spring",
+                            bounce: 0,
+                            duration: 0.6,
+                            delayChildren: 0.3,
+                            staggerChildren: 0.05,
+                          },
+                        },
+                      }}
+                      style={{ pointerEvents: isOpen ? "auto" : "none" }}
+                      className="flex flex-col gap-6 items-start justify-start"
+                    >
                       {Object.entries(SideMenuItems).map(([name, href]) => {
                         return (
                           <li key={name}>
                             <LocalizedClientLink
                               href={href}
                               className="text-3xl leading-10 hover:text-ui-fg-disabled"
-                              onClick={close}
+                              onClick={() => {
+                                close()
+                                setIsOpen(false)
+                              }}
                             >
                               {name}
                             </LocalizedClientLink>
                           </li>
                         )
                       })}
-                    </ul>
+                    </motion.ul>
                     <div className="flex flex-col gap-y-6">
                       <div
                         className="flex justify-between"
@@ -85,7 +130,7 @@ const SideMenu = ({ regions }: { regions: Region[] | null }) => {
                         />
                       </div>
                       <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} Medusa Store. All rights
+                        © {new Date().getFullYear()} 411 Radio. All rights
                         reserved.
                       </Text>
                     </div>

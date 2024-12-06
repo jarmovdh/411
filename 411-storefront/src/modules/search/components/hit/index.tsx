@@ -33,7 +33,7 @@ const Hit = ({ hit }: HitProps) => {
         />
         <div className="flex flex-col justify-between group">
           <div className="flex flex-col">
-            <Text className="text-ui-fg-subtle">{hit.title}</Text>
+            <Text className="text-[var(--colorsubtle)]">{hit.title}</Text>
           </div>
         </div>
       </Container>

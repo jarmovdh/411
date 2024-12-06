@@ -13,7 +13,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         {product.collection && (
           <LocalizedClientLink
             href={`/collections/${product.collection.handle}`}
-            className="text-medium  hover:text-ui-fg-subtle"
+            className="text-medium  hover:text-[var(--colorsubtle)]"
           >
             {product.collection.title}
           </LocalizedClientLink>
