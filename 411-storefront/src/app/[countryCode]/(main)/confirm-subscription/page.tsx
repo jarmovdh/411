@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server"
+import InteractiveLink from "@modules/common/components/interactive-link"
 import { Resend } from "resend"
 
 async function getSubscriptionByToken(token: string) {
@@ -63,21 +63,14 @@ export default async function ConfirmSubscription({
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="max-w-md w-full border shadow-lg rounded-lg p-8 text-center">
+      <div className="max-w-md w-full rounded-lg p-8 items-center">
         <h1
-          className={`text-2xl font-bold mb-4 ${isSuccess ? "text-green-600" : "text-red-600"}`}
+          className={`text-xl font-bold mb-4 ${isSuccess ? "text-green-600" : "text-red-600"}`}
         >
           {isSuccess ? "Subscription Confirmed" : "Subscription Error"}
         </h1>
-        <p className="text-gray-700">{message}</p>
-        {!isSuccess && (
-          <a
-            href="/"
-            className="mt-4 inline-block text-blue-500 hover:text-blue-700"
-          >
-            Return to Homepage
-          </a>
-        )}
+        <p className="text-base-small mb-8">{message}</p>
+        <InteractiveLink href="/">Go to frontpage</InteractiveLink>
       </div>
     </div>
   )

@@ -18,7 +18,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body>
         <Providers>
-          <Nav />
+          {/* <Nav /> */}
           <Suspense fallback={<Loading />}>
             <main className="relative h-lvh bg-[var(--theme-background)]">
               {props.children}

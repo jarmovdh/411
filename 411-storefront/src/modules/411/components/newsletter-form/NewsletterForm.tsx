@@ -23,13 +23,15 @@ const NewsletterForm = () => {
 
   return (
     <div className="w-full flex flex-col items-center mt-4">
-      <h1 className="text-large-semi uppercase mb-6">
-        Subscribe to Our Newsletter
+      <h1 className="text-medium-semi uppercase mb-6">
+        Pre-register for Early Access
       </h1>
-      <p className="text-base-regular mb-8">
-        Sign up to the 411 newsletter for updates from 411 every other week:
+      <p className="text-base-small mb-8">
+        {/* Sign up to the 411 newsletter for updates from 411 every other week:
         expect radio highlights, event announcements, the latest goods and much
-        more…
+        more… */}
+        Be the first to experience 411 Radio platform and get early access to
+        our online store. Sign up now and get notified when we launch.
       </p>
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="flex flex-col w-full gap-y-2">
@@ -53,10 +55,10 @@ const NewsletterForm = () => {
               I want to receive updates from 411 via email.
             </label>
           </div>
-          <p className="text-small-regular mt-2">
+          {/* <p className="text-small-regular mt-2">
             I understand and agree to share my information in accordance with
             411's privacy policy.
-          </p>
+          </p> */}
         </div>
         <ErrorMessage
           error={state?.success === false ? state.message : undefined}
@@ -64,6 +66,7 @@ const NewsletterForm = () => {
         <SubmitButton
           className="w-full mt-6 bg-[var(--theme-background)] border text-[var(--theme-color)] hover:bg-[var(--theme-color)] hover:text-[var(--theme-background)]"
           disabled={isSubmitting}
+          variant="primary"
         >
           {isSubmitting ? "Subscribing..." : "Subscribe"}
         </SubmitButton>

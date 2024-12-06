@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       to: email,
       subject: "Please Confirm Subscription",
       html: `
-        <h1>Confirm Your Subscription</h1>
+        <h1>411 Radio - Confirm Your Subscription</h1>
         <p>Click the button below to confirm your subscription to our newsletter:</p>
         <a href="${frontendUrl}/confirm-subscription?token=${token}" style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">
           Yes, subscribe me to this list
