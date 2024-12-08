@@ -1,7 +1,9 @@
 {
   "scripts": {
-    "start": "cd 411-backend && npm start",
-    "heroku-postbuild": "cd 411-backend && npm install --legacy-peer-deps && npm run build && medusa migrations run"
+    "heroku-postbuild": "cd 411-backend && npm install --legacy-peer-deps && npm run build && npx medusa migrations run"
+  },
+  "engines": {
+    "node": "16.x"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0"
