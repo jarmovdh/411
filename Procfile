@@ -1,1 +1,2 @@
-web: npm start
+web: cd 411-backend && npm start
+
