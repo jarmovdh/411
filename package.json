@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "cd 411-backend && npm start",
-    "heroku-postbuild": "cd backend && npm install && npm run build && npm run migrations"
+    "heroku-postbuild": "cd 411-backend && npm install && npm run build && npm run migrations"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0"
