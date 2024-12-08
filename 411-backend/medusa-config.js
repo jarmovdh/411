@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const dotenv = require("dotenv");
 
 let ENV_FILE_NAME = "";
