@@ -13,8 +13,8 @@
     "medusa"
   ],
   "scripts": {
-    "start": "medusa start", 
-  "serve": "medusa start",
+    "start": "medusa start",
+    "serve": "medusa start",
     "heroku-postbuild": "medusa migrations run",
     "prepare": "npm run build",
     "build": "babel src -d dist --extensions \".ts,.js\"",
