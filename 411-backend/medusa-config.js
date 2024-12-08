@@ -60,32 +60,40 @@ const plugins = [
  },
 ];
 
+const customApiPath = "./src/api";
+const hasCustomApi = fs.existsSync(path.resolve(process.cwd(), customApiPath));
+
 const modules = {
- eventBus: {
-   resolve: "@medusajs/event-bus-redis",
-   options: {
-     redisUrl: REDIS_URL
-   }
- },
- cacheService: {
-   resolve: "@medusajs/cache-redis",
-   options: {
-     redisUrl: REDIS_URL
-   }
- },
- customApi: {
-   resolve: "./src/api",
-   options: {
-     customOptions: {}
-   }
- },
- serviceModules: [
-   {
-     resolve: `${__dirname}/dist/services/subscription-request`,
-     options: {},
-   },
- ],
+  eventBus: {
+    resolve: "@medusajs/event-bus-redis",
+    options: {
+      redisUrl: REDIS_URL
+    }
+  },
+  cacheService: {
+    resolve: "@medusajs/cache-redis",
+    options: {
+      redisUrl: REDIS_URL
+    }
+  },
+  // Only include customApi if it exists
+  ...(hasCustomApi && {
+    customApi: {
+      resolve: customApiPath,
+      options: {
+        customOptions: {}
+      }
+    }
+  }),
+  serviceModules: [
+    {
+      resolve: `${__dirname}/dist/services/subscription-request`,
+      options: {},
+    },
+  ],
 };
+
+
 
 module.exports = {
  projectConfig: {
