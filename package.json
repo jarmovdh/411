@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "cd backend && npm start",
+    "start": "cd 411-backend && npm start",
     "heroku-postbuild": "cd backend && npm install && npm run build && npm run migrations"
   },
   "devDependencies": {
